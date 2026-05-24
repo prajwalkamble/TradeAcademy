@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TradeAcademy - Learn to Trade Like a Professional</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#020617;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;font-size:14px;overflow-x:hidden}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+a{color:inherit;text-decoration:none}
+
+/* LANDING */
+.landing{min-height:100vh;background:#020617;position:relative;overflow:hidden}
+.landing::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(34,211,238,0.08) 0%,transparent 70%);pointer-events:none;z-index:0}
+.topnav{position:sticky;top:0;background:rgba(2,6,23,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);padding:14px 32px;display:flex;align-items:center;z-index:100}
+.logo{font-size:18px;font-weight:700;color:#22d3ee;cursor:pointer;display:flex;align-items:center;gap:8px}
+.logo:hover{opacity:0.85}
+.logo .ldot{width:10px;height:10px;background:#22d3ee;border-radius:2px;display:inline-block}
+.nav-links{display:flex;gap:28px;margin-left:auto;align-items:center;list-style:none}
+.nav-links a{color:#94a3b8;font-size:14px;transition:color 0.2s;cursor:pointer}
+.nav-links a:hover{color:#22d3ee}
+.open-course-btn{background:linear-gradient(90deg,#22d3ee,#10b981);color:#020617;padding:8px 18px;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;margin-left:24px}
+.open-course-btn:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(34,211,238,0.3)}
+.hero{position:relative;z-index:1;padding:100px 24px 60px;text-align:center;max-width:1100px;margin:0 auto}
+.hero-pill{display:inline-block;padding:6px 18px;background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.3);border-radius:24px;font-size:12px;color:#22d3ee;letter-spacing:1.5px;font-weight:600;margin-bottom:32px}
+.hero-pill .in{background:#22d3ee;color:#020617;padding:2px 8px;border-radius:4px;font-weight:700;margin-right:6px}
+.hero h1{font-size:72px;font-weight:800;line-height:1.05;margin-bottom:24px;letter-spacing:-2px}
+.hero h1 .grad{display:block;background:linear-gradient(90deg,#22d3ee 0%,#10b981 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent}
+.hero p.sub{font-size:18px;color:#94a3b8;max-width:680px;margin:0 auto 36px;line-height:1.6}
+.cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.btn-primary{background:linear-gradient(90deg,#22d3ee,#10b981);color:#020617;padding:14px 32px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(34,211,238,0.4)}
+.btn-outline{background:transparent;color:#e2e8f0;padding:14px 32px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.15);transition:all 0.2s}
+.btn-outline:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.3)}
+.live-bar{display:inline-flex;gap:24px;padding:12px 24px;background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:12px;font-size:13px;flex-wrap:wrap;justify-content:center;margin-bottom:48px}
+.live-bar .li{display:flex;gap:6px;align-items:center}
+.live-bar .li b{color:#e2e8f0;font-weight:700;font-size:12px;letter-spacing:0.5px}
+.live-bar .li .v{color:#cbd5e1}
+.live-bar .li .pct.up{color:#10b981}
+.live-bar .li .pct.dn{color:#ef4444}
+.stats4{display:flex;gap:48px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.stats4 .st{text-align:center}
+.stats4 .st b{display:block;font-size:48px;color:#22d3ee;font-weight:800;line-height:1}
+.stats4 .st span{font-size:12px;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-top:4px;display:block}
+.section{padding:80px 24px;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.section h2{font-size:36px;font-weight:800;text-align:center;margin-bottom:14px;letter-spacing:-1px}
+.section h2 .grad{background:linear-gradient(90deg,#22d3ee,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent}
+.section .sec-sub{text-align:center;color:#94a3b8;font-size:15px;margin-bottom:50px;max-width:600px;margin-left:auto;margin-right:auto}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.feat-card{background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:28px;transition:all 0.3s}
+.feat-card:hover{border-color:rgba(34,211,238,0.4);transform:translateY(-4px)}
+.feat-card .icon{width:48px;height:48px;background:rgba(34,211,238,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px}
+.feat-card h3{color:#e2e8f0;font-size:17px;font-weight:700;margin-bottom:10px}
+.feat-card p{color:#94a3b8;font-size:14px;line-height:1.6}
+.curr-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:32px;flex-wrap:wrap}
+.curr-tab{background:rgba(15,23,42,0.6);color:#94a3b8;padding:10px 22px;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.08);transition:all 0.2s}
+.curr-tab.on{background:linear-gradient(90deg,#22d3ee,#10b981);color:#020617;border-color:transparent}
+.curr-tab:hover{color:#e2e8f0}
+.curr-content{background:rgba(15,23,42,0.4);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:24px;min-height:240px}
+.curr-week{display:none}
+.curr-week.on{display:block}
+.curr-week h4{color:#22d3ee;font-size:15px;margin-bottom:12px;font-weight:700}
+.curr-lessons{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.curr-lesson{background:rgba(2,6,23,0.6);padding:10px 14px;border-radius:8px;font-size:13px;color:#cbd5e1;cursor:pointer;border:1px solid transparent}
+.curr-lesson:hover{border-color:rgba(34,211,238,0.4);color:#22d3ee}
+.curr-lesson .d{color:#64748b;font-size:11px;font-weight:600;margin-right:6px}
+.mkt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.mkt-card{background:linear-gradient(135deg,rgba(15,23,42,0.8),rgba(2,6,23,0.8));border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:28px}
+.mkt-card .flag{font-size:32px;margin-bottom:16px}
+.mkt-card h3{color:#22d3ee;font-size:18px;margin-bottom:10px}
+.mkt-card .desc{color:#94a3b8;font-size:14px;margin-bottom:16px;line-height:1.6}
+.mkt-card ul{list-style:none;padding:0}
+.mkt-card li{color:#cbd5e1;font-size:13px;padding:4px 0;display:flex;gap:8px;align-items:start}
+.mkt-card li::before{content:'✓';color:#10b981;font-weight:700}
+.journey-list{display:flex;flex-direction:column;gap:16px;max-width:780px;margin:0 auto}
+.j-row{display:flex;gap:20px;align-items:start;background:rgba(15,23,42,0.5);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px}
+.j-week{background:linear-gradient(135deg,#22d3ee,#10b981);color:#020617;padding:6px 14px;border-radius:6px;font-weight:700;font-size:12px;white-space:nowrap;height:28px;display:flex;align-items:center}
+.j-body h4{color:#e2e8f0;font-size:15px;margin-bottom:4px}
+.j-body p{color:#94a3b8;font-size:13px}
+.final-cta{text-align:center;padding:80px 24px;background:linear-gradient(180deg,transparent,rgba(34,211,238,0.05));position:relative;z-index:1}
+.final-cta h2{font-size:38px;margin-bottom:16px;font-weight:800}
+.final-cta p{color:#94a3b8;margin-bottom:32px;font-size:16px}
+.footer{padding:30px 24px;text-align:center;color:#64748b;font-size:12px;border-top:1px solid rgba(255,255,255,0.05)}
+.ticker-marquee{background:rgba(2,6,23,0.95);border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);overflow:hidden;padding:10px 0;position:relative;z-index:1}
+.marquee-track{display:flex;animation:marquee 60s linear infinite;width:max-content;gap:32px}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.mq-item{font-size:12px;color:#64748b;white-space:nowrap;display:flex;gap:6px;align-items:center}
+.mq-item b{color:#cbd5e1;font-weight:600}
+.mq-item .pct.up{color:#10b981}
+.mq-item .pct.dn{color:#ef4444}
+
+/* APP */
+#app{display:none;flex-direction:column;height:100vh;overflow:hidden}
+.app-topbar{background:#0f172a;border-bottom:1px solid rgba(255,255,255,0.08);padding:10px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0;flex-wrap:wrap}
+.app-topbar .applogo{cursor:pointer;font-size:15px;font-weight:700;color:#22d3ee;display:flex;align-items:center;gap:8px}
+.app-topbar .applogo:hover{opacity:0.85}
+.app-topbar .applogo .ldot{width:8px;height:8px;background:#22d3ee;border-radius:2px}
+.app-topbar .sub{color:#64748b;font-size:12px}
+.app-topbar .right{margin-left:auto;display:flex;gap:8px;align-items:center}
+.prog{background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:5px 14px;font-size:12px;color:#94a3b8}
+.btn{background:rgba(15,23,42,0.6);color:#e2e8f0;padding:6px 14px;border-radius:6px;font-size:13px;border:1px solid rgba(255,255,255,0.08);cursor:pointer}
+.btn:hover{background:rgba(15,23,42,0.9);border-color:rgba(34,211,238,0.4)}
+.btn.primary{background:linear-gradient(90deg,#22d3ee,#10b981);color:#020617;border:none;font-weight:600}
+.btn.primary:hover{transform:translateY(-1px)}
+.mainnav{background:#020617;border-bottom:1px solid rgba(255,255,255,0.05);padding:0 16px;display:flex;gap:4px;overflow-x:auto;flex-shrink:0}
+.mainnav button{background:transparent;color:#64748b;padding:12px 16px;font-size:13px;font-weight:500;border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer}
+.mainnav button.on{color:#22d3ee;border-bottom-color:#22d3ee}
+.mainnav button:hover{color:#e2e8f0}
+.body-row{display:flex;flex:1;overflow:hidden;min-height:0}
+.sidebar{width:280px;background:#0f172a;border-right:1px solid rgba(255,255,255,0.05);overflow-y:auto;flex-shrink:0}
+.weekgrp{padding:10px 14px;font-size:11px;color:#22d3ee;font-weight:700;letter-spacing:1px;background:rgba(15,23,42,0.6);border-bottom:1px solid rgba(255,255,255,0.05);text-transform:uppercase}
+.li{padding:11px 16px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;border-left:3px solid transparent}
+.li:hover{background:rgba(15,23,42,0.6)}
+.li.on{background:rgba(34,211,238,0.08);border-left-color:#22d3ee}
+.li .dl{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:0.5px}
+.li .ti{font-size:13px;color:#e2e8f0;margin-top:2px;font-weight:500;line-height:1.3}
+.li.done .ti::before{content:'✓ ';color:#10b981}
+.content{flex:1;overflow-y:auto;background:#020617;padding:20px;min-width:0}
+.pg{display:none}
+.pg.on{display:block}
+.lhdr{margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.lhdr h1{font-size:26px;color:#e2e8f0;margin-bottom:10px;font-weight:700}
+.lhdr .meta{display:flex;gap:8px;flex-wrap:wrap}
+.badge{padding:4px 12px;border-radius:14px;font-size:11px;font-weight:600;background:rgba(15,23,42,0.6);color:#94a3b8;border:1px solid rgba(255,255,255,0.08)}
+.badge.b{background:rgba(59,130,246,0.15);color:#60a5fa;border-color:rgba(59,130,246,0.3)}
+.badge.g{background:rgba(16,185,129,0.15);color:#10b981;border-color:rgba(16,185,129,0.3)}
+.badge.p{background:rgba(168,85,247,0.15);color:#a855f7;border-color:rgba(168,85,247,0.3)}
+.badge.r{background:rgba(239,68,68,0.15);color:#ef4444;border-color:rgba(239,68,68,0.3)}
+.block{background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:18px;margin-bottom:14px}
+.block .lbl{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;padding:4px 10px;border-radius:5px}
+.block .lbl.c{background:rgba(34,211,238,0.15);color:#22d3ee}
+.block .lbl.e{background:rgba(16,185,129,0.15);color:#10b981}
+.block .lbl.w{background:rgba(239,68,68,0.15);color:#ef4444}
+.block .lbl.ti{background:rgba(245,158,11,0.15);color:#f59e0b}
+.block .lbl.a{background:rgba(168,85,247,0.15);color:#a855f7}
+.block .lbl.f{background:rgba(6,182,212,0.15);color:#06b6d4}
+.block .lbl.p2{background:rgba(249,115,22,0.15);color:#f97316}
+.block .body{display:block;color:#cbd5e1;line-height:1.7;font-size:14px}
+.block .body strong{color:#e2e8f0;font-weight:600}
+.block .body em{color:#22d3ee;font-style:italic}
+.callout{padding:14px;border-radius:8px;margin-top:6px}
+.callout.w{background:rgba(239,68,68,0.06);border-left:3px solid #ef4444}
+.callout.ti{background:rgba(245,158,11,0.06);border-left:3px solid #f59e0b}
+.callout.a{background:rgba(168,85,247,0.06);border-left:3px solid #a855f7}
+pre.code{background:#020617;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:14px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:12px;color:#22d3ee;white-space:pre;line-height:1.6;margin-top:6px}
+table{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px}
+table th{background:rgba(15,23,42,0.8);color:#22d3ee;padding:10px;text-align:left;border:1px solid rgba(255,255,255,0.06);font-weight:600}
+table td{padding:10px;border:1px solid rgba(255,255,255,0.06);color:#cbd5e1}
+table tr:nth-child(even) td{background:rgba(15,23,42,0.4)}
+.quiz{background:#0f172a;border:1px solid rgba(34,211,238,0.2);border-radius:10px;padding:18px;margin-bottom:14px}
+.quiz .qq{color:#e2e8f0;font-weight:500;margin-bottom:14px;font-size:14px}
+.qopt{display:block;width:100%;text-align:left;background:rgba(2,6,23,0.6);color:#cbd5e1;padding:11px 14px;border-radius:7px;margin-bottom:7px;border:1px solid rgba(255,255,255,0.06);font-size:13px;cursor:pointer}
+.qopt:hover{background:rgba(15,23,42,0.8);border-color:rgba(34,211,238,0.4)}
+.qopt.ok{background:rgba(16,185,129,0.12);border-color:#10b981;color:#10b981}
+.qopt.bad{background:rgba(239,68,68,0.12);border-color:#ef4444;color:#ef4444}
+.qexp{display:none;margin-top:12px;padding:12px;background:rgba(2,6,23,0.6);border-radius:7px;color:#94a3b8;font-size:13px;border-left:3px solid #22d3ee}
+.qexp.show{display:block}
+.lnav{display:flex;justify-content:space-between;gap:10px;margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.08)}
+
+/* ===== ADVANCED SIMULATOR ===== */
+.sim-stats-row{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.sim-stat{background:#0f172a;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 16px;flex:1;min-width:120px}
+.sim-stat .lbl{display:block;color:#64748b;font-size:10px;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px}
+.sim-stat .val{font-size:16px;font-weight:700;color:#e2e8f0}
+.sim-stat .val.up{color:#10b981}
+.sim-stat .val.dn{color:#ef4444}
+.sim-controls{display:flex;gap:8px;align-items:center}
+.sim-controls select{background:#0f172a;border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:6px 10px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit}
+.sim-controls select:focus{outline:none;border-color:#22d3ee}
+
+.sim-tickers{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;margin-bottom:14px}
+.s-ticker{background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:8px 10px;cursor:pointer;transition:all 0.15s}
+.s-ticker:hover{border-color:rgba(34,211,238,0.4)}
+.s-ticker.sel{border-color:#22d3ee;background:rgba(34,211,238,0.05)}
+.s-ticker .sym{font-size:11px;font-weight:700;color:#e2e8f0;letter-spacing:0.3px}
+.s-ticker .px{font-size:13px;font-weight:600;margin-top:2px;color:#e2e8f0}
+.s-ticker .pct{font-size:11px;margin-top:1px}
+.s-ticker .pct.up{color:#10b981}
+.s-ticker .pct.dn{color:#ef4444}
+
+.sim-main{display:grid;grid-template-columns:1fr 220px;gap:12px;margin-bottom:14px}
+.sim-chart-box{background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:14px;overflow:hidden}
+.sim-chart-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.sim-chart-hdr b{font-size:14px;color:#e2e8f0;letter-spacing:0.5px}
+.sim-chart-hdr .px{font-size:18px;font-weight:700;color:#10b981}
+.sim-chart-hdr .px.dn{color:#ef4444}
+.sim-chart-wrap{position:relative;width:100%;height:280px}
+#sim-canvas{display:block;width:100%;height:100%}
+
+.sim-orderbook{background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px;font-size:11px}
+.ob-title{color:#64748b;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.ob-row{display:flex;justify-content:space-between;padding:3px 0;font-family:'SF Mono',Monaco,monospace}
+.ob-row.ask{color:#ef4444}
+.ob-row.bid{color:#10b981}
+.ob-spread{text-align:center;background:rgba(34,211,238,0.06);border:1px solid rgba(34,211,238,0.2);border-radius:4px;padding:4px;margin:6px 0;font-size:10px;color:#22d3ee}
+
+.sim-trade{background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:14px;margin-bottom:14px}
+.sim-trade .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.sim-trade label{display:block;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.sim-trade input,.sim-trade select{width:100%;background:#020617;border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:8px 10px;border-radius:6px;font-size:13px;font-family:inherit}
+.sim-trade input:focus,.sim-trade select:focus{outline:none;border-color:#22d3ee}
+.sim-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sim-buy{background:transparent;color:#10b981;border:2px solid #10b981;padding:14px;border-radius:7px;font-weight:700;font-size:14px;cursor:pointer;transition:all 0.15s;letter-spacing:0.5px}
+.sim-buy:hover{background:rgba(16,185,129,0.1)}
+.sim-sell{background:transparent;color:#ef4444;border:2px solid #ef4444;padding:14px;border-radius:7px;font-weight:700;font-size:14px;cursor:pointer;transition:all 0.15s;letter-spacing:0.5px}
+.sim-sell:hover{background:rgba(239,68,68,0.1)}
+
+.sim-log,.sim-holdings-box{background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:14px;margin-bottom:14px}
+.sim-log-title{color:#64748b;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.log-row{font-size:12px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;font-family:'SF Mono',Monaco,monospace}
+.log-row:last-child{border:none}
+.log-row .t{color:#94a3b8}
+.log-row .side.b{color:#10b981;font-weight:600}
+.log-row .side.s{color:#ef4444;font-weight:600}
+.log-row .qty{color:#e2e8f0}
+.log-row .px{color:#cbd5e1}
+.empty{color:#64748b;font-size:12px;font-style:italic}
+.hold-row{font-size:12px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:grid;grid-template-columns:60px 50px 1fr 1fr 1fr;gap:8px;align-items:center;font-family:'SF Mono',Monaco,monospace}
+.hold-row:last-child{border:none}
+.hold-row .sym{color:#22d3ee;font-weight:600}
+.hold-row .qty{color:#cbd5e1}
+.hold-row .avg{color:#94a3b8;font-size:11px}
+.hold-row .cur{color:#e2e8f0}
+.hold-row .pnl.up{color:#10b981}
+.hold-row .pnl.dn{color:#ef4444}
+
+/* ===== ADVANCED CALCULATOR ===== */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.calc-box{background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:18px;margin-bottom:14px}
+.calc-title{color:#22d3ee;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.calc-field{margin-bottom:12px}
+.calc-field label{display:block;color:#94a3b8;font-size:12px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center}
+.calc-field label .hint{color:#64748b;font-size:11px}
+.calc-field input,.calc-field select{width:100%;background:#020617;border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:9px 11px;border-radius:6px;font-size:13px;font-family:inherit}
+.calc-field input:focus,.calc-field select:focus{outline:none;border-color:#22d3ee}
+.calc-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px}
+.calc-row:last-child{border:none}
+.calc-row .lbl{color:#94a3b8}
+.calc-row .val{font-weight:600;color:#e2e8f0;font-family:'SF Mono',Monaco,monospace}
+.calc-row .val.up{color:#10b981}
+.calc-row .val.dn{color:#ef4444}
+.calc-row.big{padding:12px 0;font-size:15px;border-top:1px solid rgba(34,211,238,0.2);margin-top:4px;border-bottom:none}
+.calc-row.big .lbl{color:#22d3ee;font-weight:700;letter-spacing:0.5px}
+.calc-row.big .val{font-size:18px;font-weight:800}
+.calc-section-title{color:#22d3ee;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin:18px 0 12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.05)}
+
+.tool{background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:18px;margin-bottom:14px}
+.tool h3{color:#22d3ee;font-size:15px;margin-bottom:12px;font-weight:700}
+.error{background:rgba(239,68,68,0.1);border:1px solid #ef4444;border-radius:7px;padding:12px;color:#ef4444;margin-bottom:10px}
+
+.rmweek{background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:16px;margin-bottom:12px}
+.rmweek h3{color:#a855f7;font-size:14px;margin-bottom:12px;font-weight:700}
+.rmd{padding:10px 12px;border-radius:7px;background:rgba(2,6,23,0.6);margin-bottom:6px;cursor:pointer;font-size:13px;color:#cbd5e1;border:1px solid rgba(255,255,255,0.04)}
+.rmd:hover{background:rgba(15,23,42,0.8);border-color:rgba(34,211,238,0.4)}
+.rmd.done{color:#10b981}
+.rmd.done::before{content:'✓ '}
+
+.gsearch{width:100%;background:#020617;border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:11px;border-radius:7px;font-size:14px;margin-bottom:14px;font-family:inherit}
+.gsearch:focus{outline:none;border-color:#22d3ee}
+.gitem{background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px;margin-bottom:7px}
+.gitem b{color:#22d3ee;font-size:14px}
+.gitem p{color:#94a3b8;font-size:13px;margin-top:4px}
+
+.tmpl{background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:16px;margin-bottom:12px}
+.tmpl h3{color:#22d3ee;font-size:14px;margin-bottom:12px;font-weight:700}
+.tmpl pre{background:#020617;border:1px solid rgba(255,255,255,0.08);border-radius:7px;padding:12px;color:#cbd5e1;font-size:12px;white-space:pre-wrap;font-family:'SF Mono',Monaco,monospace;line-height:1.6}
+
+@media (max-width:900px){
+  .sim-main{grid-template-columns:1fr}
+  .calc-grid{grid-template-columns:1fr}
+}
+@media (max-width:768px){
+  .hero h1{font-size:44px}
+  .hero p.sub{font-size:15px}
+  .sidebar{width:240px}
+  .nav-links{display:none}
+  .section{padding:50px 16px}
+  .section h2{font-size:28px}
+  .stats4{gap:24px}
+  .stats4 .st b{font-size:32px}
+}
+</style>
+</head>
+<body>
+
+<div class="landing" id="landing">
+  <nav class="topnav">
+    <div class="logo" onclick="goHome()"><span class="ldot"></span>TradeAcademy</div>
+    <ul class="nav-links">
+      <li><a onclick="scrollToSec('features')">Features</a></li>
+      <li><a onclick="scrollToSec('curriculum')">Curriculum</a></li>
+      <li><a onclick="scrollToSec('markets')">Markets</a></li>
+      <li><a onclick="scrollToSec('journey')">Journey</a></li>
+    </ul>
+    <button class="open-course-btn" onclick="enterApp(0)">Open Course →</button>
+  </nav>
+  <section class="hero">
+    <div class="hero-pill"><span class="in">IN</span>INDIAN MARKETS · CRYPTO · FOREX · PERSONAL LEARNING</div>
+    <h1>Learn to Trade<span class="grad">Like a Professional</span></h1>
+    <p class="sub">Your personal 8-week trading course — NSE equity, cryptocurrency, and forex. 56 lessons, 6 built-in tools, 100% offline.</p>
+    <div class="cta-row">
+      <button class="btn-primary" onclick="enterApp(0)">Open Course App →</button>
+      <button class="btn-outline" onclick="scrollToSec('curriculum')">View Curriculum</button>
+    </div>
+    <div class="live-bar">
+      <div class="li"><b>NIFTY 50</b><span class="v">22,884</span><span class="pct up">+0.17%</span></div>
+      <div class="li"><b>BTC/INR</b><span class="v">₹71.73L</span><span class="pct dn">-0.92%</span></div>
+      <div class="li"><b>ETH/INR</b><span class="v">₹2.86L</span><span class="pct up">+0.07%</span></div>
+      <div class="li"><b>USD/INR</b><span class="v">₹84.36</span><span class="pct up">+1.13%</span></div>
+    </div>
+    <div class="stats4">
+      <div class="st"><b>56</b><span>Lessons</span></div>
+      <div class="st"><b>8</b><span>Weeks</span></div>
+      <div class="st"><b>3</b><span>Markets</span></div>
+      <div class="st"><b>6</b><span>Tools</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <h2>Everything You Need to <span class="grad">Trade Smart</span></h2>
+    <p class="sec-sub">Six powerful tools built into one offline app.</p>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="icon">📚</div><h3>56 Daily Lessons</h3><p>Eight-week curriculum. Concepts, examples, formulas, protocols, knowledge checks.</p></div>
+      <div class="feat-card"><div class="icon">📊</div><h3>Pro Trading Simulator</h3><p>Live chart, order book, ticker grid, holdings tracker. Practice with virtual ₹1 lakh.</p></div>
+      <div class="feat-card"><div class="icon">🧮</div><h3>Trade Calculator</h3><p>Full P&L breakdown with brokerage, STT, GST. Position sizer with 1% rule.</p></div>
+      <div class="feat-card"><div class="icon">📖</div><h3>60-Term Glossary</h3><p>Searchable trading dictionary calibrated for Indian markets.</p></div>
+      <div class="feat-card"><div class="icon">🗺️</div><h3>Visual Roadmap</h3><p>Track progress across all 56 days at a glance.</p></div>
+      <div class="feat-card"><div class="icon">📝</div><h3>Trade Templates</h3><p>Journal entries, weekly reviews, Excel formulas - copy and paste.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="curriculum">
+    <h2>The <span class="grad">Complete Curriculum</span></h2>
+    <p class="sec-sub">Eight weeks. Three markets. From first paper trade to working trading plan.</p>
+    <div class="curr-tabs" id="curr-tabs">
+      <button class="curr-tab on" data-phase="0">🇮🇳 Indian Equity (W1-4)</button>
+      <button class="curr-tab" data-phase="1">₿ Crypto (W5-6)</button>
+      <button class="curr-tab" data-phase="2">💱 Forex (W7)</button>
+      <button class="curr-tab" data-phase="3">🎓 Mastery (W8)</button>
+    </div>
+    <div class="curr-content" id="curr-content"></div>
+  </section>
+
+  <section class="section" id="markets">
+    <h2>Three Markets, <span class="grad">One Course</span></h2>
+    <p class="sec-sub">Each market with its own rules, risks, and Indian regulations.</p>
+    <div class="mkt-grid">
+      <div class="mkt-card"><div class="flag">🇮🇳</div><h3>Indian Equity (NSE/BSE)</h3><p class="desc">Master swing trading on India's largest exchanges with SEBI-compliant strategies.</p><ul><li>Demat account setup walkthrough</li><li>Order types: Market, Limit, SL, GTT</li><li>S/R, EMA, RSI, MACD, Fibonacci</li><li>STT, STCG, LTCG tax planning</li></ul></div>
+      <div class="mkt-card"><div class="flag">₿</div><h3>Cryptocurrency</h3><p class="desc">24/7 markets, different rules. Calibrated for crypto volatility and 30% tax.</p><ul><li>Exchange security & 2FA setup</li><li>BTC.D, funding rates, on-chain metrics</li><li>DCA strategy for long-term holding</li><li>30% tax + 1% TDS compliance</li></ul></div>
+      <div class="mkt-card"><div class="flag">💱</div><h3>Forex (USD/INR)</h3><p class="desc">Trade currencies legally through NSE. Macro drivers and Fed/RBI policy.</p><ul><li>USD/INR on NSE Currency segment</li><li>DXY, crude oil, FII flow correlations</li><li>Economic calendar discipline</li><li>Cross-currency pairs (EUR/USD, etc.)</li></ul></div>
+    </div>
+  </section>
+
+  <section class="section" id="journey">
+    <h2>Your <span class="grad">8-Week Journey</span></h2>
+    <p class="sec-sub">Each week builds on the last. Beginner to live trading.</p>
+    <div class="journey-list">
+      <div class="j-row"><div class="j-week">WEEK 1</div><div class="j-body"><h4>Foundation</h4><p>Open accounts, market structure, candlesticks, your first paper trade.</p></div></div>
+      <div class="j-row"><div class="j-week">WEEK 2</div><div class="j-body"><h4>Technical Analysis</h4><p>S/R levels, moving averages, RSI, MACD, volume analysis.</p></div></div>
+      <div class="j-row"><div class="j-week">WEEK 3</div><div class="j-body"><h4>Patterns & Setups</h4><p>Chart patterns, breakouts, CPR, Fibonacci, confluence trading.</p></div></div>
+      <div class="j-row"><div class="j-week">WEEK 4</div><div class="j-body"><h4>Going Live (Equity)</h4><p>Position sizing, tax planning, watchlist, first real ₹5,000 trade.</p></div></div>
+      <div class="j-row"><div class="j-week">WEEK 5</div><div class="j-body"><h4>Crypto Foundation</h4><p>Blockchain, exchanges, on-chain metrics, crypto-specific TA.</p></div></div>
+      <div class="j-row"><div class="j-week">WEEK 6</div><div class="j-body"><h4>Crypto Advanced</h4><p>Funding rates, altcoin season, ₹1,000 live trade, DCA strategy.</p></div></div>
+      <div class="j-row"><div class="j-week">WEEK 7</div><div class="j-body"><h4>Forex (USD/INR)</h4><p>Macro drivers, RBI/Fed impact, multi-market correlations.</p></div></div>
+      <div class="j-row"><div class="j-week">WEEK 8</div><div class="j-body"><h4>Mastery & Live</h4><p>Complete trading plan, 100-trade backtest, full live trading day.</p></div></div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <h2>Ready to Begin?</h2>
+    <p>Click below to open the course. Everything runs offline.</p>
+    <button class="btn-primary" onclick="enterApp(0)">🚀 Start Learning Now</button>
+  </section>
+
+  <div class="ticker-marquee"><div class="marquee-track" id="marquee-track"></div></div>
+  <div class="footer">TradeAcademy · For personal educational use · Not investment advice</div>
+</div>
+
+<div id="app">
+  <div class="app-topbar">
+    <div class="applogo" onclick="goHome()"><span class="ldot"></span>TradeAcademy</div>
+    <span class="sub">Personal Course</span>
+    <div class="right">
+      <span class="prog" id="prog">0 / 56 complete</span>
+      <button class="btn" onclick="goHome()">🏠 Home</button>
+    </div>
+  </div>
+  <div class="mainnav" id="mainnav">
+    <button class="on" data-tab="learn">📚 Learn</button>
+    <button data-tab="roadmap">🗺️ Roadmap</button>
+    <button data-tab="sim">📊 Simulator</button>
+    <button data-tab="calc">🧮 Calculator</button>
+    <button data-tab="glos">📖 Glossary</button>
+    <button data-tab="tmpl">📝 Templates</button>
+  </div>
+  <div class="body-row">
+    <div class="sidebar" id="sidebar"></div>
+    <div class="content">
+      <div class="pg on" id="learn"><div id="lesson-content"></div></div>
+      <div class="pg" id="roadmap"><h2 style="color:#22d3ee;margin-bottom:18px">🗺️ 8-Week Roadmap</h2><div id="roadmap-content"></div></div>
+      <div class="pg" id="sim"><div id="sim-content"></div></div>
+      <div class="pg" id="calc"><div id="calc-content"></div></div>
+      <div class="pg" id="glos"><h2 style="color:#22d3ee;margin-bottom:18px">📖 Trading Glossary</h2><div id="glos-content"></div></div>
+      <div class="pg" id="tmpl"><h2 style="color:#22d3ee;margin-bottom:18px">📝 Trade Templates</h2><div id="tmpl-content"></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+var LESSONS_JSON = "[{\"w\": 1, \"d\": 1, \"ph\": \"Indian Markets\", \"ti\": \"Why Trade? Mindset & Goals\", \"bc\": \"bd-b\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>Trading vs Investing:<\/strong> Trading = buying/selling financial instruments over short timeframes to profit from price movements. Investing = holding assets for years for long-term growth.<br><br><strong>The Trading Mindset:<\/strong> Successful traders think in <em>probabilities, not certainties<\/em>. Every single trade needs entry, stop-loss, and target defined BEFORE entering. Fear and greed are your biggest enemies \\u2014 your system beats emotion every time.\"}, {\"t\": \"w\", \"x\": \"~90% of day traders lose money in Year 1. The reason: no plan, over-leverage, emotional decisions. The 10% who succeed treat trading as a business \\u2014 rules, records, and strict risk limits.\"}, {\"t\": \"a\", \"x\": \"<strong>Journal exercise:<\/strong> Write down: (1) Why do I want to trade? (2) How many hours daily can I dedicate? (3) What is my starting capital? (4) What does success look like in 6 months?\"}, {\"t\": \"q\", \"q\": \"A trader buys a rising stock without a plan because they fear missing the move. This behavior is called:\", \"o\": [\"Disciplined trading\", \"FOMO \\u2014 Fear Of Missing Out\", \"Fundamental analysis\", \"Proper risk management\"], \"ok\": 1, \"ex\": \"FOMO causes entries without a plan, often at worst prices near the top of a move. Always define entry, SL, and target BEFORE entering any trade.\"}]}, {\"w\": 1, \"d\": 2, \"ph\": \"Indian Markets\", \"ti\": \"Open Your Demat + Trading Account\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>Demat account<\/strong> holds your shares electronically (like a bank account for stocks). <strong>Trading account<\/strong> allows you to place buy/sell orders. Both are opened together with a stockbroker.\"}, {\"t\": \"tb\", \"h\": [\"Broker\", \"Intraday Fee\", \"Delivery Fee\", \"Best For\"], \"r\": [[\"Zerodha\", \"\\u20b920 or 0.03%\", \"\\u20b90 (FREE)\", \"Best platform \\u2014 Kite UI\"], [\"Groww\", \"\\u20b920 or 0.05%\", \"\\u20b90 (FREE)\", \"Simplest app for beginners\"], [\"Angel One\", \"\\u20b90 flat\", \"\\u20b90 (FREE)\", \"Zero brokerage model\"], [\"Upstox\", \"\\u20b920 or 0.05%\", \"\\u20b90 (FREE)\", \"Fast execution\"]]}, {\"t\": \"e\", \"x\": \"<strong>Zerodha Step-by-Step:<\/strong><br>1. Go to zerodha.com \\u2192 click 'Open an Account'<br>2. Enter PAN number and verify<br>3. Complete Aadhaar e-KYC (mobile must be Aadhaar-linked)<br>4. Upload 3-month bank statement<br>5. Take webcam photo, e-sign documents<br>6. Account active within 24-48 hours<br><br><em>Documents needed: PAN card, Aadhaar card, bank account<\/em>\"}, {\"t\": \"q\", \"q\": \"Which document is MANDATORY to open a trading account in India?\", \"o\": [\"Passport\", \"Voter ID\", \"PAN Card\", \"Driving Licence\"], \"ok\": 2, \"ex\": \"PAN card is mandatory for all stock market transactions as per SEBI regulations. No trading account can be opened without a valid PAN.\"}]}, {\"w\": 1, \"d\": 3, \"ph\": \"Indian Markets\", \"ti\": \"Market Structure: NSE, BSE & SEBI\", \"bc\": \"bd-b\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>NSE (National Stock Exchange):<\/strong> India's largest by trading volume. The NIFTY 50 index tracks the top 50 companies here. Home of India's F&O (Futures & Options) derivatives market.<br><br><strong>BSE (Bombay Stock Exchange):<\/strong> Asia's oldest exchange, established 1875. The SENSEX tracks its top 30 companies.<br><br><strong>SEBI (Securities & Exchange Board of India):<\/strong> The market regulator. Prevents fraud, protects retail investors, approves all market rules.\"}, {\"t\": \"tb\", \"h\": [\"Session\", \"Time (IST)\", \"What Happens\"], \"r\": [[\"Pre-Open Session\", \"9:00 AM \\u2013 9:15 AM\", \"Price discovery via order matching\"], [\"Normal Market\", \"9:15 AM \\u2013 3:30 PM\", \"Live trading for all stocks\"], [\"Post-Close Session\", \"3:30 PM \\u2013 4:00 PM\", \"Closing price calculation\"], [\"Currency Segment\", \"9:00 AM \\u2013 5:00 PM\", \"Forex futures trading\"], [\"Crypto\", \"24 hours \\u00d7 7 days\", \"Never closes \\u2014 alert-based monitoring needed\"]]}, {\"t\": \"q\", \"q\": \"SENSEX is composed of:\", \"o\": [\"Top 50 NSE companies\", \"Top 30 BSE companies\", \"All listed Indian companies\", \"Top 100 companies across both exchanges\"], \"ok\": 1, \"ex\": \"SENSEX = 30 largest BSE companies by market cap and liquidity. NIFTY 50 = 50 NSE companies. Both measure overall Indian market direction.\"}]}, {\"w\": 1, \"d\": 4, \"ph\": \"Indian Markets\", \"ti\": \"Order Types: Market, Limit, SL, GTT\", \"bc\": \"bd-p\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>1. Market Order:<\/strong> Execute immediately at the current best available price. Risk: slippage in volatile markets.<br><strong>2. Limit Order:<\/strong> Execute ONLY at your specified price or better. Stays pending until price is reached.<br><strong>3. Stop-Loss (SL) Order:<\/strong> Auto-exit when price hits your loss limit. Protects you even when not watching.<br><strong>4. GTT (Good Till Triggered):<\/strong> Set once, stays active for months until your target price is hit.\"}, {\"t\": \"f\", \"x\": \"Risk:Reward Ratio = (Target - Entry) / (Entry - Stop-Loss)\\n\\nExample: Entry \\u20b93,600 | SL \\u20b93,540 | Target \\u20b93,720\\nRR = (3720 - 3600) / (3600 - 3540) = 120 / 60 = 1:2\\n\\nRule: Minimum 1:1.5 RR. Target 1:2 or better.\\nWith 1:2 RR you only need to be right 34% of the time to profit!\"}, {\"t\": \"w\", \"x\": \"NEVER trade without a Stop-Loss. Markets can move instantly against you. Set your SL the moment your buy order executes \\u2014 before doing anything else.\"}, {\"t\": \"q\", \"q\": \"You buy at \\u20b9500. You want automatic exit if it falls to \\u20b9475. Which order type?\", \"o\": [\"Market Order\", \"Limit Order at \\u20b9475\", \"Stop-Loss Order at \\u20b9475\", \"GTT Order at \\u20b9500\"], \"ok\": 2, \"ex\": \"Stop-Loss at \\u20b9475 automatically exits when price reaches \\u20b9475. This protects your capital even if you're not watching the screen.\"}]}, {\"w\": 1, \"d\": 5, \"ph\": \"Indian Markets\", \"ti\": \"Candlestick Charts: Reading OHLC\", \"bc\": \"bd-p\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>OHLC = Open, High, Low, Close<\/strong><br>Every candlestick represents a time period (1 min, 5 min, 1 day, etc.)<br>\\ud83d\\udfe2 Green candle: Close price ABOVE Open (buyers won)<br>\\ud83d\\udd34 Red candle: Close price BELOW Open (sellers won)<br>The body = distance between Open and Close<br>The wicks = High and Low extremes of that period\"}, {\"t\": \"tb\", \"h\": [\"Pattern\", \"Signal\", \"Reliability\"], \"r\": [[\"Doji (tiny body)\", \"Indecision \\u2014 reversal possible\", \"Medium\"], [\"Hammer (long lower wick at bottom)\", \"Bullish reversal \\u2014 buyers overwhelmed sellers\", \"High\"], [\"Shooting Star (long upper wick at top)\", \"Bearish reversal \\u2014 sellers took control\", \"High\"], [\"Marubozu (no wicks at all)\", \"Strong momentum in body direction\", \"High\"], [\"Bullish Engulfing (green engulfs red)\", \"Strong buy signal at support\", \"High\"], [\"Bearish Engulfing (red engulfs green)\", \"Strong sell signal at resistance\", \"High\"]]}, {\"t\": \"ti\", \"x\": \"Confirmation Rule: Never trade a single candle in isolation. Always wait for the NEXT candle to confirm the signal direction. Pattern + volume spike together = much higher reliability.\"}, {\"t\": \"q\", \"q\": \"A Hammer candlestick appears at the bottom of a downtrend. It signals:\", \"o\": [\"Continue selling \\u2014 downtrend will continue\", \"Bullish reversal \\u2014 buyers are stepping in aggressively\", \"Strong bearish momentum confirmed\", \"Not a tradeable signal \\u2014 ignore it\"], \"ok\": 1, \"ex\": \"The Hammer's long lower wick shows sellers tried to push price down hard, but buyers overwhelmed them and pushed it back near the open. Strong buying pressure at this level.\"}]}, {\"w\": 1, \"d\": 6, \"ph\": \"Indian Markets\", \"ti\": \"Paper Trading: Your First Practice\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>Paper Trading<\/strong> = simulated trading with virtual money. Identical to real trading except no financial risk. Builds correct habits, tests your strategy, and builds discipline BEFORE real money is at stake.\"}, {\"t\": \"p2\", \"x\": \"YOUR FIRST PAPER TRADE (do this today):\\n\\n1. Open TradingView.com (free)\\n2. Search for RELIANCE on the chart\\n3. Switch to 15-minute timeframe\\n4. Look for a Hammer or Bullish Engulfing near EMA 20\\n5. Write in notebook:\\n   Entry: \\u20b9_____  |  SL: \\u20b9_____ (below signal candle)\\n   Target: \\u20b9_____ (2\\u00d7 SL distance above entry)  |  Qty: 10\\n6. Track for 2-3 sessions \\u2192 exit at Target or SL only\\n7. Record the result and what you learned\\n\\nAlso use the Simulator tab in this app right now!\"}, {\"t\": \"q\", \"q\": \"You paper trade 20 trades with 1:2 RR and 50% win rate. Your result is:\", \"o\": [\"Breakeven \\u2014 50% wins cancel losses\", \"Profitable \\u2014 positive mathematical expectancy\", \"A loss \\u2014 need higher win rate\", \"Cannot determine from this information\"], \"ok\": 1, \"ex\": \"10 winners \\u00d7 2R = +20R. 10 losers \\u00d7 1R = -10R. Net = +10R profit. High RR creates profit even with modest win rates. This is the fundamental math of profitable trading.\"}]}, {\"w\": 1, \"d\": 7, \"ph\": \"Indian Markets\", \"ti\": \"Week 1 Review & Journaling\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"f\", \"x\": \"Win Rate = Winners / Total Trades \\u00d7 100\\n\\nExpectancy = (Win% \\u00d7 Avg Win \\u20b9) - (Loss% \\u00d7 Avg Loss \\u20b9)\\nPositive expectancy = profitable strategy over time\\n\\nExample: (55% \\u00d7 \\u20b9400) - (45% \\u00d7 \\u20b9200) = \\u20b9220 - \\u20b990 = +\\u20b9130/trade\\n\\nTrade 100 times = +\\u20b913,000 expected profit\"}, {\"t\": \"a\", \"x\": \"Week 1 Completion Checklist:\\n\\u2610 Demat/trading account opened (or in process)\\n\\u2610 Completed 3+ paper trades this week\\n\\u2610 Journal entry for each trade\\n\\u2610 Identified 1 key mistake to fix\\n\\u2610 Set 1 specific goal for Week 2\\n\\u2610 Read Zerodha Varsity Chapter 1 (free online)\"}, {\"t\": \"q\", \"q\": \"40% win rate, average win \\u20b9600, average loss \\u20b9200. Expectancy per trade:\", \"o\": [\"Negative \\u2014 win rate too low\", \"Positive \\u2014 +\\u20b9120 per trade\", \"Breakeven\", \"Need more information\"], \"ok\": 1, \"ex\": \"(0.40 \\u00d7 600) - (0.60 \\u00d7 200) = 240 - 120 = +\\u20b9120 per trade. Even 40% win rate is highly profitable with 3:1 RR. This shows why RR matters more than win rate.\"}]}, {\"w\": 2, \"d\": 1, \"ph\": \"Indian Markets\", \"ti\": \"Support & Resistance Levels\", \"bc\": \"bd-p\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>Support<\/strong> = price zone where buying is strong enough to prevent further decline. Price bounces up from here.<br><strong>Resistance<\/strong> = price zone where selling is strong enough to prevent further rises. Price reverses down from here.<br><br><strong>Role Reversal (key concept):<\/strong> When a resistance level is broken with conviction, it becomes the new support. When support is broken, it becomes new resistance.\"}, {\"t\": \"ti\", \"x\": \"S/R is a ZONE not a single line. Mark it as \\u00b10.3\\u20130.5% around the price level. The more times price has bounced from a level, the stronger it is. Round numbers (\\u20b91000, \\u20b9500, \\u20b92000) are powerful psychological S/R levels.\"}, {\"t\": \"e\", \"x\": \"<strong>Real Example:<\/strong><br>RELIANCE bounces off \\u20b92,850 three times over 6 weeks \\u2192 Strong support at \\u20b92,840\\u2013\\u20b92,860 zone<br>When price finally breaks above \\u20b93,000 on 3\\u00d7 volume \\u2192 \\u20b93,000 becomes strong support<br>On pullback to \\u20b93,000 \\u2192 High probability buy with SL below \\u20b92,980\"}, {\"t\": \"q\", \"q\": \"A stock bounces off \\u20b9450 three times. Then breaks above \\u20b9450 on high volume. \\u20b9450 now becomes:\", \"o\": [\"Still a resistance level\", \"New support \\u2014 role reversal has occurred\", \"An irrelevant level to ignore\", \"Only valid as a stop-loss reference\"], \"ok\": 1, \"ex\": \"Role Reversal: When resistance is convincingly broken, buyers who missed the breakout buy on the retest, reinforcing the level as support. This is one of the most reliable patterns in TA.\"}]}, {\"w\": 2, \"d\": 2, \"ph\": \"Indian Markets\", \"ti\": \"Moving Averages: EMA & SMA\", \"bc\": \"bd-p\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>SMA (Simple Moving Average):<\/strong> Adds N closing prices and divides by N. Equal weight to all periods. Slower to react.<br><strong>EMA (Exponential Moving Average):<\/strong> Gives more weight to recent prices. Faster to react. Preferred for trading entries.\"}, {\"t\": \"f\", \"x\": \"Key Moving Average Combinations:\\n\\nEMA 9 + EMA 21 \\u2192 Intraday signals (crossovers)\\nEMA 20 + EMA 50 \\u2192 Swing trading (trend direction)\\nSMA 50 + SMA 200 \\u2192 Long-term trend identification\\n\\nGolden Cross: SMA 50 crosses ABOVE SMA 200 = Bullish signal\\nDeath Cross: SMA 50 crosses BELOW SMA 200 = Bearish signal\\n\\nRule: Only take LONG trades when price is ABOVE SMA 200\\nRule: Only take SHORT trades when price is BELOW SMA 200\"}, {\"t\": \"w\", \"x\": \"Moving averages are LAGGING indicators \\u2014 they react to price, not predict it. Never use MAs alone. Always combine with S/R levels, volume confirmation, or momentum indicators like RSI.\"}, {\"t\": \"q\", \"q\": \"The 'Golden Cross' is defined as:\", \"o\": [\"Price crossing above the SMA 200\", \"SMA 50 crossing above the SMA 200\", \"RSI crossing above the 50 level\", \"Two consecutive large green candles\"], \"ok\": 1, \"ex\": \"Golden Cross = SMA 50 crossing above SMA 200. Indicates short-term momentum turning bullish relative to long-term trend. Institutional investors watch this signal closely.\"}]}, {\"w\": 2, \"d\": 3, \"ph\": \"Indian Markets\", \"ti\": \"RSI: Reading Overbought & Oversold\", \"bc\": \"bd-p\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>RSI (Relative Strength Index)<\/strong> measures how fast and far prices have moved. Scale: 0 to 100.<br><br>RSI > 70 = Overbought (consider selling/avoiding longs)<br>RSI < 30 = Oversold (consider buying opportunities)<br>RSI = 50 = Neutral midpoint (no clear bias)<br><br>Default period: 14 bars\"}, {\"t\": \"f\", \"x\": \"RSI Divergence (most powerful RSI signal):\\n\\nBEARISH DIVERGENCE:\\n  Price makes NEW HIGH \\u2192 but RSI makes LOWER HIGH\\n  = Momentum weakening despite rising price \\u2192 reversal likely\\n\\nBULLISH DIVERGENCE:\\n  Price makes NEW LOW \\u2192 but RSI makes HIGHER LOW\\n  = Selling momentum weakening \\u2192 bounce likely\\n\\nTIP: In strong trends, RSI can stay above 70 for weeks.\\nUse divergence for signals, not absolute levels in trends.\"}, {\"t\": \"q\", \"q\": \"Price makes a new 52-week high but RSI makes a lower high compared to the previous peak. This is:\", \"o\": [\"Bullish confirmation \\u2014 buy more\", \"Bearish RSI divergence \\u2014 momentum is weakening\", \"Normal price action \\u2014 ignore RSI\", \"A signal to short immediately\"], \"ok\": 1, \"ex\": \"Bearish divergence: price higher but RSI lower = momentum weakening. Smart money is distributing (selling) while price is still rising. This often precedes reversals.\"}]}, {\"w\": 2, \"d\": 4, \"ph\": \"Indian Markets\", \"ti\": \"MACD: Trend + Momentum\", \"bc\": \"bd-p\", \"ct\": [{\"t\": \"f\", \"x\": \"MACD Components:\\n  MACD Line    = EMA(12) - EMA(26)\\n  Signal Line  = EMA(9) of MACD Line\\n  Histogram    = MACD Line - Signal Line\\n\\nBULLISH Signal: MACD Line crosses ABOVE Signal Line\\nBEARISH Signal: MACD Line crosses BELOW Signal Line\\n\\nHistogram GROWING = momentum strengthening\\nHistogram SHRINKING = momentum fading (early warning!)\\n\\nBest Entry Combo:\\n  MACD bullish crossover\\n  + RSI between 40-55 (not overbought)\\n  + Price at EMA 20 support\\n  = High probability long entry zone\"}, {\"t\": \"ti\", \"x\": \"MACD works best on Daily charts for swing trades and 15-min charts for intraday. Avoid MACD signals in sideways/ranging markets \\u2014 it gives many false signals when there is no trend.\"}, {\"t\": \"q\", \"q\": \"The MACD histogram is shrinking while still above zero. This means:\", \"o\": [\"Uptrend is accelerating \\u2014 add to long positions\", \"Bullish momentum is fading \\u2014 potential pullback ahead\", \"Bearish reversal is confirmed\", \"Histogram level does not matter, only crossovers do\"], \"ok\": 1, \"ex\": \"A shrinking histogram means the MACD line is moving toward the Signal line. Bullish momentum is fading. Consider tightening your stop-loss or taking partial profits before the crossover happens.\"}]}, {\"w\": 2, \"d\": 5, \"ph\": \"Indian Markets\", \"ti\": \"Volume Analysis: The Lie Detector\", \"bc\": \"bd-p\", \"ct\": [{\"t\": \"c\", \"x\": \"Volume = number of shares traded in a period. It confirms or denies price moves:<br><br>Price UP + Volume HIGH = Strong bullish move \\u2705 (institutional buying)<br>Price UP + Volume LOW = Weak rally \\u26a0\\ufe0f (retail-driven, not trusted)<br>Price DOWN + Volume HIGH = Strong selling \\u274c (institutional selling)<br>Price DOWN + Volume LOW = Healthy pullback \\u2705 (selling without conviction)\"}, {\"t\": \"ti\", \"x\": \"Volume Spike = 2-5\\u00d7 the 20-day average volume on a single day. On a breakout = institutional confirmation. Never enter a breakout without a volume spike. It separates genuine moves from traps.\"}, {\"t\": \"f\", \"x\": \"VWAP = Volume Weighted Average Price\\n  Resets at start of each trading day\\n  Above VWAP = Bullish intraday bias\\n  Below VWAP = Bearish intraday bias\\n\\nInstitutions execute large orders at/near VWAP\\nMany algorithmic trading systems reference VWAP\\nKey intraday level for entry/exit decisions\"}, {\"t\": \"q\", \"q\": \"A stock breaks above 3-month resistance. Volume is 4\\u00d7 the average. What does this signal?\", \"o\": [\"Likely false breakout \\u2014 too much volume\", \"Institutional confirmation \\u2014 high probability genuine breakout\", \"Overbought \\u2014 sell immediately\", \"Volume spike is irrelevant to breakout quality\"], \"ok\": 1, \"ex\": \"High volume (4\\u00d7 average) on a breakout = institutions are participating. This dramatically increases the probability of the breakout being genuine and sustained.\"}]}, {\"w\": 2, \"d\": 6, \"ph\": \"Indian Markets\", \"ti\": \"Paper Trade: 3-Filter Strategy\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"p2\", \"x\": \"THE 3-FILTER SYSTEM (apply ALL THREE):\\n\\nFilter 1: SMA 200\\n  \\u2192 Price must be ABOVE SMA 200 on daily chart\\n  \\u2192 Only take LONG trades in uptrends\\n\\nFilter 2: EMA 20 Pullback\\n  \\u2192 Price pulls back to touch or bounce from EMA 20\\n  \\u2192 Wait for the pullback, not chasing the breakout\\n\\nFilter 3: RSI Reset\\n  \\u2192 RSI between 40-55 on the daily chart\\n  \\u2192 Not overbought, momentum reset after pullback\\n\\nENTRY: Bullish candle forms at EMA 20 zone\\nSTOP-LOSS: Below the pullback low\\nTARGET: Previous swing high OR 2\\u00d7 SL distance\\nMIN RR: 1:2 (skip trade if RR is below this)\\n\\nPractice stocks this week: RELIANCE, TCS, INFY, HDFCBANK\"}, {\"t\": \"q\", \"q\": \"Price is below SMA 200, RSI is 28 (oversold), and touches EMA 20. Should you buy?\", \"o\": [\"Yes \\u2014 RSI is extremely oversold, great buying opportunity\", \"No \\u2014 Filter 1 fails: price below SMA 200 = downtrend\", \"Yes \\u2014 EMA 20 is a strong support level\", \"Yes \\u2014 all conditions appear to be met\"], \"ok\": 1, \"ex\": \"Filter 1 is non-negotiable. Below SMA 200 = downtrend. RSI can fall from 28 to 10 in a bear trend. NEVER trade against the primary trend. Wait for the trend to reverse first.\"}]}, {\"w\": 2, \"d\": 7, \"ph\": \"Indian Markets\", \"ti\": \"Week 2 Review & Performance Analysis\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"f\", \"x\": \"Week 2 Performance Metrics:\\n\\n  Win Rate           = Winners / Total Trades \\u00d7 100  \\u2192 Target: >45%\\n  Average RR         = Avg Win / Avg Loss             \\u2192 Target: >1.5\\n  Expectancy         = (WR \\u00d7 Avg Win) - (LR \\u00d7 Avg Loss) \\u2192 Must be positive\\n  Profit Factor      = Total Wins \\u20b9 / Total Losses \\u20b9  \\u2192 Target: >1.5\\n\\nIMPORTANT: Minimum 20-30 trades needed before drawing\\nany conclusions about your strategy. Variance is very high\\nin small sample sizes \\u2014 don't change strategy after 3 losses.\"}, {\"t\": \"q\", \"q\": \"After 30 paper trades: 45% win rate, 1:2.5 average RR. Is this strategy profitable?\", \"o\": [\"No \\u2014 win rate below 50% means losing strategy\", \"Yes \\u2014 positive expectancy: +0.575R per trade\", \"Breakeven \\u2014 barely profitable\", \"Cannot determine from this data\"], \"ok\": 1, \"ex\": \"Expectancy = (0.45 \\u00d7 2.5) - (0.55 \\u00d7 1) = 1.125 - 0.55 = +0.575R per trade. Very profitable! With 1:2.5 RR you only need 29% win rate to break even. High RR is extremely powerful.\"}]}, {\"w\": 3, \"d\": 1, \"ph\": \"Indian Markets\", \"ti\": \"Chart Patterns: Flags, H&S & Triangles\", \"bc\": \"bd-p\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>CONTINUATION PATTERNS<\/strong> (trend continues after):<br>Bull Flag: Sharp rally \\u2192 slight downward channel (flag) \\u2192 breakout resumes. Target = flagpole height added to breakout.<br>Ascending Triangle: Flat resistance + rising lows \\u2192 eventually breaks out above resistance.<br><br><strong>REVERSAL PATTERNS<\/strong> (trend reverses after):<br>Head & Shoulders: Left shoulder + Head (highest) + Right shoulder \\u2192 break of neckline = sell. Target = head-to-neckline distance subtracted from breakout.<br>Double Top/Bottom: Two tests of same level \\u2192 neckline break confirms reversal.\"}, {\"t\": \"ti\", \"x\": \"CRITICAL RULE: Volume must confirm breakouts. No volume spike = high probability false breakout. Wait for the breakout candle to CLOSE above resistance (not just touch it intraday) before entering.\"}, {\"t\": \"q\", \"q\": \"Head & Shoulders pattern: Head at \\u20b9600, Neckline at \\u20b9520. Target after neckline breaks:\", \"o\": [\"\\u20b9580\", \"\\u20b9440\", \"\\u20b9500\", \"\\u20b9480\"], \"ok\": 1, \"ex\": \"Target = Neckline - (Head - Neckline) = 520 - (600 - 520) = 520 - 80 = \\u20b9440. The measured move equals the height of the pattern subtracted from the breakout point.\"}]}, {\"w\": 3, \"d\": 2, \"ph\": \"Indian Markets\", \"ti\": \"Breakout Trading: Entry & Confirmation\", \"bc\": \"bd-b\", \"ct\": [{\"t\": \"e\", \"x\": \"<strong>Breakout Entry Checklist (ALL must be true):<\/strong><br>\\u2713 3+ historical touches of the resistance level<br>\\u2713 Volume DECREASING during the consolidation phase<br>\\u2713 Breakout candle CLOSES above resistance (not just touches)<br>\\u2713 Breakout volume \\u2265 2\\u00d7 the 20-day average<br>\\u2713 Nifty 50 overall direction supports your trade direction<br>\\u2713 RSI between 50-65 (not overbought at breakout)\"}, {\"t\": \"f\", \"x\": \"Breakout Entry:\\n  Buy: Next candle OPEN after confirmed breakout close\\n  SL: Below the breakout candle's low\\n  Target: Pattern measured move OR next major resistance\\n  Max acceptable slippage: 0.5% from calculated entry\\n\\nFalse Breakout Signs:\\n  - Breaks but candle closes BACK inside range\\n  - Volume below average on breakout\\n  - Nifty in strong downtrend\"}, {\"t\": \"q\", \"q\": \"Nifty 50 is in a strong downtrend. A stock breaks its resistance on high volume. Should you trade it?\", \"o\": [\"Yes \\u2014 high volume confirms the breakout, trade it\", \"No \\u2014 80% of stocks fall with the market in downtrend\", \"Yes \\u2014 stock-specific catalysts override market direction\", \"Yes \\u2014 always trade high-volume breakouts regardless of market\"], \"ok\": 1, \"ex\": \"~80% of stocks move in the same direction as Nifty. Stock-specific breakouts have much lower success rates when the broader market is in a downtrend. Wait for market alignment.\"}]}, {\"w\": 3, \"d\": 3, \"ph\": \"Indian Markets\", \"ti\": \"CPR: Central Pivot Range\", \"bc\": \"bd-b\", \"ct\": [{\"t\": \"f\", \"x\": \"CPR Calculation (using PREVIOUS day's data):\\n\\n  BC (Bottom Central) = (Prev High + Prev Low) / 2\\n  P  (Pivot Point)    = (Prev High + Prev Low + Prev Close) / 3\\n  TC (Top Central)    = (P - BC) + P\\n\\nCPR INTERPRETATION:\\n  Open ABOVE TC \\u2192 Bullish day bias \\u2192 only take longs\\n  Open BELOW BC \\u2192 Bearish day bias \\u2192 only take shorts\\n  Open INSIDE CPR \\u2192 Sideways/choppy \\u2192 reduce size\\n\\n  NARROW CPR (small range) \\u2192 Trending day likely \\u2192 trade the trend\\n  WIDE CPR (large range)   \\u2192 Sideways day likely \\u2192 avoid or scalp only\\n\\nEXAMPLE: Prev H=1580, L=1520, C=1560\\n  BC = (1580+1520)/2 = 1550\\n  P  = (1580+1520+1560)/3 = 1553.33\\n  TC = (1553.33-1550)+1553.33 = 1556.66\\n  Range = 6.66 points \\u2192 NARROW = trending day expected\"}, {\"t\": \"q\", \"q\": \"A stock has a very wide CPR (>1% of its price). What kind of day should you expect?\", \"o\": [\"Strong trending day \\u2014 take larger positions\", \"Sideways choppy day \\u2014 reduce size or avoid\", \"Strongly bullish day\", \"Cannot make any prediction from CPR alone\"], \"ok\": 1, \"ex\": \"Wide CPR = large previous day range = no clear directional bias. Markets tend to 'go back' to where they came from on wide CPR days. Best to reduce position sizes or wait for clear setups.\"}]}, {\"w\": 3, \"d\": 4, \"ph\": \"Indian Markets\", \"ti\": \"Stop-Loss Placement: Science Not Guessing\", \"bc\": \"bd-r\", \"ct\": [{\"t\": \"c\", \"x\": \"Your stop-loss should be placed at the exact level where your trade idea is PROVEN WRONG \\u2014 not based on how much money you're willing to lose.<br><br><strong>Method 1 \\u2014 Structure-Based (BEST):<\/strong> Place SL just below the nearest swing low (for longs). This is the most logical placement.<br><strong>Method 2 \\u2014 ATR-Based:<\/strong> SL = Entry - (1.5 \\u00d7 ATR14). Accounts for normal daily volatility.<br><strong>Method 3 \\u2014 Percentage-Based:<\/strong> Intraday: 0.3-0.5% | Swing: 2-5% | Crypto: 5-10%\"}, {\"t\": \"f\", \"x\": \"ATR = Average True Range\\nTrue Range = Maximum of:\\n  (High - Low)\\n  |High - Previous Close|\\n  |Low - Previous Close|\\n\\nATR(14) = Average of last 14 True Range values\\n\\nATR-Based SL Example:\\n  Stock price: \\u20b91,000  |  ATR(14): \\u20b925\\n  SL = 1,000 - (1.5 \\u00d7 25) = 1,000 - 37.50 = \\u20b9962.50\\n  This gives room for normal daily volatility\"}, {\"t\": \"w\", \"x\": \"\\u274c Moving SL away from trade because you hate taking the loss\\n\\u274c Placing SL at round numbers (\\u20b91000, \\u20b9500) \\u2014 these get hunted by algorithms\\n\\u274c No SL at all \\u2014 single biggest account destroyer\\n\\u274c SL too tight \\u2014 getting stopped by normal intraday noise\"}, {\"t\": \"q\", \"q\": \"Entry \\u20b9200, ATR \\u20b96. Stop-Loss using 1.5\\u00d7 ATR method:\", \"o\": [\"\\u20b9194.00\", \"\\u20b9191.00\", \"\\u20b9197.00\", \"\\u20b9185.00\"], \"ok\": 1, \"ex\": \"SL = 200 - (1.5 \\u00d7 6) = 200 - 9 = \\u20b9191. This 4.5% stop gives room for normal volatility while protecting against a real adverse move against your thesis.\"}]}, {\"w\": 3, \"d\": 5, \"ph\": \"Indian Markets\", \"ti\": \"Fibonacci Retracement Levels\", \"bc\": \"bd-p\", \"ct\": [{\"t\": \"f\", \"x\": \"Key Fibonacci Retracement Levels:\\n  23.6%  38.2%  50.0%  61.8%  78.6%\\n\\nHow to draw (uptrend): Click SWING LOW \\u2192 drag to SWING HIGH\\nLevels are automatically calculated\\n\\nExample: Stock rallies from \\u20b9400 (low) to \\u20b9500 (high)\\n  Move = \\u20b9100\\n  23.6% level = \\u20b9500 - (100 \\u00d7 0.236) = \\u20b9476.40\\n  38.2% level = \\u20b9500 - (100 \\u00d7 0.382) = \\u20b9461.80\\n  50.0% level = \\u20b9500 - (100 \\u00d7 0.500) = \\u20b9450.00 \\u2190 Watch\\n  61.8% level = \\u20b9500 - (100 \\u00d7 0.618) = \\u20b9438.20 \\u2190 GOLDEN RATIO\\n  78.6% level = \\u20b9500 - (100 \\u00d7 0.786) = \\u20b9421.40\\n\\nBEST SETUP: Fib 50-61.8% zone + S/R level + EMA 20 + RSI 40-55\\n\\u2192 Multiple confluence = highest probability entry\"}, {\"t\": \"q\", \"q\": \"Stock rallies from \\u20b9400 to \\u20b9500. The Golden Ratio (61.8%) Fibonacci level is at:\", \"o\": [\"\\u20b9438.20\", \"\\u20b9461.80\", \"\\u20b9450.00\", \"\\u20b9476.40\"], \"ok\": 0, \"ex\": \"500 - (100 \\u00d7 0.618) = 500 - 61.8 = \\u20b9438.20. The 61.8% level (Golden Ratio) is the most widely watched Fibonacci level globally. High probability reversal zone.\"}]}, {\"w\": 3, \"d\": 6, \"ph\": \"Indian Markets\", \"ti\": \"Confluence Trading: All Signals Together\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"p2\", \"x\": \"HIGH-PROBABILITY CONFLUENCE CHECKLIST:\\n(All 7 required for maximum confidence)\\n\\n\\u2705 Nifty 50 is above its SMA 200 (bullish market)\\n\\u2705 Stock in clear uptrend (higher highs + higher lows)\\n\\u2705 Price pulled back to Fibonacci 50-61.8% zone\\n\\u2705 Fibonacci zone aligns with S/R or EMA 20/50\\n\\u2705 RSI between 40-55 on the daily chart (not overbought)\\n\\u2705 Bullish reversal candle forms at the confluence zone\\n\\u2705 Volume on reversal candle \\u2265 20-day average\\n\\nENTRY: Next candle's open price\\nSTOP-LOSS: Below signal candle low (add 0.5% buffer)\\nTARGET 1: Previous swing high (exit 50% position here)\\nTARGET 2: 161.8% Fibonacci extension (exit remaining 50%)\\n\\nIf fewer than 5 checkmarks \\u2192 SKIP the trade\"}, {\"t\": \"q\", \"q\": \"Trade is +\\u20b9530, Entry \\u20b9500, SL \\u20b9460, Target \\u20b9560. Best action at \\u20b9530:\", \"o\": [\"Exit entire position \\u2014 take the profit now\", \"Only move SL to breakeven, hold all\", \"Trail SL to \\u20b9520 AND exit 50% of position\", \"Keep original SL and targets \\u2014 do not interfere\"], \"ok\": 2, \"ex\": \"Trail SL (locks profit) + partial exit (books gains): professional multi-target management. Remaining position participates in further upside while risk is eliminated.\"}]}, {\"w\": 3, \"d\": 7, \"ph\": \"Indian Markets\", \"ti\": \"Week 3 Review: Pattern Statistics\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"tb\", \"h\": [\"Pattern\", \"Historical Win Rate\", \"Required Confirmation\"], \"r\": [[\"Fib 61.8% + S/R + RSI\", \"~68%\", \"Bullish reversal candle + avg volume\"], [\"Bull Flag Breakout\", \"~65%\", \"Volume 2\\u00d7 average at breakout\"], [\"Head & Shoulders Break\", \"~63%\", \"High volume on neckline break\"], [\"Double Bottom Bounce\", \"~60%\", \"RSI bullish divergence\"], [\"Hammer at Support\", \"~58%\", \"Volume spike on the Hammer day\"], [\"Triangle Breakout\", \"~55%\", \"Clean volume spike at breakout\"]]}, {\"t\": \"ti\", \"x\": \"No pattern works 100% of the time. Even the best setups fail 35-40% of trades. Your goal is NOT to predict correctly \\u2014 it is to find setups with positive expectancy and execute them consistently 50+ times.\"}, {\"t\": \"q\", \"q\": \"Hammer: 55% win rate, 1:2 RR. Bull Flag: 45% win rate, 1:3 RR. Which has better expectancy?\", \"o\": [\"Hammer \\u2014 higher win rate is always better\", \"Bull Flag \\u2014 despite lower win rate, higher RR wins\", \"Equal \\u2014 both are acceptable\", \"Cannot compare different pattern types\"], \"ok\": 1, \"ex\": \"Hammer expectancy: (0.55\\u00d72)-(0.45\\u00d71) = +0.65R. Bull Flag: (0.45\\u00d73)-(0.55\\u00d71) = +0.80R. Bull Flag wins. ALWAYS compare expectancy, never just win rates.\"}]}, {\"w\": 4, \"d\": 1, \"ph\": \"Indian Markets\", \"ti\": \"Position Sizing: The 1% Risk Rule\", \"bc\": \"bd-r\", \"ct\": [{\"t\": \"f\", \"x\": \"THE 1% RISK RULE (Non-negotiable):\\n\\n  Max Risk per Trade = Account Balance \\u00d7 1%\\n  Number of Shares = Max Risk \\u00f7 (Entry - Stop-Loss)\\n\\nEXAMPLE:\\n  Account: \\u20b91,00,000 \\u2192 Max Risk: \\u20b91,000\\n  Entry: \\u20b92,850 | SL: \\u20b92,790 \\u2192 Risk per share: \\u20b960\\n  Shares = \\u20b91,000 \\u00f7 \\u20b960 = 16.67 \\u2192 Round DOWN to 16\\n  Investment = 16 \\u00d7 \\u20b92,850 = \\u20b945,600\\n  Actual Risk = 16 \\u00d7 \\u20b960 = \\u20b9960 (\\u22481% of account)\\n\\nDRAWDOWN COMPARISON:\\n  10 consecutive losses at 1% = -10% total drawdown\\n  10 consecutive losses at 5% = -40% total drawdown\\n  10 consecutive losses at 10% = -65% total drawdown\"}, {\"t\": \"w\", \"x\": \"After a 50% drawdown, you need a 100% gain just to return to breakeven. This is the mathematical trap that destroys accounts. Risk 1% \\u2014 protect your capital first, profits follow.\"}, {\"t\": \"q\", \"q\": \"Account \\u20b950,000. You want to buy RELIANCE at \\u20b92,850 with SL at \\u20b92,790. How many shares?\", \"o\": [\"8 shares\", \"5 shares\", \"13 shares\", \"20 shares\"], \"ok\": 0, \"ex\": \"Max risk = \\u20b950,000 \\u00d7 1% = \\u20b9500. Risk per share = 2,850 - 2,790 = \\u20b960. Shares = \\u20b9500 \\u00f7 \\u20b960 = 8.33 \\u2192 round down to 8 shares. Investment = \\u20b922,800.\"}]}, {\"w\": 4, \"d\": 2, \"ph\": \"Indian Markets\", \"ti\": \"Intraday vs Swing vs Delivery\", \"bc\": \"bd-b\", \"ct\": [{\"t\": \"tb\", \"h\": [\"Style\", \"Timeframe\", \"Leverage\", \"Chart\", \"Recommended For\"], \"r\": [[\"Scalping\", \"Minutes\", \"Very High\", \"1-min\", \"Experts only \\u2014 avoid as beginner\"], [\"Intraday (MIS)\", \"Same day\", \"5-10\\u00d7\", \"5/15-min\", \"Active traders \\u2014 needs full attention\"], [\"BTST\", \"Overnight\", \"1\\u00d7\", \"Hourly\", \"News-based overnight holds\"], [\"Swing (CNC)\", \"Days-weeks\", \"None\", \"Daily\", \"Working professionals \\u2190 START HERE\"], [\"Positional\", \"Weeks-months\", \"None\", \"Weekly\", \"Patient investors who also trade\"]]}, {\"t\": \"ti\", \"x\": \"START with Swing Trading using CNC (Cash and Carry) delivery orders. No leverage = limited maximum loss. Daily charts give more time to analyse. No need to watch screen all day. Perfect for beginners and working professionals.\"}, {\"t\": \"q\", \"q\": \"You are a working professional who can only check charts in morning and evening. Best trading style:\", \"o\": [\"Scalping \\u2014 more trades = more profit\", \"Intraday MIS \\u2014 most popular style\", \"Swing trading on daily charts \\u2014 CNC delivery\", \"F&O options \\u2014 highest potential returns\"], \"ok\": 2, \"ex\": \"Swing trading: analyse evening, place next-day orders with SL and targets, check results 1-2 times per day. No screen-watching during market hours. Ideal for professionals.\"}]}, {\"w\": 4, \"d\": 3, \"ph\": \"Indian Markets\", \"ti\": \"Tax on Trading: STT, STCG, LTCG\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"tb\", \"h\": [\"Income Type\", \"Holding Period\", \"Tax Rate\", \"Notes\"], \"r\": [[\"STCG \\u2014 Equity\", \"Less than 1 year\", \"20% flat\", \"Short-term delivery trades\"], [\"LTCG \\u2014 Equity\", \"More than 1 year\", \"12.5% above \\u20b91.25L\", \"\\u20b91.25L exemption per year\"], [\"Intraday Profit\", \"Same day\", \"As per income tax slab\", \"Speculative business income\"], [\"F&O Profit\", \"Any\", \"As per income tax slab\", \"Non-speculative business income\"], [\"Crypto Profit\", \"Any\", \"30% flat + 1% TDS\", \"No loss offset allowed\"]]}, {\"t\": \"ti\", \"x\": \"Practical steps: (1) Keep 25-30% of all trading profits aside for taxes. (2) Download monthly tax P&L from Zerodha \\u2192 Console. (3) Consult a CA specialising in trading taxation before filing ITR. (4) Track every trade in your journal for tax records.\"}, {\"t\": \"q\", \"q\": \"You hold Infosys for 14 months and sell with \\u20b92,00,000 profit. LTCG tax payable (\\u20b91.25L is exempt):\", \"o\": [\"\\u20b90 \\u2014 all long-term gains are tax-free\", \"\\u20b99,375\", \"\\u20b940,000\", \"\\u20b925,000\"], \"ok\": 1, \"ex\": \"Taxable LTCG = \\u20b92L - \\u20b91.25L = \\u20b975,000. Tax = \\u20b975,000 \\u00d7 12.5% = \\u20b99,375.\"}]}, {\"w\": 4, \"d\": 4, \"ph\": \"Indian Markets\", \"ti\": \"Building Your Stock Watchlist\", \"bc\": \"bd-b\", \"ct\": [{\"t\": \"tb\", \"h\": [\"Sector\", \"Key Stocks\", \"Why Include\"], \"r\": [[\"Information Technology\", \"TCS, INFOSYS, WIPRO, HCL\", \"High liquidity, follows NASDAQ\"], [\"Banking & Finance\", \"HDFCBANK, ICICIBANK, SBIN, AXISBANK\", \"Bank Nifty drives overall market\"], [\"Energy & Oil\", \"RELIANCE, ONGC\", \"Nifty heavyweights, high volume\"], [\"FMCG (Defensive)\", \"HINDUNILVR, ITC, NESTLEIND\", \"Hold value during market corrections\"], [\"Automobile\", \"TATAMOTORS, BAJAJ-AUTO, M&M\", \"Clear sector-driven trends\"], [\"Pharma & Healthcare\", \"SUNPHARMA, DRREDDY, CIPLA\", \"Relatively stable, export-driven\"]]}, {\"t\": \"ti\", \"x\": \"Limit watchlist to 15-20 stocks maximum. Know each stock's behavior, earnings cycle, and key drivers deeply. A small watchlist you know well beats a large one you barely understand.\"}, {\"t\": \"q\", \"q\": \"FMCG stocks are called 'defensive' because:\", \"o\": [\"They always give highest returns\", \"People buy essential goods even in recessions \\u2014 demand is inelastic\", \"They have the highest trading volumes\", \"They are always technically overbought\"], \"ok\": 1, \"ex\": \"Soap, biscuits, and toothpaste are bought regardless of economic conditions. FMCG companies maintain revenue even in downturns \\u2014 their stocks fall much less than cyclical sectors.\"}]}, {\"w\": 4, \"d\": 5, \"ph\": \"Indian Markets\", \"ti\": \"\\ud83d\\udfe2 GO LIVE: First Real Trade \\u20b95,000\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"e\", \"x\": \"<strong>Complete First Trade Execution Checklist:<\/strong><br>\\ud83d\\udccc Night before:<br>\\u2192 Identify 1 setup meeting ALL your criteria<br>\\u2192 Write: 'Buy [STOCK] if [CONDITION]. Entry \\u20b9___, SL \\u20b9___, Target \\u20b9___'<br>\\u2192 Calculate max shares using 1% rule<br><br>\\ud83d\\udccc Morning of trade (9:10 AM):<br>\\u2192 Open Zerodha Kite<br>\\u2192 Confirm setup still valid<br>\\u2192 Place BUY order (CNC/delivery, not MIS)<br>\\u2192 IMMEDIATELY place SL order after fill<br><br>\\ud83d\\udccc During trade:<br>\\u2192 Do NOT check P&L every 5 minutes<br>\\u2192 Do NOT move SL based on emotion<br>\\u2192 Exit only at Target or SL as planned\"}, {\"t\": \"w\", \"x\": \"Month 1 Hard Rules: Maximum 1 trade per day. Maximum \\u20b9500 risk per trade. CNC delivery orders only (no leverage/MIS). Only Nifty 50 stocks. Zero trades on RBI, Budget, or Quarterly Results days.\"}, {\"t\": \"q\", \"q\": \"Your trade is profitable and you feel strong urge to add more shares mid-trade. You should:\", \"o\": [\"Add immediately \\u2014 the trade is working, press your edge\", \"No \\u2014 position size was decided before entry; adding mid-trade is gambling\", \"Add only if RSI confirms\", \"Ask your broker for guidance\"], \"ok\": 1, \"ex\": \"Position size is calculated pre-trade based on risk rules. Adding based on live P&L emotions creates unplanned risk exposure. Pyramiding is an advanced technique \\u2014 not for beginners.\"}]}, {\"w\": 4, \"d\": 6, \"ph\": \"Indian Markets\", \"ti\": \"Trade Review Process\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"p2\", \"x\": \"POST-TRADE REVIEW (do within 1 hour of market close):\\n\\n5-Question Process Review:\\n1. Did I follow entry rules exactly?           \\u2713/\\u2717\\n2. Did I set SL before entering?               \\u2713/\\u2717\\n3. Did I use 1% position sizing?               \\u2713/\\u2717\\n4. Did I move SL due to emotion?               \\u2713/\\u2717\\n5. Did I exit at Target or SL as planned?      \\u2713/\\u2717\\n\\nAll \\u2713 = Correct execution (regardless of P&L outcome)\\nAny \\u2717 = Execution error \\u2014 fix this discipline issue first\\n\\nKEY PRINCIPLE: Only modify your strategy based on\\ncorrect executions. Never make changes based on\\ntrades where you violated your own rules.\"}, {\"t\": \"q\", \"q\": \"Perfect setup, correctly executed with all rules followed, but trade hit SL. Next action:\", \"o\": [\"Re-enter immediately to recover the loss\", \"Change strategy \\u2014 it clearly doesn't work\", \"Record as a correct-execution loss and move on\", \"Double size on next trade to recover\"], \"ok\": 2, \"ex\": \"A loss from correct execution is simply the cost of doing business. Positive expectancy reveals itself over 50+ trades. Revenge trading after a single loss is the #1 account destroyer.\"}]}, {\"w\": 4, \"d\": 7, \"ph\": \"Indian Markets\", \"ti\": \"Month 1 Audit: Complete Performance Review\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"tb\", \"h\": [\"Metric\", \"Target\", \"Your Result\"], \"r\": [[\"Daily journaling\", \"Every single day\", \"___ / 20 days\"], [\"Win Rate\", \"\\u2265 40%\", \"____ %\"], [\"Average Risk:Reward\", \"\\u2265 1:1.5\", \"1 : ___\"], [\"Times SL moved emotionally\", \"0 times\", \"___ times\"], [\"Expectancy per trade\", \"Positive (any +ve)\", \"\\u20b9 ___ per trade\"], [\"Maximum drawdown\", \"< 10% of capital\", \"____ %\"]]}, {\"t\": \"ti\", \"x\": \"Capital Scaling Plan: Month 1-2 use \\u20b95K-\\u20b910K (learning mode). Month 3-4 scale to \\u20b925K IF win rate >50% over 30+ trades. Month 5-6 scale to \\u20b950K IF profitable for 2 consecutive months. Scale only WITH profits \\u2014 never add new money to a losing approach.\"}, {\"t\": \"q\", \"q\": \"20 trades, portfolio at \\u20b94,750 from \\u20b95,000 (5% loss). WR 45%, RR 1:1.8. What to do?\", \"o\": [\"Stop trading \\u2014 this strategy is losing money\", \"Add \\u20b910,000 more capital to average down\", \"Continue \\u2014 positive expectancy + 5% drawdown is normal learning\", \"Switch to a different strategy immediately\"], \"ok\": 2, \"ex\": \"Expectancy = (0.45\\u00d71.8)-(0.55\\u00d71) = +0.26R positive. 5% drawdown during your first month of learning is completely normal. Continue following the system and assess after 50+ total trades.\"}]}, {\"w\": 5, \"d\": 1, \"ph\": \"Cryptocurrency\", \"ti\": \"Blockchain & Crypto Fundamentals\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>Blockchain<\/strong> = a distributed, immutable ledger of transactions stored on thousands of computers simultaneously. No single entity controls it. Transactions are verified by network consensus.<br><br><strong>Bitcoin (BTC):<\/strong> Created 2009 by Satoshi Nakamoto. Maximum supply: 21 million BTC (hard-coded). Supply halves every ~4 years (Halving). Called 'digital gold' \\u2014 store of value.<br><br><strong>Ethereum (ETH):<\/strong> Created 2015. Programmable blockchain with smart contracts. Powers DeFi (Decentralised Finance) and NFTs. Switched to Proof of Stake in 2022.\"}, {\"t\": \"tb\", \"h\": [\"Term\", \"Meaning\"], \"r\": [[\"Market Cap\", \"Price \\u00d7 Total Circulating Supply\"], [\"Altcoin\", \"Any cryptocurrency other than Bitcoin\"], [\"Stablecoin\", \"Pegged to USD value (USDT, USDC) \\u2014 no price volatility\"], [\"CEX\", \"Centralised Exchange: CoinDCX, WazirX, Binance\"], [\"DeFi\", \"Financial services on blockchain without banks or intermediaries\"]]}, {\"t\": \"w\", \"x\": \"India-specific crypto risks: 30% flat tax on all profits. 80% drawdowns are common in bear markets. No SEBI protection if exchange is hacked. 24/7 market means emotional fatigue. Start with only BTC and ETH \\u2014 never meme coins or new launches.\"}, {\"t\": \"q\", \"q\": \"Bitcoin's maximum supply is hardcoded at:\", \"o\": [\"100 million BTC\", \"21 million BTC\", \"Unlimited \\u2014 no cap\", \"10 million BTC\"], \"ok\": 1, \"ex\": \"21 million BTC \\u2014 this is permanently coded into Bitcoin's protocol and cannot be changed. This fixed scarcity is the primary argument for Bitcoin as a store of value.\"}]}, {\"w\": 5, \"d\": 2, \"ph\": \"Cryptocurrency\", \"ti\": \"Indian Crypto Exchanges: Setup & Safety\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"tb\", \"h\": [\"Exchange\", \"Trading Fee\", \"Best For\"], \"r\": [[\"CoinDCX\", \"0.1\\u20130.2% per trade\", \"Indian beginners \\u2014 easy INR bank transfer\"], [\"WazirX\", \"0.2% per trade\", \"Wider coin variety\"], [\"Binance\", \"0.1% per trade\", \"Global platform \\u2014 check FEMA compliance first\"]]}, {\"t\": \"e\", \"x\": \"<strong>CoinDCX Setup Step-by-Step:<\/strong><br>1. Download CoinDCX app from Play Store/App Store<br>2. Register with email and mobile number<br>3. Complete KYC: PAN + Aadhaar + bank account details<br>4. Wait 24-48 hours for verification<br>5. Deposit via UPI (instant) or NEFT (larger amounts)<br>6. Enable Google Authenticator 2FA (MANDATORY security step)<br>7. Test with small \\u20b9100 USDT buy then sell before real trading\"}, {\"t\": \"w\", \"x\": \"Security Non-Negotiables:\\n\\u2713 Always use Google Authenticator for 2FA (NOT SMS \\u2014 SIM swap risk)\\n\\u2713 Use a unique password for your exchange account\\n\\u2713 NEVER share your OTP with anyone calling you\\n\\u2713 Ignore all 'Support' contacts on Telegram or WhatsApp\\n\\u2713 Amounts over \\u20b950,000 \\u2192 consider a hardware wallet (Ledger/Trezor)\"}, {\"t\": \"q\", \"q\": \"Someone on WhatsApp claiming to be 'CoinDCX Support' asks for your login credentials. You should:\", \"o\": [\"Provide details carefully \\u2014 they may help recover your account\", \"Immediately ignore and report \\u2014 no exchange ever asks for credentials\", \"Call back on the number they provided to verify\", \"Share only your email address, not password\"], \"ok\": 1, \"ex\": \"This is a classic phishing attack. No legitimate exchange EVER contacts users asking for credentials. Block the contact and report it immediately. Crypto phishing is extremely common.\"}]}, {\"w\": 5, \"d\": 3, \"ph\": \"Cryptocurrency\", \"ti\": \"Crypto Market Characteristics\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>Key differences from stock markets:<\/strong><br><br>\\u2022 <strong>24/7 Market:<\/strong> Bitcoin can fall 20% while you sleep on a Sunday night. No circuit breakers, no trading halts.<br>\\u2022 <strong>Extreme Volatility:<\/strong> Nifty ~15-20% annual volatility. Bitcoin ~60-80% annual volatility. Small altcoins: 200-500%+ swings are common.<br>\\u2022 <strong>US Correlation:<\/strong> BTC correlates strongly with NASDAQ during risk-off events. Always monitor DXY, Fed decisions, and US CPI data.\"}, {\"t\": \"ti\", \"x\": \"Calibrate your TA for crypto: Use EMA 21 (not 20). RSI below 28 = very oversold for crypto. Bollinger Bands (20,2) work excellently. 4-Hour and Daily timeframes are most reliable. Volume spikes 3-5\\u00d7 normal are typical thresholds.\"}, {\"t\": \"q\", \"q\": \"BTC ATR(14) on daily chart = \\u20b93 lakh. Using 1.5\\u00d7ATR stop from entry \\u20b970 lakh:\", \"o\": [\"\\u20b969.55 lakh\", \"\\u20b965.5 lakh\", \"\\u20b968.5 lakh\", \"\\u20b967 lakh\"], \"ok\": 1, \"ex\": \"SL = 70L - (1.5 \\u00d7 3L) = 70L - 4.5L = \\u20b965.5 lakh. A 6.4% stop is completely normal for Bitcoin. Use very small position sizes to compensate for wider stops.\"}]}, {\"w\": 5, \"d\": 4, \"ph\": \"Cryptocurrency\", \"ti\": \"On-Chain Metrics & Market Sentiment\", \"bc\": \"bd-r\", \"ct\": [{\"t\": \"tb\", \"h\": [\"Metric\", \"Bullish Signal Means\", \"Free Source\"], \"r\": [[\"Exchange Outflows\", \"BTC leaving exchanges = holders not planning to sell\", \"CryptoQuant.com\"], [\"Hash Rate Rising\", \"Miners investing more = confidence in network\", \"Blockchain.com\"], [\"Funding Rate Negative\", \"Shorts overleveraged \\u2192 short squeeze possible\", \"Coinglass.com\"], [\"MVRV Ratio < 1\", \"Market Value < Realised Value = historically undervalued\", \"Glassnode.com\"], [\"Fear & Greed < 25\", \"Extreme Fear = historically strong buy zone\", \"Alternative.me\"]]}, {\"t\": \"ti\", \"x\": \"Fear & Greed Index Strategy: Index 0-25 (Extreme Fear) = consider building positions gradually. Index 75-100 (Extreme Greed) = consider reducing exposure. At 90+ = start taking profits. At 15 or below = historically very strong buying opportunity.\"}, {\"t\": \"q\", \"q\": \"Large amounts of Bitcoin are moving from exchanges to private wallets. This signals:\", \"o\": [\"Bearish \\u2014 owners are preparing to sell soon\", \"Bullish \\u2014 removing BTC from exchange selling pressure (supply shock)\", \"Exchange is being hacked\", \"Market-neutral event \\u2014 no significance\"], \"ok\": 1, \"ex\": \"Moving BTC off exchanges = holders plan to hold long-term, not sell. Less BTC available on exchanges = less immediate selling supply = bullish pressure on price.\"}]}, {\"w\": 5, \"d\": 5, \"ph\": \"Cryptocurrency\", \"ti\": \"Technical Analysis on Crypto Charts\", \"bc\": \"bd-p\", \"ct\": [{\"t\": \"c\", \"x\": \"All technical analysis principles from stocks apply to crypto \\u2014 you just need to calibrate for higher volatility and 24/7 trading.<br><br><strong>BTC Dominance (BTC.D):<\/strong> Open TradingView.com \\u2192 type 'BTC.D' in search.<br>BTC.D RISING = money flowing INTO Bitcoin \\u2192 Altcoins underperform<br>BTC.D FALLING = money flowing INTO Altcoins \\u2192 Altcoin season<br>Best altcoin trades: when BTC.D is FALLING and BTC price is STABLE or RISING\"}, {\"t\": \"tb\", \"h\": [\"Key Level\", \"Why It Matters for BTC\"], \"r\": [[\"200-week SMA\", \"Historical bear market floor \\u2014 never broken on weekly close\"], [\"Previous All-Time High\", \"Becomes strong support once surpassed (role reversal)\"], [\"Round millions (\\u20b950L, \\u20b970L, \\u20b91Cr)\", \"Psychological S/R \\u2014 high concentration of orders\"], [\"Fibonacci 61.8% of entire bull move\", \"Major institutional accumulation zone during corrections\"]]}, {\"t\": \"q\", \"q\": \"BTC 4H chart: RSI at 22, price at previous All-Time High now acting as support. Best trade:\", \"o\": [\"Short BTC \\u2014 RSI will fall further\", \"Go long with stop-loss below the support level\", \"Wait for more confirmation\", \"Buy altcoins instead \\u2014 BTC too risky\"], \"ok\": 1, \"ex\": \"RSI 22 (extreme oversold) + previous ATH as support = dual confluence reversal setup. Risk is clearly defined (stop below support). Potential reward is substantial. High probability entry.\"}]}, {\"w\": 5, \"d\": 6, \"ph\": \"Cryptocurrency\", \"ti\": \"Crypto Paper Trading Protocol\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"p2\", \"x\": \"CRYPTO PAPER TRADING RULES:\\n  Virtual Capital: \\u20b950,000\\n  Max Risk per Trade: \\u20b9500 (1%)\\n  Instruments: BTC and ETH ONLY\\n\\nPRE-TRADE CHECKLIST:\\n\\u25a1 BTC Daily chart above EMA 200? (trend filter)\\n\\u25a1 4H chart pulled back to EMA 21 zone?\\n\\u25a1 4H RSI between 35-50? (not overbought)\\n\\u25a1 Entry candle bullish close at EMA zone?\\n\\u25a1 Set stop: entry - (2 \\u00d7 ATR on 4H chart)\\n\\u25a1 Position size: \\u20b9500 \\u00f7 SL distance in INR\\n\\u25a1 Target 1: Previous 4H swing high (exit 50%)\\n\\u25a1 Target 2: 161.8% Fibonacci extension (exit 50%)\\n\\nFREE TOOLS:\\nTradingView.com \\u2192 Paper Trading mode (bottom left)\\nCoinglass.com \\u2192 Funding rate monitoring\\nAlternative.me \\u2192 Fear & Greed Index daily\"}, {\"t\": \"q\", \"q\": \"Your SL was nearly triggered but price recovered and hit your target. What does this teach you?\", \"o\": [\"Your SL was placed correctly \\u2014 worked as intended\", \"Your SL was too tight \\u2014 should have been wider\", \"You should have exited when SL was nearly hit\", \"Never place stop-losses in crypto \\u2014 too volatile\"], \"ok\": 0, \"ex\": \"A near-miss followed by target achievement means your SL was correctly placed \\u2014 it survived the normal volatility noise and the thesis played out. Good SL placement, good outcome.\"}]}, {\"w\": 5, \"d\": 7, \"ph\": \"Cryptocurrency\", \"ti\": \"Week 5 Review: Crypto Foundations\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>Essential Crypto Resources:<\/strong><br>Bitcoin Whitepaper (9 pages): bitcoin.org/bitcoin.pdf \\u2014 foundational reading<br>Ethereum.org/learn \\u2014 ETH ecosystem understanding<br>Messari.io \\u2014 professional crypto research reports<br>Coindesk.com \\u2014 daily crypto news<br>CoinGecko.com \\u2014 price, volume, market cap data<br>Glassnode.com \\u2014 on-chain analytics (free tier available)\"}, {\"t\": \"q\", \"q\": \"India's flat tax rate on crypto profits and TDS rate are:\", \"o\": [\"20% tax + 2% TDS\", \"30% tax + 1% TDS\", \"10% tax + 0.1% TDS\", \"15% tax + 5% TDS\"], \"ok\": 1, \"ex\": \"As per Union Budget 2022 (effective April 1, 2022): 30% flat tax on all Virtual Digital Asset (VDA) profits, plus 1% TDS on transactions above threshold. No deductions allowed.\"}]}, {\"w\": 6, \"d\": 1, \"ph\": \"Cryptocurrency\", \"ti\": \"Funding Rate & Open Interest\", \"bc\": \"bd-r\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>Perpetual Futures:<\/strong> Crypto futures contracts that never expire. The most popular crypto trading instrument.<br><br><strong>Funding Rate:<\/strong> Payment exchanged between longs and shorts every 8 hours to keep perpetual price near spot price.<br>POSITIVE funding (>0.05%): Longs paying shorts = market overleveraged long = bearish contrarian signal<br>NEGATIVE funding (<-0.01%): Shorts paying longs = market overleveraged short = bullish contrarian signal\"}, {\"t\": \"f\", \"x\": \"OPEN INTEREST (OI) Analysis:\\n\\n  OI Rising + Price Rising   = Strong bullish trend (new money entering)\\n  OI Rising + Price Falling  = Strong bearish trend (new shorts opening)\\n  OI Falling + Price Rising  = Short covering (less conviction, caution)\\n  OI Falling + Price Falling = Long liquidations (flush \\u2014 often near bottom)\\n\\nLIQUIDATION CASCADE:\\n  100\\u00d7 leverage \\u2192 1% move \\u2192 forced liquidations \\u2192\\n  \\u2192 additional selling \\u2192 20-30% crash in hours\\n  Best buying opportunities often appear AFTER cascades\"}, {\"t\": \"q\", \"q\": \"BTC funding rate is extremely high at +0.15% per 8 hours. This suggests:\", \"o\": [\"Extremely bullish \\u2014 add to long positions aggressively\", \"Overleveraged longs \\u2014 expect volatility and potential sharp pullback\", \"Market is healthy and balanced\", \"Good time to buy altcoins\"], \"ok\": 1, \"ex\": \"At +0.15% per 8h, longs pay 0.45%/day = 13.5%/month just to hold. This creates massive forced-exit pressure. Very high positive funding = crowded long = contrarian sell or exercise extreme caution.\"}]}, {\"w\": 6, \"d\": 2, \"ph\": \"Cryptocurrency\", \"ti\": \"DeFi, Altcoin Season & Risk Rules\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>Altcoin Season Typical Cycle:<\/strong><br>Phase 1: Bitcoin rallies first (BTC.D rises)<br>Phase 2: Ethereum follows Bitcoin up<br>Phase 3: Large-cap alts rally (Solana, Avalanche, etc.)<br>Phase 4: Mid-cap altcoins surge<br>Phase 5: Meme coins and new launches pump<br>Phase 6: Everything crashes \\u2014 Bitcoin leads the way down<br><br><strong>Rule for beginners: Trade ONLY BTC and ETH. Never trade meme coins, new token launches, or leverage/derivatives.<\/strong>\"}, {\"t\": \"f\", \"x\": \"Crypto Portfolio Allocation (when balance grows to \\u20b950K+):\\n  60% Bitcoin (BTC)     \\u2014 most stable, highest liquidity\\n  25% Ethereum (ETH)   \\u2014 second most stable\\n  15% Large-cap alts   \\u2014 maximum (only if profitable for 6+ months)\\n\\nTotal crypto allocation as % of total investable assets:\\n  Beginner (Month 1-2): Maximum 5%\\n  After 6 profitable months: Up to 10-15%\\n  Never put emergency funds or borrowed money in crypto\"}, {\"t\": \"q\", \"q\": \"BTC.D falls from 58% to 49% while BTC price itself remains flat. This signals:\", \"o\": [\"Crypto market is crashing overall\", \"Altcoin season \\u2014 money rotating from BTC to altcoins\", \"Bitcoin is being heavily sold\", \"Institutions are moving to stablecoins\"], \"ok\": 1, \"ex\": \"Falling BTC.D with stable BTC price = total crypto market cap growing faster than Bitcoin alone. Money is rotating into altcoins. This is the definition of altcoin season.\"}]}, {\"w\": 6, \"d\": 3, \"ph\": \"Cryptocurrency\", \"ti\": \"\\ud83d\\udfe2 Go Live Crypto: \\u20b91,000 Spot Trade\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"e\", \"x\": \"<strong>First Live Crypto Trade Execution:<\/strong><br>1. Deposit \\u20b91,000 via UPI into CoinDCX account<br>2. Keep \\u20b9700 for the trade, \\u20b9300 as buffer for fees<br>3. Check BTC daily chart \\u2014 is it above EMA 21?<br>4. If yes, buy \\u20b9500 worth of BTC (spot \\u2014 no leverage EVER)<br>5. Set a price alert 5% BELOW your buy price (mental SL)<br>6. Set a price alert 10% ABOVE your buy price (target)<br>7. If -5% alert triggers \\u2192 sell on CoinDCX app immediately<br>8. If +10% alert triggers \\u2192 sell 50%, let rest run\"}, {\"t\": \"w\", \"x\": \"\\u20b91,000 Stage Hard Rules:\\n\\u2022 Only BTC or ETH \\u2014 never any other coin\\n\\u2022 Spot trading only \\u2014 absolutely no leverage or futures\\n\\u2022 Maximum one open position at any time\\n\\u2022 Maximum \\u20b9100 risk per trade (10% of capital)\\n\\u2022 Set alerts BEFORE putting your phone down\\n\\u2022 Never invest money you need within 6 months\"}, {\"t\": \"q\", \"q\": \"You buy ETH worth \\u20b9500 at \\u20b92,85,000 per ETH. Your 5% mental stop-loss triggers at:\", \"o\": [\"\\u20b92,71,250\", \"\\u20b92,70,750\", \"\\u20b92,80,000\", \"\\u20b92,64,250\"], \"ok\": 1, \"ex\": \"\\u20b92,85,000 \\u00d7 0.95 = \\u20b92,70,750. Your \\u20b9500 position loses \\u20b925 (5%), which is 2.5% of your total \\u20b91,000 capital. Appropriate risk for this learning stage.\"}]}, {\"w\": 6, \"d\": 4, \"ph\": \"Cryptocurrency\", \"ti\": \"Crypto Tax, TDS & Record Keeping\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"tb\", \"h\": [\"Rule\", \"What It Means For You\"], \"r\": [[\"30% flat tax\", \"Pay 30% tax on ALL crypto profits \\u2014 no deductions allowed\"], [\"Cannot offset losses\", \"ETH loss CANNOT reduce BTC profit tax \\u2014 each asset taxed separately\"], [\"Crypto-to-crypto is taxable\", \"Swapping BTC for ETH is a taxable event \\u2014 must report\"], [\"1% TDS\", \"Exchange deducts 1% TDS on transactions above threshold\"], [\"ITR filing\", \"Use ITR-2 (capital gains) or ITR-3 (if trading as business)\"]]}, {\"t\": \"ti\", \"x\": \"Free Indian crypto tax tools: KoinX.com \\u2014 import your CoinDCX trade history automatically, generates complete ITR-ready tax report. ClearTax.in also supports crypto. Download monthly CSV from CoinDCX \\u2192 Console \\u2192 Trade History \\u2192 Export.\"}, {\"t\": \"q\", \"q\": \"You profit \\u20b950,000 on BTC and lose \\u20b920,000 on ETH in the same financial year. Total crypto tax:\", \"o\": [\"\\u20b99,000 \\u2014 losses offset gains\", \"\\u20b915,000 \\u2014 on \\u20b950K profit only (no loss offset)\", \"\\u20b90 \\u2014 net position is profitable\", \"\\u20b96,000 \\u2014 on net \\u20b930K gain\"], \"ok\": 1, \"ex\": \"Indian VDA tax rules: crypto losses CANNOT be used to offset crypto gains. Tax = \\u20b950,000 \\u00d7 30% = \\u20b915,000. The \\u20b920,000 ETH loss provides zero tax benefit.\"}]}, {\"w\": 6, \"d\": 5, \"ph\": \"Cryptocurrency\", \"ti\": \"Crypto Risk Management & Alerts\", \"bc\": \"bd-r\", \"ct\": [{\"t\": \"c\", \"x\": \"Managing a 24/7 market without watching it constantly requires systematic alert-based monitoring:<br><br>\\u2022 <strong>TradingView.com:<\/strong> Price alerts, RSI level alerts, EMA crossover alerts (free tier: 1 alert)<br>\\u2022 <strong>CoinDCX app:<\/strong> Built-in price alerts for your positions<br>\\u2022 <strong>Coinglass.com:<\/strong> Set funding rate alerts (alert at >0.08%)<br>\\u2022 <strong>Alternative.me:<\/strong> Daily email for Fear & Greed Index\"}, {\"t\": \"f\", \"x\": \"CRYPTO POSITION SIZING (wider stops required):\\n\\n  SL = Entry - (2.0 \\u00d7 ATR)    \\u2190 wider than stocks\\n  Max Risk = Account \\u00d7 1%\\n  Quantity = Max Risk \\u00f7 SL Distance in \\u20b9\\n\\n  Example:\\n  Account: \\u20b920,000 | Max Risk: \\u20b9200\\n  BTC entry: \\u20b970L | ATR: \\u20b93L\\n  SL Distance = 2 \\u00d7 \\u20b93L = \\u20b96L\\n  BTC quantity = \\u20b9200 \\u00f7 \\u20b96,00,000 = 0.000333 BTC\\n  Investment value = 0.000333 \\u00d7 \\u20b970L = \\u20b923,310 (tiny but correct!)\"}, {\"t\": \"q\", \"q\": \"Most important habit for sustainable crypto trading without burnout:\", \"o\": [\"Check price every 10 minutes for best results\", \"Set alerts and only look when triggered \\u2014 systematic approach\", \"Trade as many coins as possible for diversification\", \"Use maximum leverage to reach goals faster\"], \"ok\": 1, \"ex\": \"Alert-based monitoring = systematic, not reactive. You look only when a predefined condition is met. This prevents emotional decisions from constant price-watching. Every professional trader uses alerts.\"}]}, {\"w\": 6, \"d\": 6, \"ph\": \"Cryptocurrency\", \"ti\": \"DCA Strategy & Long-Term Crypto\", \"bc\": \"bd-b\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>DCA (Dollar Cost Averaging):<\/strong> Invest a fixed amount (e.g., \\u20b91,000) at regular intervals (weekly/monthly) regardless of the current price. Over time, this averages your cost basis and removes the emotion of trying to time the market.<br><br>DCA is the single most recommended strategy for crypto beginners. Studies show it outperforms lump-sum investment in volatile assets 70%+ of the time over 3+ year periods.\"}, {\"t\": \"f\", \"x\": \"DCA Example:\\n  Monthly investment: \\u20b91,000 into BTC\\n  Month 1: BTC at \\u20b940L \\u2192 buy 0.0025 BTC\\n  Month 2: BTC at \\u20b950L \\u2192 buy 0.0020 BTC\\n  Month 3: BTC at \\u20b935L \\u2192 buy 0.0029 BTC\\n  Month 4: BTC at \\u20b945L \\u2192 buy 0.0022 BTC\\n\\n  Total invested: \\u20b94,000\\n  Total BTC: 0.0096 BTC\\n  Average buy price: \\u20b941,667 per BTC\\n  vs. lump sum at worst price (Month 2): \\u20b950L\"}, {\"t\": \"q\", \"q\": \"Why is DCA considered safer than lump-sum investing in crypto?\", \"o\": [\"It guarantees profits in every market condition\", \"It eliminates the risk of buying at the worst possible price at once\", \"It is only recommended by exchanges to collect more fees\", \"It works only in bull markets\"], \"ok\": 1, \"ex\": \"DCA spreads purchases across time, automatically buying more when prices are low and less when prices are high. Reduces the impact of buying at a single wrong time. Powerful in volatile markets.\"}]}, {\"w\": 6, \"d\": 7, \"ph\": \"Cryptocurrency\", \"ti\": \"Crypto Phase Complete: Assessment\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"tb\", \"h\": [\"Knowledge Area\", \"Self-Score (1-5)\"], \"r\": [[\"Blockchain & Bitcoin fundamentals\", \"___ / 5\"], [\"Exchange setup & security\", \"___ / 5\"], [\"Reading crypto charts (4H + Daily)\", \"___ / 5\"], [\"On-chain metrics usage\", \"___ / 5\"], [\"Crypto position sizing with ATR\", \"___ / 5\"], [\"India tax rules (30% + 1% TDS)\", \"___ / 5\"], [\"Altcoin season identification\", \"___ / 5\"]]}, {\"t\": \"ti\", \"x\": \"If any area scored below 3: revisit that lesson before moving to Week 7. Strong crypto foundations are essential \\u2014 the market is designed to separate overconfident traders from their money quickly.\"}, {\"t\": \"q\", \"q\": \"Most important rule when starting live crypto trading:\", \"o\": [\"Buy top 10 altcoins for portfolio diversification\", \"BTC or ETH spot only, \\u2264\\u20b91,000 capital, 1% risk rule strictly\", \"Use leverage to reach goals faster with less capital\", \"DCA into the most popular meme coins\"], \"ok\": 1, \"ex\": \"Start with the most liquid, most predictable assets (BTC/ETH). Spot only prevents catastrophic losses from liquidations. Small capital limits learning mistakes to affordable amounts.\"}]}, {\"w\": 7, \"d\": 1, \"ph\": \"Forex\", \"ti\": \"Forex Market Fundamentals\", \"bc\": \"bd-b\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>Forex Market:<\/strong> $7.5 trillion traded daily \\u2014 the world's largest and most liquid financial market. Currencies always trade in pairs against each other.<br><br><strong>How Pairs Work:<\/strong> EUR/USD = 1.08 means 1 Euro buys 1.08 US Dollars. Left currency (EUR) = base currency what you buy. Right currency (USD) = quote currency what you pay with.<br><br><strong>Pip:<\/strong> Smallest standard price movement. For most pairs: 1 pip = 0.0001. For USD/INR on NSE: 1 pip = \\u20b90.0025 = \\u20b92.50 per standard lot.\"}, {\"t\": \"tb\", \"h\": [\"Currency Pair\", \"Name\", \"Typical Spread\", \"Volume\"], \"r\": [[\"EUR/USD\", \"Euro/US Dollar\", \"1-2 pips\", \"Highest in world\"], [\"USD/JPY\", \"Dollar/Japanese Yen\", \"1-2 pips\", \"Very high\"], [\"GBP/USD\", \"Pound/Dollar\", \"2-3 pips\", \"High\"], [\"USD/INR\", \"Dollar/Indian Rupee (NSE)\", \"Very Low\", \"High on NSE\"]]}, {\"t\": \"q\", \"q\": \"EUR/USD moves from 1.0850 to 1.0900. This movement equals how many pips?\", \"o\": [\"50 pips\", \"5 pips\", \"500 pips\", \"0.5 pips\"], \"ok\": 0, \"ex\": \"1.0900 - 1.0850 = 0.0050. Divided by 0.0001 (1 pip) = 50 pips. All forex P&L = pip movement \\u00d7 pip value \\u00d7 number of lots.\"}]}, {\"w\": 7, \"d\": 2, \"ph\": \"Forex\", \"ti\": \"Forex in India: Legal Framework\", \"bc\": \"bd-r\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>LEGAL Forex Trading in India (on Indian exchanges):<\/strong><br>\\u2705 USD/INR (most popular)<br>\\u2705 EUR/INR | GBP/INR | JPY/INR<br>\\u2705 Cross-currency pairs: EUR/USD | GBP/USD | USD/JPY (only these three)<br><br><strong>NOT PERMITTED:<\/strong><br>\\u274c Any other currency pairs (GBP/NZD, AUD/USD, etc.)<br>\\u274c Trading through foreign forex brokers with INR deposits<br>\\u274c Using platforms like XM, eToro, IC Markets funded with INR\"}, {\"t\": \"e\", \"x\": \"<strong>How to Trade USD/INR on NSE via Zerodha:<\/strong><br>1. Log into Zerodha Kite<br>2. Enable Currency segment (may need separate activation)<br>3. Search 'USDINR' in the search bar<br>4. Select current month's futures contract<br>5. Contract size = $1,000 per lot<br>6. Margin required \\u2248 \\u20b91,500-\\u20b92,000 per lot<br>7. Trading hours: 9:00 AM to 5:00 PM IST<br>8. Settlement: Cash settled in INR\"}, {\"t\": \"w\", \"x\": \"AVOID foreign forex brokers (XM, eToro, Exness, FXTM etc.) for INR deposits. This violates FEMA (Foreign Exchange Management Act). No SEBI protection. Funds cannot be recovered if the broker scams you. Trade ONLY through NSE/BSE Currency Derivatives segment.\"}, {\"t\": \"q\", \"q\": \"An Indian resident wants to trade GBP/NZD. This is:\", \"o\": [\"Available on NSE Currency segment\", \"Not permitted \\u2014 exotic pair not allowed on Indian exchanges\", \"Available with special RBI permission\", \"Available on BSE Currency segment\"], \"ok\": 1, \"ex\": \"GBP/NZD is an exotic pair \\u2014 not approved for trading on Indian exchanges. Only INR-based pairs and three specific cross-currency pairs (EUR/USD, GBP/USD, USD/JPY) are permitted.\"}]}, {\"w\": 7, \"d\": 3, \"ph\": \"Forex\", \"ti\": \"Macro Drivers: What Moves Currency Rates?\", \"bc\": \"bd-b\", \"ct\": [{\"t\": \"tb\", \"h\": [\"Economic Event\", \"Effect on USD/INR\", \"Why This Happens\"], \"r\": [[\"RBI raises interest rates\", \"USD/INR falls (INR strengthens)\", \"Higher rates attract foreign investment \\u2192 INR demand rises\"], [\"US Fed raises rates\", \"USD/INR rises (INR weakens)\", \"Higher USD returns attract global capital \\u2192 USD demand rises\"], [\"India CPI inflation rises\", \"USD/INR rises (INR weakens)\", \"Higher inflation erodes purchasing power of INR\"], [\"India trade deficit widens\", \"USD/INR rises (INR weakens)\", \"India needs more USD to pay for imports\"], [\"Crude oil price rises\", \"USD/INR rises (INR weakens)\", \"India imports 85% of crude oil \\u2014 paid in USD\"], [\"FII selling Indian equity\", \"USD/INR rises (INR weakens)\", \"Selling INR assets + converting proceeds to USD\"]]}, {\"t\": \"ti\", \"x\": \"Economic Calendar Habit (do every Sunday): Visit Forexfactory.com \\u2192 filter for 'High Impact' events \\u2192 note all events for USD, INR, EUR for the coming week. NEVER hold positions into RBI policy announcements, US Fed meetings, US CPI release, or US NFP (first Friday of every month).\"}, {\"t\": \"q\", \"q\": \"India's trade deficit narrows significantly. What happens to USD/INR?\", \"o\": [\"USD/INR rises \\u2014 USD always gets stronger over time\", \"USD/INR falls \\u2014 less USD demand from India (INR strengthens)\", \"No impact \\u2014 trade data doesn't affect currency\", \"Both USD and INR weaken equally\"], \"ok\": 1, \"ex\": \"Narrower trade deficit = India needs less USD for imports + more USD flows in from exports. USD supply increases relative to INR = USD/INR falls = rupee strengthens.\"}]}, {\"w\": 7, \"d\": 4, \"ph\": \"Forex\", \"ti\": \"Reading USD/INR Charts\", \"bc\": \"bd-p\", \"ct\": [{\"t\": \"c\", \"x\": \"USD/INR is driven by BOTH Indian macro (RBI, trade data, FII flows) AND US macro (Fed, CPI, NFP). Fundamentals OVERRIDE technical analysis during major scheduled data releases.<br><br><strong>Key Psychological Levels to always mark:<\/strong><br>Round numbers: \\u20b983, \\u20b984, \\u20b985, \\u20b986, \\u20b987, \\u20b988<br>RBI typically intervenes to prevent excessive depreciation near upper boundaries.<br>Previous day High/Low = most important intraday S/R for USD/INR.\"}, {\"t\": \"ti\", \"x\": \"Add 'DXY' to your TradingView watchlist TODAY. The US Dollar Index measures USD strength against 6 major currencies. DXY rising = USD strengthening globally = Indian markets and INR typically weaken. DXY is the single most important global macro indicator for INR traders.\"}, {\"t\": \"q\", \"q\": \"RBI unexpectedly intervenes and sells large amounts of USD in the open market. USD/INR will:\", \"o\": [\"Continue rising \\u2014 nothing can stop the trend\", \"Fall \\u2014 RBI increases USD supply = INR demand rises = INR strengthens\", \"Remain unchanged \\u2014 RBI actions don't affect markets\", \"Rise even faster \\u2014 shows INR is weak\"], \"ok\": 1, \"ex\": \"RBI selling USD in the market = more USD supply available + more INR absorbed. This directly pushes USD/INR lower (INR strengthens). RBI interventions are highly effective short-term.\"}]}, {\"w\": 7, \"d\": 5, \"ph\": \"Forex\", \"ti\": \"Forex Paper Trade Protocol\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"p2\", \"x\": \"USD/INR DAILY PAPER TRADING PROTOCOL:\\n  Virtual Capital: \\u20b950,000 | Max Lots: 2 at once\\n\\nMORNING ROUTINE (complete before 9 AM):\\n\\u25a1 Check US overnight market performance (ET Markets app)\\n\\u25a1 Check RBI news: rbi.org.in \\u2192 Press Releases\\n\\u25a1 Calculate CPR for USD/INR using yesterday's OHLC\\n\\u25a1 USD/INR daily chart: above or below SMA 200?\\n\\u25a1 Check Forexfactory.com for today's high-impact events\\n\\u25a1 If high-impact event today: REDUCE position size by 50%\\n\\nENTRY RULES (9:15 AM to 11:30 AM window only):\\n  ONLY trade in direction of daily trend\\n  Wait for pullback to EMA 20 on 15-min chart\\n  RSI must be between 40-55 on 15-min\\n  NO trades within 30 minutes of any data release\\n\\nSTOP-LOSS: 10-15 pips (= \\u20b925-\\u20b937.50 per lot)\\nTARGET: 20-30 pips (= \\u20b950-\\u20b975 per lot)\\nEXIT: Close all positions by 4:30 PM without exception\"}, {\"t\": \"q\", \"q\": \"You have a profitable USD/INR long. US CPI data releases in 3 hours. Best action:\", \"o\": [\"Hold for full target \\u2014 stop-loss will protect me\", \"Close 50% now, hold rest with tightened stop-loss\", \"Close the entire position now to be safe\", \"Add another lot \\u2014 momentum is strong\"], \"ok\": 1, \"ex\": \"CPI surprises cause 40-80 pip instant moves that gap through stop-losses. Partial profit before high-impact events, tighter SL on remainder = professional risk management standard.\"}]}, {\"w\": 7, \"d\": 6, \"ph\": \"Forex\", \"ti\": \"Multi-Market Correlations\", \"bc\": \"bd-p\", \"ct\": [{\"t\": \"tb\", \"h\": [\"Market Relationship\", \"Direction\", \"Reason\"], \"r\": [[\"NASDAQ up \\u2192 Indian IT stocks up\", \"Positive\", \"IT companies earn in USD; NASDAQ = global tech sentiment\"], [\"USD/INR up \\u2192 IT/Pharma stocks up\", \"Positive\", \"USD revenue converts to more INR \\u2014 earnings beat in INR terms\"], [\"USD/INR up \\u2192 Airlines, Paint companies down\", \"Negative\", \"Import costs rise \\u2014 aviation fuel & raw materials in USD\"], [\"Crude Oil up \\u2192 USD/INR up (INR weaker)\", \"Positive\", \"India imports 85% crude in USD \\u2014 more USD demand\"], [\"FII selling equity \\u2192 Nifty falls + INR weakens\", \"Both fall\", \"Selling Indian assets + converting INR proceeds to USD\"], [\"DXY up \\u2192 Emerging market currencies weaker\", \"Negative\", \"Stronger dollar = capital flows from EM to US markets\"]]}, {\"t\": \"q\", \"q\": \"International crude oil prices surge 12% in one week. Which Indian sector suffers the most?\", \"o\": [\"Information Technology\", \"Aviation and paint companies\", \"Pharmaceutical exporters\", \"Private sector banking\"], \"ok\": 1, \"ex\": \"Aviation: fuel = 30-40% of operating costs. Paint companies: crude derivatives (titanium dioxide, solvents) = major raw material costs. Both are directly hurt by rising crude prices.\"}]}, {\"w\": 7, \"d\": 7, \"ph\": \"Forex\", \"ti\": \"Week 7 Review: Forex Foundations\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>Best Free Resources for Forex Education:<\/strong><br>Babypips.com \\u2014 Complete Forex School from beginner to advanced (free, best resource online)<br>Forexfactory.com \\u2014 Economic calendar (use every Sunday)<br>rbi.org.in \\u2192 Press Releases \\u2014 RBI policy announcements<br>nseindia.com \\u2192 Products \\u2192 Currency Derivatives \\u2014 live USD/INR data<br>TradingView.com \\u2014 chart USD/INR futures for free\"}, {\"t\": \"q\", \"q\": \"US Federal Reserve unexpectedly CUTS interest rates. Impact on USD/INR:\", \"o\": [\"USD/INR rises sharply \\u2014 Fed always supports the dollar\", \"USD/INR falls \\u2014 dollar weakens globally = rupee strengthens\", \"No significant impact \\u2014 only RBI can affect INR\", \"Cannot determine without more information\"], \"ok\": 1, \"ex\": \"Fed rate cut \\u2192 USD becomes less attractive for global investors \\u2192 USD weakens \\u2192 USD/INR falls (INR strengthens). Also often triggers simultaneous FII inflows into Indian equity markets.\"}]}, {\"w\": 8, \"d\": 1, \"ph\": \"Mastery\", \"ti\": \"Build Your Complete Trading Plan\", \"bc\": \"bd-b\", \"ct\": [{\"t\": \"p2\", \"x\": \"MY COMPLETE TRADING PLAN (fill in your values):\\n\\n1. MARKETS I WILL TRADE:\\n   Primary  : NSE Equity (Swing, CNC delivery only)\\n   Secondary: Crypto Spot (BTC/ETH only)\\n   Tertiary : USD/INR Currency Futures (NSE)\\n\\n2. TIMEFRAMES:\\n   Strategy/Analysis: Daily chart\\n   Entry Timing: 15-minute or 1-Hour chart\\n\\n3. MY THREE SETUPS (will trade ONLY these):\\n   Setup A: 3-Filter (SMA200 + EMA20 pullback + RSI 40-55)\\n   Setup B: Breakout (Pattern + Volume 2\\u00d7 average + Nifty aligned)\\n   Setup C: Fibonacci (61.8% + S/R confluence + Reversal candle)\\n\\n4. ENTRY RULES: All filters confirmed. Minimum 1:2 RR. Max 1 trade/day/market.\\n\\n5. POSITION SIZING: 1% risk rule ALWAYS. No exceptions. No leverage.\\n\\n6. STOP-LOSS: Structure-based or 1.5\\u00d7ATR. NEVER moved wider.\\n\\n7. MAXIMUM DRAWDOWN LIMIT: 10% of account \\u2192 STOP for 1 full week.\\n\\n8. NEVER TRADE: Within 60 min of RBI/Fed announcements.\\n   Never trade penny stocks. Never crypto meme coins.\\n   Never trade after 2 consecutive losses same day (walk away).\"}, {\"t\": \"q\", \"q\": \"Your plan says no trading 60 minutes before RBI meeting. Meeting is at 2 PM. A perfect setup appears at 1:30 PM. You:\", \"o\": [\"Take the trade \\u2014 the setup is too good to pass up\", \"Skip it \\u2014 plan rules are non-negotiable; RBI causes 100+ pip instant moves\", \"Take half position size as compromise\", \"Wait until 1:50 PM as a compromise\"], \"ok\": 1, \"ex\": \"Rules are non-negotiable. One emotional exception sets a dangerous precedent for every future violation. The rule exists specifically for these 'too good to miss' situations before major events.\"}]}, {\"w\": 8, \"d\": 2, \"ph\": \"Mastery\", \"ti\": \"Backtesting: 100-Trade Validation\", \"bc\": \"bd-b\", \"ct\": [{\"t\": \"p2\", \"x\": \"HOW TO BACKTEST ON TRADINGVIEW (Step-by-Step):\\n\\n1. Open TradingView \\u2192 Search RELIANCE \\u2192 Daily chart\\n2. Scroll back 2+ years in history\\n3. Apply your strategy rules (SMA 200, EMA 20, RSI)\\n4. Move forward ONE candle at a time using right arrow key\\n5. When setup appears, record in your spreadsheet:\\n\\n   Spreadsheet Columns:\\n   Date | Symbol | Entry \\u20b9 | SL \\u20b9 | Target \\u20b9 | Exit \\u20b9 | P&L \\u20b9 | W/L\\n\\n6. Repeat for minimum 100 trades\\n7. Calculate final statistics\\n\\nCRITICAL RULES:\\n\\u2022 Only count trades that were OBVIOUS at the time (no hindsight)\\n\\u2022 Add 0.1% slippage to every entry price\\n\\u2022 Deduct \\u20b940 brokerage per round-trip trade\\n\\u2022 If backtest profitable \\u2192 paper trade forward to confirm\\n\\u2022 If paper trade confirms \\u2192 THEN go live with small size\"}, {\"t\": \"f\", \"x\": \"Key Statistics to Calculate from Your 100 Trades:\\n\\n  Win Rate      = Winners / 100 \\u00d7 100%    \\u2192 Target: >45%\\n  Avg Win \\u20b9     = Total Win \\u20b9 / Winners\\n  Avg Loss \\u20b9    = Total Loss \\u20b9 / Losers\\n  Profit Factor = Total Wins \\u20b9 / Total Losses \\u20b9  \\u2192 Target: >1.5\\n  Max Drawdown  = Largest peak-to-trough %        \\u2192 Keep: <20%\\n  Expectancy    = (WR \\u00d7 Avg Win) - (LR \\u00d7 Avg Loss) \\u2192 Must be positive\"}, {\"t\": \"q\", \"q\": \"100-trade backtest: 55% win rate, avg win \\u20b9300, avg loss \\u20b9200. Profit Factor:\", \"o\": [\"1.375\", \"1.833\", \"2.750\", \"0.900\"], \"ok\": 1, \"ex\": \"Profit Factor = (55 \\u00d7 \\u20b9300) / (45 \\u00d7 \\u20b9200) = \\u20b916,500 / \\u20b99,000 = 1.833. Greater than 1.5 = good system. Greater than 2.0 = excellent system. This backtest passes.\"}]}, {\"w\": 8, \"d\": 3, \"ph\": \"Mastery\", \"ti\": \"Advanced Preview: VWAP & Options Basics\", \"bc\": \"bd-r\", \"ct\": [{\"t\": \"c\", \"x\": \"<strong>VWAP (Volume Weighted Average Price):<\/strong><br>Resets at 9:15 AM every trading day. The most important intraday institutional level.<br>Price ABOVE VWAP = bullish intraday bias \\u2192 prefer long trades<br>Price BELOW VWAP = bearish intraday bias \\u2192 prefer short trades<br>Institutions execute large orders at VWAP to minimise market impact.\"}, {\"t\": \"tb\", \"h\": [\"Option Type\", \"View\", \"Max Risk\", \"Max Reward\", \"Difficulty\"], \"r\": [[\"Buy Call\", \"Bullish\", \"Premium paid\", \"Unlimited\", \"Beginner\"], [\"Buy Put\", \"Bearish\", \"Premium paid\", \"Down to zero\", \"Beginner\"], [\"Sell/Write Call\", \"Neutral-Bearish\", \"Unlimited\", \"Premium\", \"Expert only\"], [\"Sell/Write Put\", \"Neutral-Bullish\", \"Very large\", \"Premium\", \"Expert only\"]]}, {\"t\": \"ti\", \"x\": \"Options Strategy for Beginners: Only buy options (Call or Put) \\u2014 NEVER sell/write them. Buying options: maximum loss = premium paid. Selling/writing options: maximum loss = catastrophic/unlimited. Start F&O ONLY after 12+ months of profitable spot trading.\"}, {\"t\": \"q\", \"q\": \"NIFTY at 22,500. You buy a 23,000 CALL with 5 days to expiry. This option will most likely:\", \"o\": [\"Be very profitable \\u2014 NIFTY just needs to go up\", \"Expire worthless \\u2014 needs 500+ point move in 5 days\", \"Have very high premium value\", \"Triple in value this week\"], \"ok\": 1, \"ex\": \"Out-of-the-money options with 5 days to expiry have severe theta (time) decay. These go from \\u20b9200 \\u2192 \\u20b950 \\u2192 \\u20b95 \\u2192 \\u20b90 in the final week as time premium evaporates rapidly.\"}]}, {\"w\": 8, \"d\": 4, \"ph\": \"Mastery\", \"ti\": \"Complete Mock Trading Day\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"p2\", \"x\": \"FULL TRADING DAY SCHEDULE:\\n\\n8:30 AM \\u2014 PRE-MARKET PREP (45 min)\\n\\u25a1 Check US markets overnight close (ET Markets app)\\n\\u25a1 Check BTC 4H chart \\u2014 any major overnight move?\\n\\u25a1 Check USD/INR pre-open direction\\n\\u25a1 Forexfactory.com \\u2014 high-impact events today?\\n\\u25a1 Calculate CPR for top 5 watchlist stocks\\n\\u25a1 Identify 1-2 setups with full details:\\n   'If [STOCK] opens above [LEVEL], I will buy at [PRICE],\\n    SL [PRICE], Target [PRICE], [N] shares'\\n\\u25a1 Write plan in journal BEFORE markets open\\n\\n9:00 AM \\u2014 USD/INR OPENS\\n\\u25a1 Check vs CPR \\u2192 bullish or bearish day bias?\\n\\u25a1 Valid setup? \\u2192 maximum 1 lot\\n\\n9:15 AM \\u2014 EQUITY OPENS\\n\\u25a1 DO NOT trade first 15 minutes (9:15-9:30 AM)\\n\\u25a1 Check Nifty vs CPR \\u2192 trending or choppy day?\\n\\u25a1 Enter equity trade only if ALL criteria confirmed\\n\\n12:00 PM \\u2014 MIDDAY CHECK\\n\\u25a1 Open positions still valid? (Thesis unchanged?)\\n\\u25a1 Trail stop-loss if position significantly profitable\\n\\n4:30 PM \\u2014 POST-MARKET REVIEW\\n\\u25a1 Journal all trades taken\\n\\u25a1 Mark watchlist for tomorrow\\n\\u25a1 Calculate net P&L after all charges\"}, {\"t\": \"q\", \"q\": \"US CPI releases at 6 PM. You hold: 1 equity swing trade, 1 USD/INR long, 1 BTC spot. Most urgent to review:\", \"o\": [\"Only equity position \\u2014 US data doesn't affect Indian stocks directly\", \"Only USD/INR \\u2014 only forex reacts to US data\", \"Only BTC \\u2014 crypto is most volatile\", \"ALL THREE \\u2014 CPI affects all three markets through different channels\"], \"ok\": 3, \"ex\": \"US CPI \\u2192 Fed rate expectations change \\u2192 USD moves \\u2192 USD/INR moves \\u2192 FII flows change \\u2192 Nifty moves \\u2192 risk-off also hits BTC. All three are affected by the same CPI release.\"}]}, {\"w\": 8, \"d\": 5, \"ph\": \"Mastery\", \"ti\": \"Full Live Day: All Three Markets\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"tb\", \"h\": [\"Market\", \"Capital Allocated\", \"Max Risk Per Trade\", \"Key Rule\"], \"r\": [[\"NSE Equity (CNC)\", \"\\u20b95,000\", \"\\u20b950 (1% of \\u20b95K)\", \"Swing trades only, daily chart\"], [\"Crypto Spot\", \"\\u20b91,000\", \"\\u20b910 (1% of \\u20b91K)\", \"BTC or ETH spot only, no leverage\"], [\"USD/INR Futures\", \"\\u20b93,600 (2 lots)\", \"\\u20b925-40 per lot\", \"NSE Currency segment only\"]]}, {\"t\": \"w\", \"x\": \"EMERGENCY STOP SIGNS \\u2014 Close ALL positions immediately if you notice:\\n\\u274c Strong urge to add more to a losing position\\n\\u274c Wanting to skip your stop-loss 'just this once'\\n\\u274c Considering a 4th market not in your plan\\n\\u274c Revenge trading after any loss\\n\\u274c Unable to think clearly due to emotional state\\n\\n\\u2192 Close everything. Walk away for 30 minutes minimum.\"}, {\"t\": \"q\", \"q\": \"Equity +\\u20b9150, Crypto -\\u20b910, Currency \\u00b1\\u20b90. Total P&L = +\\u20b9140. Your emotional response:\", \"o\": [\"Excited \\u2014 add more to equity, it's clearly working\", \"Disappointed \\u2014 crypto loss ruined an otherwise good day\", \"Neutral \\u2014 process was followed correctly; outcomes are variance\", \"Revenge trade crypto to recover the \\u20b910\"], \"ok\": 2, \"ex\": \"Single-session outcomes are noise. Both the equity win and crypto loss are acceptable if your process was correct. Positive expectancy reveals itself over 100+ trades, not 3.\"}]}, {\"w\": 8, \"d\": 6, \"ph\": \"Mastery\", \"ti\": \"2-Month P&L Audit + Tax Planning\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"p2\", \"x\": \"COMPLETE 2-MONTH PERFORMANCE AUDIT:\\n\\n=== NSE EQUITY ===\\n  Total trades executed: ___\\n  Gross P&L: \\u20b9___ | Charges (STT+brokerage): \\u20b9___\\n  Net P&L: \\u20b9___ | Win Rate: ___% | Avg RR: 1:___\\n  Profit Factor: ___\\n\\n=== CRYPTO ===\\n  Total trades: ___ | Gross P&L: \\u20b9___\\n  TDS paid (1%): \\u20b9___ | Tax provision (30%): \\u20b9___\\n  Net P&L after estimated tax: \\u20b9___\\n\\n=== USD/INR FOREX ===\\n  Total trades: ___ | Net P&L: \\u20b9___\\n\\n=== COMBINED RESULTS ===\\n  Total capital deployed: \\u20b9___\\n  Total net P&L: \\u20b9___\\n  Return on capital: ___% over 2 months\\n  Maximum drawdown: ___% of capital\\n  Biggest mistake to fix: _____________\\n\\n=== SCALE-UP DECISION ===\\n  Positive expectancy + WR>45% \\u2192 Scale capital up\\n  Negative but improving \\u2192 Same capital, refine rules\\n  SL violated 3+ times \\u2192 Back to paper for 2 weeks\"}, {\"t\": \"q\", \"q\": \"45 trades, \\u20b98,000 net profit on \\u20b910,000 capital (80% ROC). BUT 8 trades had rule violations. Next step:\", \"o\": [\"Scale up aggressively \\u2014 80% return is outstanding!\", \"Fix rule violations first \\u2014 success built on violations is fragile and unsustainable\", \"Celebrate and immediately double capital\", \"Focus only on returns, process doesn't matter\"], \"ok\": 1, \"ex\": \"18% of trades violated rules. These 'profitable violations' teach the wrong lessons and will eventually cause large losses. Only scale after achieving clean, disciplined execution.\"}]}, {\"w\": 8, \"d\": 7, \"ph\": \"Mastery\", \"ti\": \"\\ud83c\\udf93 Course Complete: Your Next 90 Days\", \"bc\": \"bd-g\", \"ct\": [{\"t\": \"tb\", \"h\": [\"Resource\", \"What You Learn\", \"Cost\"], \"r\": [[\"Zerodha Varsity (varsity.zerodha.com)\", \"Complete free course covering all markets\", \"100% Free\"], [\"Trading in the Zone \\u2014 Mark Douglas\", \"Trading psychology \\u2014 THE most important trading book\", \"~\\u20b9500\"], [\"Market Wizards \\u2014 Jack Schwager\", \"Interviews with 20+ legendary traders\", \"~\\u20b9600\"], [\"Babypips.com School of Pipsology\", \"Complete Forex from beginner to expert\", \"100% Free\"], [\"Investopedia.com\", \"Financial terms and concept reference\", \"100% Free\"]]}, {\"t\": \"c\", \"x\": \"<strong>The Three Pillars of Lasting Trading Success:<\/strong><br><br>\\ud83c\\udfaf <strong>Edge:<\/strong> A strategy with provably positive expectancy over 100+ correctly executed trades.<br>\\ud83e\\udde0 <strong>Discipline:<\/strong> Executing every trade consistently according to your rules, without emotional deviation.<br>\\u23f3 <strong>Patience:<\/strong> Waiting for high-quality setups that meet ALL criteria \\u2014 passing on mediocre setups.<br><br><em>Skill Path: Knowledge \\u2192 Rules \\u2192 Habit \\u2192 Consistency \\u2192 Profitability<\/em><br>You completed Stage 1. You started Stage 2. The rest is purely execution.\"}, {\"t\": \"q\", \"q\": \"The single biggest predictor of long-term trading success, according to every major study:\", \"o\": [\"Having the fastest internet connection for best execution\", \"Consistent discipline \\u2014 following a tested system without emotional deviation\", \"Using maximum leverage to compound returns faster\", \"Finding the perfect secret indicator or strategy\"], \"ok\": 1, \"ex\": \"Every great trader study, every Market Wizard, every performance researcher: discipline and consistency predict success far more than any indicator, strategy, or market knowledge. Execution is everything.\"}]}]";
+var GLOSSARY_JSON = "[[\"Bid\", \"The highest price a buyer is willing to pay for a security.\"], [\"Ask\", \"The lowest price a seller will accept for a security.\"], [\"Spread\", \"The difference between bid and ask price.\"], [\"Liquidity\", \"How easily an asset can be bought/sold without price impact.\"], [\"Volume\", \"Number of shares/contracts traded in a period.\"], [\"Volatility\", \"Degree of price variation. Higher = riskier.\"], [\"Beta\", \"Stock's volatility relative to market (Nifty).\"], [\"Slippage\", \"Difference between expected price and actual fill price.\"], [\"OHLC\", \"Open, High, Low, Close prices for a time period.\"], [\"Candlestick\", \"Visual representation of OHLC for one period.\"], [\"Support\", \"Price level where buying interest is strong.\"], [\"Resistance\", \"Price level where selling interest is strong.\"], [\"Trend\", \"General direction of price movement (up/down/sideways).\"], [\"Breakout\", \"Price moving beyond a key support/resistance level.\"], [\"Pullback\", \"Temporary price reversal against the main trend.\"], [\"Reversal\", \"Change in primary trend direction.\"], [\"Consolidation\", \"Sideways movement within a range.\"], [\"EMA\", \"Exponential Moving Average - weighted toward recent prices.\"], [\"SMA\", \"Simple Moving Average - equal weight to all periods.\"], [\"RSI\", \"Relative Strength Index (0-100). >70 overbought, <30 oversold.\"], [\"MACD\", \"Moving Average Convergence Divergence - trend + momentum.\"], [\"VWAP\", \"Volume Weighted Average Price - intraday institutional level.\"], [\"ATR\", \"Average True Range - measures volatility for stop placement.\"], [\"Bollinger Bands\", \"Price envelope based on SMA +/- 2 standard deviations.\"], [\"Fibonacci\", \"Retracement levels: 23.6%, 38.2%, 50%, 61.8%, 78.6%.\"], [\"Divergence\", \"Price and indicator moving in opposite directions.\"], [\"Confluence\", \"Multiple signals aligning at one level.\"], [\"CPR\", \"Central Pivot Range - 3 levels calculated from prev OHLC.\"], [\"Market Order\", \"Execute immediately at best available price.\"], [\"Limit Order\", \"Execute only at specified price or better.\"], [\"Stop-Loss\", \"Automatic exit order at predefined loss level.\"], [\"GTT\", \"Good Till Triggered - long-pending order with price trigger.\"], [\"MIS\", \"Margin Intraday Square-off - leveraged intraday order.\"], [\"CNC\", \"Cash and Carry - delivery-based equity order.\"], [\"BTST\", \"Buy Today Sell Tomorrow - overnight position.\"], [\"Risk-Reward\", \"Ratio of potential profit to potential loss per trade.\"], [\"Position Sizing\", \"Calculating quantity to trade based on risk rule.\"], [\"Drawdown\", \"Peak-to-trough decline in account value.\"], [\"Win Rate\", \"Percentage of trades that are profitable.\"], [\"Expectancy\", \"Mathematical expected profit per trade.\"], [\"NSE\", \"National Stock Exchange of India.\"], [\"BSE\", \"Bombay Stock Exchange - Asia's oldest.\"], [\"SEBI\", \"Securities and Exchange Board of India - regulator.\"], [\"Nifty 50\", \"Index of top 50 NSE companies.\"], [\"Sensex\", \"Index of top 30 BSE companies.\"], [\"STT\", \"Securities Transaction Tax.\"], [\"STCG\", \"Short-Term Capital Gains tax (< 1 year).\"], [\"LTCG\", \"Long-Term Capital Gains tax (> 1 year).\"], [\"F&O\", \"Futures and Options derivative contracts.\"], [\"Demat\", \"Dematerialized account holding shares electronically.\"], [\"DXY\", \"US Dollar Index - measures USD vs 6 major currencies.\"], [\"Pip\", \"Smallest standard forex price movement (0.0001).\"], [\"BTC.D\", \"Bitcoin Dominance - BTC market cap as % of total crypto.\"], [\"DCA\", \"Dollar Cost Averaging - regular fixed investments.\"], [\"DeFi\", \"Decentralized Finance on blockchain.\"], [\"CEX\", \"Centralized Exchange (Binance, CoinDCX).\"], [\"HODL\", \"Hold On for Dear Life - long-term crypto holding.\"], [\"Stablecoin\", \"Crypto pegged to fiat value (USDT, USDC).\"], [\"Funding Rate\", \"Periodic payment between perpetual longs/shorts.\"], [\"Open Interest\", \"Total outstanding derivative contracts.\"]]";
+var LESSONS = [];
+var GLOSSARY = [];
+var DONE = {};
+var CUR = 0;
+try { LESSONS = JSON.parse(LESSONS_JSON); GLOSSARY = JSON.parse(GLOSSARY_JSON); }
+catch (e) { console.error(e); }
+
+function esc(s) { return s == null ? '' : String(s); }
+function bcClass(bc) { if (bc === 'bd-b') return 'b'; if (bc === 'bd-g') return 'g'; if (bc === 'bd-p') return 'p'; if (bc === 'bd-r') return 'r'; return ''; }
+function fmtINR(n) { return n.toLocaleString('en-IN', {maximumFractionDigits: 0}); }
+function fmtINR2(n) { return n.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
+
+function scrollToSec(id) { var el = document.getElementById(id); if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'}); }
+
+function enterApp(idx) {
+  document.getElementById('landing').style.display = 'none';
+  var app = document.getElementById('app');
+  app.style.display = 'flex';
+  if (!window._appInitDone) {
+    buildSidebar();
+    buildRoadmap();
+    buildCalc();
+    buildGlossary();
+    buildTemplates();
+    buildSimulator();
+    window._appInitDone = true;
+  }
+  showLesson(idx || 0);
+  switchTab('learn');
+  window.scrollTo(0, 0);
+}
+
+function goHome() {
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('landing').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function switchTab(tabId) {
+  var pages = document.querySelectorAll('.pg');
+  for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('on'); pages[i].style.display = 'none'; }
+  var target = document.getElementById(tabId);
+  if (target) { target.classList.add('on'); target.style.display = 'block'; }
+  var btns = document.querySelectorAll('.mainnav button');
+  for (var j = 0; j < btns.length; j++) {
+    btns[j].classList.remove('on');
+    if (btns[j].getAttribute('data-tab') === tabId) btns[j].classList.add('on');
+  }
+  // Resize chart when sim becomes visible
+  if (tabId === 'sim' && typeof drawSimChart === 'function') {
+    setTimeout(drawSimChart, 50);
+  }
+}
+
+function buildSidebar() {
+  var sb = document.getElementById('sidebar');
+  var html = '';
+  var lastWeek = -1;
+  var weekTitles = { 1:'W1 · Foundation', 2:'W2 · Technical Analysis', 3:'W3 · Patterns & Setups', 4:'W4 · Going Live', 5:'W5 · Crypto Foundation', 6:'W6 · Crypto Advanced', 7:'W7 · Forex', 8:'W8 · Mastery' };
+  for (var i = 0; i < LESSONS.length; i++) {
+    var l = LESSONS[i];
+    if (l.w !== lastWeek) { html += '<div class="weekgrp">' + weekTitles[l.w] + '</div>'; lastWeek = l.w; }
+    var doneClass = DONE[i] ? ' done' : '';
+    var onClass = (i === CUR) ? ' on' : '';
+    html += '<div class="li' + doneClass + onClass + '" data-idx="' + i + '"><div class="dl">Day ' + l.d + '</div><div class="ti">' + esc(l.ti) + '</div></div>';
+  }
+  sb.innerHTML = html;
+  sb.onclick = function(ev) {
+    var t = ev.target;
+    while (t && t !== sb) {
+      if (t.classList && t.classList.contains('li')) {
+        var idx = parseInt(t.getAttribute('data-idx'), 10);
+        if (!isNaN(idx)) { switchTab('learn'); showLesson(idx); }
+        return;
+      }
+      t = t.parentNode;
+    }
+  };
+}
+
+function showLesson(idx) {
+  CUR = idx;
+  if (idx < 0 || idx >= LESSONS.length) return;
+  var l = LESSONS[idx]; if (!l) return;
+  try {
+    document.getElementById('lesson-content').innerHTML = renderLesson(l, idx);
+    var items = document.querySelectorAll('.li');
+    for (var i = 0; i < items.length; i++) items[i].classList.toggle('on', parseInt(items[i].getAttribute('data-idx'), 10) === idx);
+    var cd = document.querySelector('.content');
+    if (cd) cd.scrollTop = 0;
+  } catch (e) {
+    document.getElementById('lesson-content').innerHTML = '<div class="error">Render error: ' + e.message + '</div>';
+  }
+}
+
+function renderLesson(l, idx) {
+  var bc = bcClass(l.bc);
+  var html = '<div class="lhdr"><h1>' + esc(l.ti) + '</h1><div class="meta"><span class="badge ' + bc + '">Week ' + l.w + ' · Day ' + l.d + '</span><span class="badge">' + esc(l.ph) + '</span></div></div>';
+  if (l.ct && l.ct.length) for (var bi = 0; bi < l.ct.length; bi++) html += renderBlock(l.ct[bi], idx, bi);
+  html += '<div class="lnav"><button class="btn" onclick="prevLesson()"' + (idx === 0 ? ' disabled' : '') + '>← Previous</button><button class="btn primary" onclick="markComplete(' + idx + ')">✓ Mark Complete &amp; Next →</button></div>';
+  return html;
+}
+
+function renderBlock(b, lessonIdx, blockIdx) {
+  var t = b.t;
+  if (t === 'c') return '<div class="block"><span class="lbl c">📘 Concept</span><div class="body">' + esc(b.x) + '</div></div>';
+  if (t === 'e') return '<div class="block"><span class="lbl e">✅ Example</span><div class="body">' + esc(b.x) + '</div></div>';
+  if (t === 'w') return '<div class="block"><span class="lbl w">⚠️ Warning</span><div class="callout w">' + esc(b.x) + '</div></div>';
+  if (t === 'ti') return '<div class="block"><span class="lbl ti">💡 Pro Tip</span><div class="callout ti">' + esc(b.x) + '</div></div>';
+  if (t === 'a') return '<div class="block"><span class="lbl a">🎯 Action</span><div class="callout a">' + esc(b.x) + '</div></div>';
+  if (t === 'f') return '<div class="block"><span class="lbl f">📐 Formula</span><pre class="code">' + esc(b.x) + '</pre></div>';
+  if (t === 'p2') return '<div class="block"><span class="lbl p2">⚡ Protocol</span><pre class="code">' + esc(b.x) + '</pre></div>';
+  if (t === 'tb') {
+    var th = '';
+    if (b.h) { th = '<thead><tr>'; for (var i = 0; i < b.h.length; i++) th += '<th>' + esc(b.h[i]) + '</th>'; th += '</tr></thead>'; }
+    var tb = '<tbody>';
+    if (b.r) { for (var r = 0; r < b.r.length; r++) { tb += '<tr>'; for (var c = 0; c < b.r[r].length; c++) tb += '<td>' + esc(b.r[r][c]) + '</td>'; tb += '</tr>'; } }
+    tb += '</tbody>';
+    return '<div class="block"><table>' + th + tb + '</table></div>';
+  }
+  if (t === 'q') {
+    var qid = 'q' + lessonIdx + '_' + blockIdx;
+    var opts = '';
+    if (b.o) for (var oi = 0; oi < b.o.length; oi++) {
+      var letter = String.fromCharCode(65 + oi);
+      opts += '<button class="qopt" id="' + qid + '_' + oi + '" onclick="checkQuiz(\'' + qid + '\',' + oi + ',' + b.ok + ',' + b.o.length + ')">' + letter + '. ' + esc(b.o[oi]) + '</button>';
+    }
+    return '<div class="quiz"><span class="lbl c">🧠 Knowledge Check</span><div class="qq">' + esc(b.q) + '</div>' + opts + '<div class="qexp" id="' + qid + '_exp">' + esc(b.ex || '') + '</div></div>';
+  }
+  return '';
+}
+
+function checkQuiz(qid, chosen, correct, total) {
+  for (var i = 0; i < total; i++) {
+    var btn = document.getElementById(qid + '_' + i); if (!btn) continue;
+    btn.classList.remove('ok', 'bad');
+    if (i === correct) btn.classList.add('ok');
+    else if (i === chosen) btn.classList.add('bad');
+  }
+  var exp = document.getElementById(qid + '_exp'); if (exp) exp.classList.add('show');
+}
+
+function prevLesson() { if (CUR > 0) { switchTab('learn'); showLesson(CUR - 1); } }
+function markComplete(idx) { DONE[idx] = true; updateProgress(); buildSidebar(); if (idx < LESSONS.length - 1) showLesson(idx + 1); }
+function updateProgress() { var c = 0; for (var k in DONE) if (DONE[k]) c++; var el = document.getElementById('prog'); if (el) el.textContent = c + ' / ' + LESSONS.length + ' complete'; }
+
+function buildRoadmap() {
+  var weekTitles = { 1:'Week 1: Foundation', 2:'Week 2: Technical Analysis', 3:'Week 3: Patterns & Setups', 4:'Week 4: Go Live (Equity)', 5:'Week 5: Crypto Basics', 6:'Week 6: Crypto Advanced', 7:'Week 7: Forex', 8:'Week 8: Mastery' };
+  var html = '';
+  for (var w = 1; w <= 8; w++) {
+    html += '<div class="rmweek"><h3>' + weekTitles[w] + '</h3>';
+    for (var i = 0; i < LESSONS.length; i++) if (LESSONS[i].w === w) {
+      var done = DONE[i] ? ' done' : '';
+      html += '<div class="rmd' + done + '" data-idx="' + i + '">Day ' + LESSONS[i].d + ': ' + esc(LESSONS[i].ti) + '</div>';
+    }
+    html += '</div>';
+  }
+  var rc = document.getElementById('roadmap-content');
+  rc.innerHTML = html;
+  rc.onclick = function(ev) {
+    var t = ev.target;
+    if (t && t.classList && t.classList.contains('rmd')) {
+      var idx = parseInt(t.getAttribute('data-idx'), 10);
+      if (!isNaN(idx)) { switchTab('learn'); showLesson(idx); }
+    }
+  };
+}
+
+/* ===================================
+   ADVANCED SIMULATOR
+=================================== */
+var SIM = {
+  cash: 100000,
+  initialCap: 100000,
+  holdings: {},
+  trades: [],
+  prices: {
+    'RELIANCE': 2850, 'TCS': 3620, 'INFY': 1480, 'HDFCBANK': 1540, 'ICICIBANK': 1090,
+    'WIPRO': 480, 'SBIN': 765, 'BTC': 7280000, 'ETH': 281000, 'USDINR': 83.4
+  },
+  prevPrices: {},
+  history: {},
+  volumes: {},
+  selected: 'RELIANCE',
+  interval: null,
+  running: false,
+  speed: 1500,
+  histLen: 50
+};
+
+function buildSimulator() {
+  var syms = Object.keys(SIM.prices);
+  for (var i = 0; i < syms.length; i++) {
+    var s = syms[i];
+    SIM.prevPrices[s] = SIM.prices[s];
+    SIM.history[s] = [];
+    SIM.volumes[s] = [];
+    // Pre-fill history with random walk for initial chart
+    var p = SIM.prices[s];
+    for (var k = 0; k < SIM.histLen; k++) {
+      var vol = s === 'BTC' || s === 'ETH' ? 0.008 : (s === 'USDINR' ? 0.0005 : 0.003);
+      p = p * (1 + (Math.random() - 0.5) * 2 * vol);
+      SIM.history[s].push(p);
+      SIM.volumes[s].push(Math.random() * 0.7 + 0.3);
+    }
+    SIM.prices[s] = p;
+  }
+
+  var html = '<h2 style="color:#22d3ee;margin-bottom:14px;font-size:20px">📊 Trading Simulator</h2>';
+  
+  // Stats row
+  html += '<div class="sim-stats-row">';
+  html += '<div class="sim-stat"><span class="lbl">Portfolio</span><div class="val">₹<span id="sim-portfolio">1,00,000</span></div></div>';
+  html += '<div class="sim-stat"><span class="lbl">Cash</span><div class="val">₹<span id="sim-cash">1,00,000</span></div></div>';
+  html += '<div class="sim-stat"><span class="lbl">P&amp;L</span><div class="val" id="sim-pnl">₹0</div></div>';
+  html += '<div class="sim-stat"><span class="lbl">Trades</span><div class="val" id="sim-trades">0</div></div>';
+  html += '<div class="sim-controls">';
+  html += '<select id="sim-speed-sel"><option value="2500">Slow</option><option value="1500" selected>Normal</option><option value="700">Fast</option><option value="300">Insane</option></select>';
+  html += '<button class="btn primary" id="sim-startstop" onclick="toggleSim()">▶ Start</button>';
+  html += '<button class="btn" onclick="resetSim()">⟳ Reset</button>';
+  html += '</div></div>';
+
+  // Tickers
+  html += '<div class="sim-tickers" id="sim-tickers"></div>';
+
+  // Chart + Order book
+  html += '<div class="sim-main">';
+  html += '<div class="sim-chart-box"><div class="sim-chart-hdr"><b id="sim-chart-sym">RELIANCE</b><span class="px" id="sim-chart-px">₹2,850.00</span></div>';
+  html += '<div class="sim-chart-wrap"><canvas id="sim-canvas"></canvas></div></div>';
+  html += '<div class="sim-orderbook"><div class="ob-title">Order Book</div>';
+  html += '<div id="ob-asks"></div><div class="ob-spread">Spread: <span id="ob-spread-val">₹0.00</span></div><div id="ob-bids"></div></div>';
+  html += '</div>';
+
+  // Trade controls
+  html += '<div class="sim-trade">';
+  html += '<div class="row2">';
+  html += '<div><label>Quantity</label><input id="sim-qty" type="number" value="10" min="1"></div>';
+  html += '<div><label>Order Type</label><select id="sim-otype"><option>Market</option></select></div>';
+  html += '</div>';
+  html += '<div class="sim-buttons">';
+  html += '<button class="sim-buy" onclick="simBuy()">↑ BUY</button>';
+  html += '<button class="sim-sell" onclick="simSell()">↓ SELL</button>';
+  html += '</div></div>';
+
+  // Holdings
+  html += '<div class="sim-holdings-box"><div class="sim-log-title">Holdings</div><div id="sim-holdings-list"><div class="empty">No positions</div></div></div>';
+
+  // Trade log
+  html += '<div class="sim-log"><div class="sim-log-title">Trade Log</div><div id="sim-log-list"><div class="empty">No trades yet</div></div></div>';
+
+  document.getElementById('sim-content').innerHTML = html;
+
+  // Wire speed
+  document.getElementById('sim-speed-sel').onchange = function() {
+    SIM.speed = parseInt(this.value, 10);
+    if (SIM.running) { stopSim(); startSim(); }
+  };
+
+  renderTickers();
+  updateChartHeader();
+  drawSimChart();
+  renderOrderBook();
+  updateStats();
+}
+
+function renderTickers() {
+  var html = '';
+  var syms = Object.keys(SIM.prices);
+  for (var i = 0; i < syms.length; i++) {
+    var s = syms[i];
+    var p = SIM.prices[s];
+    var prev = SIM.prevPrices[s] || p;
+    var diff = p - prev;
+    var pct = prev ? (diff / prev * 100) : 0;
+    var pCls = diff >= 0 ? 'up' : 'dn';
+    var sel = (s === SIM.selected) ? ' sel' : '';
+    var pxFmt;
+    if (s === 'BTC' || s === 'ETH') {
+      pxFmt = '₹' + (p / 100000).toFixed(2) + 'L';
+    } else if (s === 'USDINR') {
+      pxFmt = '₹' + p.toFixed(2);
+    } else if (p > 10000) {
+      pxFmt = '₹' + (p / 1000).toFixed(1) + 'K';
+    } else {
+      pxFmt = '₹' + p.toFixed(0);
+    }
+    html += '<div class="s-ticker' + sel + '" data-sym="' + s + '">';
+    html += '<div class="sym">' + s + '</div>';
+    html += '<div class="px">' + pxFmt + '</div>';
+    html += '<div class="pct ' + pCls + '">' + (diff >= 0 ? '+' : '') + pct.toFixed(2) + '%</div>';
+    html += '</div>';
+  }
+  var tk = document.getElementById('sim-tickers'); if (!tk) return;
+  tk.innerHTML = html;
+  tk.onclick = function(ev) {
+    var t = ev.target;
+    while (t && t !== tk) {
+      if (t.classList && t.classList.contains('s-ticker')) {
+        SIM.selected = t.getAttribute('data-sym');
+        updateChartHeader();
+        drawSimChart();
+        renderOrderBook();
+        renderTickers();
+        return;
+      }
+      t = t.parentNode;
+    }
+  };
+}
+
+function updateChartHeader() {
+  var s = SIM.selected;
+  var p = SIM.prices[s];
+  var prev = SIM.prevPrices[s] || p;
+  var hdr = document.getElementById('sim-chart-sym'); if (hdr) hdr.textContent = s;
+  var pxEl = document.getElementById('sim-chart-px');
+  if (pxEl) {
+    pxEl.textContent = '₹' + fmtINR2(p);
+    pxEl.className = 'px ' + (p >= prev ? '' : 'dn');
+  }
+}
+
+function drawSimChart() {
+  var canvas = document.getElementById('sim-canvas'); if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var rect = canvas.getBoundingClientRect();
+  // Hi-DPI
+  var dpr = window.devicePixelRatio || 1;
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  var W = rect.width, H = rect.height;
+  ctx.clearRect(0, 0, W, H);
+
+  var data = SIM.history[SIM.selected];
+  var vols = SIM.volumes[SIM.selected];
+  if (!data || data.length < 2) return;
+
+  // Areas: top 75% chart, bottom 25% volume
+  var chartH = H * 0.72;
+  var volTop = H * 0.78;
+  var volH = H - volTop;
+  var pad = 4;
+
+  var mn = Infinity, mx = -Infinity;
+  for (var i = 0; i < data.length; i++) { if (data[i] < mn) mn = data[i]; if (data[i] > mx) mx = data[i]; }
+  if (mx === mn) { mx = mn + 1; }
+  var range = mx - mn;
+  mn -= range * 0.05; mx += range * 0.05;
+  range = mx - mn;
+
+  // Grid lines
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+  ctx.lineWidth = 1;
+  for (var g = 0; g < 4; g++) {
+    var y = pad + (chartH - 2*pad) * g / 3;
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  }
+
+  // Price line + area
+  var n = data.length;
+  var stepX = W / (n - 1);
+  var lastPrice = data[n - 1], firstPrice = data[0];
+  var isUp = lastPrice >= firstPrice;
+  var lineColor = isUp ? '#10b981' : '#ef4444';
+
+  // Filled area
+  var grad = ctx.createLinearGradient(0, 0, 0, chartH);
+  if (isUp) { grad.addColorStop(0, 'rgba(16,185,129,0.25)'); grad.addColorStop(1, 'rgba(16,185,129,0)'); }
+  else { grad.addColorStop(0, 'rgba(239,68,68,0.25)'); grad.addColorStop(1, 'rgba(239,68,68,0)'); }
+
+  ctx.beginPath();
+  for (var j = 0; j < n; j++) {
+    var x = j * stepX;
+    var py = pad + (chartH - 2*pad) * (1 - (data[j] - mn) / range);
+    if (j === 0) ctx.moveTo(x, py);
+    else ctx.lineTo(x, py);
+  }
+  ctx.lineTo(W, chartH);
+  ctx.lineTo(0, chartH);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Line
+  ctx.beginPath();
+  for (var jj = 0; jj < n; jj++) {
+    var xx = jj * stepX;
+    var pyy = pad + (chartH - 2*pad) * (1 - (data[jj] - mn) / range);
+    if (jj === 0) ctx.moveTo(xx, pyy);
+    else ctx.lineTo(xx, pyy);
+  }
+  ctx.strokeStyle = lineColor;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Volume bars
+  var maxVol = 1;
+  for (var v = 0; v < vols.length; v++) if (vols[v] > maxVol) maxVol = vols[v];
+  ctx.fillStyle = 'rgba(59,130,246,0.5)';
+  var barW = stepX * 0.7;
+  for (var b = 0; b < vols.length; b++) {
+    var bx = b * stepX - barW / 2;
+    var bh = (vols[b] / maxVol) * (volH - 4);
+    ctx.fillRect(bx, volTop + (volH - bh), barW, bh);
+  }
+
+  // Y-axis labels (right side)
+  ctx.fillStyle = '#64748b';
+  ctx.font = '10px -apple-system,sans-serif';
+  ctx.textAlign = 'right';
+  for (var lab = 0; lab < 4; lab++) {
+    var v_ = mx - (range * lab / 3);
+    var ly = pad + (chartH - 2*pad) * lab / 3;
+    ctx.fillText(v_.toFixed(v_ < 100 ? 2 : 0), W - 2, ly - 2);
+  }
+}
+
+function renderOrderBook() {
+  var s = SIM.selected;
+  var p = SIM.prices[s];
+  var step = p > 100000 ? 1000 : (p > 1000 ? 1 : 0.1);
+  var asksHtml = '';
+  for (var a = 5; a >= 1; a--) {
+    var ap = p + a * step;
+    var qty = Math.floor(Math.random() * 200) + 30;
+    asksHtml += '<div class="ob-row ask"><span>₹' + ap.toFixed(2) + '</span><span>' + qty + '</span></div>';
+  }
+  var bidsHtml = '';
+  for (var bi = 1; bi <= 5; bi++) {
+    var bp = p - bi * step;
+    var bq = Math.floor(Math.random() * 200) + 30;
+    bidsHtml += '<div class="ob-row bid"><span>₹' + bp.toFixed(2) + '</span><span>' + bq + '</span></div>';
+  }
+  document.getElementById('ob-asks').innerHTML = asksHtml;
+  document.getElementById('ob-bids').innerHTML = bidsHtml;
+  document.getElementById('ob-spread-val').textContent = '₹' + (2 * step).toFixed(2);
+}
+
+function tickSim() {
+  var syms = Object.keys(SIM.prices);
+  for (var i = 0; i < syms.length; i++) {
+    var s = syms[i];
+    SIM.prevPrices[s] = SIM.prices[s];
+    var vol = s === 'BTC' || s === 'ETH' ? 0.008 : (s === 'USDINR' ? 0.0005 : 0.003);
+    var newP = SIM.prices[s] * (1 + (Math.random() - 0.5) * 2 * vol);
+    SIM.prices[s] = newP;
+    SIM.history[s].push(newP); if (SIM.history[s].length > SIM.histLen) SIM.history[s].shift();
+    SIM.volumes[s].push(Math.random() * 0.7 + 0.3); if (SIM.volumes[s].length > SIM.histLen) SIM.volumes[s].shift();
+  }
+  renderTickers();
+  updateChartHeader();
+  drawSimChart();
+  renderOrderBook();
+  updateStats();
+}
+
+function startSim() {
+  if (SIM.interval) clearInterval(SIM.interval);
+  SIM.interval = setInterval(tickSim, SIM.speed);
+  SIM.running = true;
+  var b = document.getElementById('sim-startstop'); if (b) b.textContent = '⏸ Pause';
+}
+
+function stopSim() {
+  if (SIM.interval) clearInterval(SIM.interval);
+  SIM.interval = null;
+  SIM.running = false;
+  var b = document.getElementById('sim-startstop'); if (b) b.textContent = '▶ Start';
+}
+
+function toggleSim() { if (SIM.running) stopSim(); else startSim(); }
+
+function resetSim() {
+  stopSim();
+  SIM.cash = SIM.initialCap;
+  SIM.holdings = {};
+  SIM.trades = [];
+  updateStats();
+  renderHoldings();
+  renderTradeLog();
+}
+
+function simBuy() {
+  var qty = parseInt(document.getElementById('sim-qty').value, 10);
+  if (!qty || qty < 1) return;
+  var s = SIM.selected, p = SIM.prices[s], cost = qty * p;
+  if (cost > SIM.cash) { alert('Insufficient cash. Need ₹' + fmtINR2(cost) + ', have ₹' + fmtINR2(SIM.cash)); return; }
+  SIM.cash -= cost;
+  if (!SIM.holdings[s]) SIM.holdings[s] = {qty: 0, avg: 0};
+  var h = SIM.holdings[s];
+  h.avg = (h.avg * h.qty + p * qty) / (h.qty + qty);
+  h.qty += qty;
+  SIM.trades.push({ time: new Date(), side: 'B', sym: s, qty: qty, px: p });
+  updateStats(); renderHoldings(); renderTradeLog();
+}
+
+function simSell() {
+  var qty = parseInt(document.getElementById('sim-qty').value, 10);
+  if (!qty || qty < 1) return;
+  var s = SIM.selected, p = SIM.prices[s];
+  var h = SIM.holdings[s];
+  if (!h || h.qty < qty) { alert('Not enough ' + s + ' to sell. You hold ' + (h ? h.qty : 0)); return; }
+  SIM.cash += qty * p;
+  h.qty -= qty;
+  if (h.qty === 0) delete SIM.holdings[s];
+  SIM.trades.push({ time: new Date(), side: 'S', sym: s, qty: qty, px: p });
+  updateStats(); renderHoldings(); renderTradeLog();
+}
+
+function updateStats() {
+  var holdingsVal = 0;
+  for (var s in SIM.holdings) holdingsVal += SIM.holdings[s].qty * SIM.prices[s];
+  var portfolio = SIM.cash + holdingsVal;
+  var pnl = portfolio - SIM.initialCap;
+  var el;
+  el = document.getElementById('sim-portfolio'); if (el) el.textContent = fmtINR(portfolio);
+  el = document.getElementById('sim-cash'); if (el) el.textContent = fmtINR(SIM.cash);
+  el = document.getElementById('sim-pnl');
+  if (el) {
+    el.textContent = (pnl >= 0 ? '+' : '') + '₹' + fmtINR(pnl);
+    el.className = 'val ' + (pnl > 0 ? 'up' : pnl < 0 ? 'dn' : '');
+  }
+  el = document.getElementById('sim-trades'); if (el) el.textContent = SIM.trades.length;
+  // Update holdings PnL display (live)
+  renderHoldings();
+}
+
+function renderHoldings() {
+  var html = '';
+  var any = false;
+  for (var s in SIM.holdings) {
+    any = true;
+    var h = SIM.holdings[s], cur = SIM.prices[s];
+    var pnl = (cur - h.avg) * h.qty;
+    var pCls = pnl >= 0 ? 'up' : 'dn';
+    html += '<div class="hold-row"><span class="sym">' + s + '</span><span class="qty">' + h.qty + '</span>';
+    html += '<span class="avg">Avg ₹' + h.avg.toFixed(2) + '</span>';
+    html += '<span class="cur">LTP ₹' + cur.toFixed(2) + '</span>';
+    html += '<span class="pnl ' + pCls + '">' + (pnl >= 0 ? '+' : '') + '₹' + pnl.toFixed(0) + '</span></div>';
+  }
+  if (!any) html = '<div class="empty">No positions</div>';
+  var el = document.getElementById('sim-holdings-list'); if (el) el.innerHTML = html;
+}
+
+function renderTradeLog() {
+  if (SIM.trades.length === 0) {
+    var el = document.getElementById('sim-log-list'); if (el) el.innerHTML = '<div class="empty">No trades yet</div>';
+    return;
+  }
+  var html = '';
+  // Show recent first
+  for (var i = SIM.trades.length - 1; i >= 0 && i > SIM.trades.length - 20; i--) {
+    var t = SIM.trades[i];
+    var hh = String(t.time.getHours()).padStart(2, '0');
+    var mm = String(t.time.getMinutes()).padStart(2, '0');
+    var ss = String(t.time.getSeconds()).padStart(2, '0');
+    html += '<div class="log-row"><span class="t">' + hh + ':' + mm + ':' + ss + '</span>';
+    html += '<span class="side ' + (t.side === 'B' ? 'b' : 's') + '">' + (t.side === 'B' ? 'BUY' : 'SELL') + '</span>';
+    html += '<span class="qty">' + t.qty + ' ' + t.sym + '</span>';
+    html += '<span class="px">₹' + t.px.toFixed(2) + '</span></div>';
+  }
+  var el2 = document.getElementById('sim-log-list'); if (el2) el2.innerHTML = html;
+}
+
+/* ===================================
+   ADVANCED CALCULATOR
+=================================== */
+function buildCalc() {
+  var html = '<h2 style="color:#22d3ee;margin-bottom:14px;font-size:20px">🧮 Position Size Calculator</h2>';
+  html += '<div class="calc-grid">';
+  
+  // LEFT: Inputs
+  html += '<div>';
+  html += '<div class="calc-box"><div class="calc-title">📋 Trade Calculator</div>';
+  html += '<div class="calc-field"><label>Market</label><select id="c-market">';
+  html += '<option value="equity_delivery">NSE Equity (Delivery)</option>';
+  html += '<option value="equity_intraday">NSE Equity (Intraday)</option>';
+  html += '<option value="crypto">Cryptocurrency</option>';
+  html += '<option value="forex">Forex (USD/INR)</option>';
+  html += '</select></div>';
+  html += '<div class="calc-field"><label>Entry Price (₹)</label><input id="c-entry" type="number" value="1000" step="0.01"></div>';
+  html += '<div class="calc-field"><label>Target Price (₹) <span class="hint" id="c-tgt-pct">+10.00%</span></label><input id="c-tgt" type="number" value="1100" step="0.01"></div>';
+  html += '<div class="calc-field"><label>Stop-Loss Price (₹) <span class="hint" id="c-sl-pct">-5.00%</span></label><input id="c-sl" type="number" value="950" step="0.01"></div>';
+  html += '<div class="calc-field"><label>Quantity</label><input id="c-qty" type="number" value="10" min="1"></div>';
+  html += '<div class="calc-field"><label>Total Capital (₹) <span class="hint" id="c-cap-used">₹10,000 used</span></label><input id="c-cap" type="number" value="100000"></div>';
+  html += '</div></div>';
+
+  // RIGHT: Results
+  html += '<div>';
+  html += '<div class="calc-box"><div class="calc-title">💰 P&L Results</div>';
+  html += '<div class="calc-row"><span class="lbl">Investment</span><span class="val" id="r-invest">₹10,000</span></div>';
+  html += '<div class="calc-row"><span class="lbl">Gross Profit</span><span class="val up" id="r-gp">+₹1,000</span></div>';
+  html += '<div class="calc-row"><span class="lbl">Max Loss (SL)</span><span class="val dn" id="r-loss">-₹500</span></div>';
+  html += '<div class="calc-row"><span class="lbl">Est. Charges</span><span class="val dn" id="r-charges">-₹16</span></div>';
+  html += '<div class="calc-row"><span class="lbl">Risk : Reward</span><span class="val" id="r-rr">1 : 2.00</span></div>';
+  html += '<div class="calc-row"><span class="lbl">ROI</span><span class="val up" id="r-roi">+10.00%</span></div>';
+  html += '<div class="calc-row big"><span class="lbl">Net Profit</span><span class="val up" id="r-net">+₹984</span></div>';
+  html += '</div>';
+  
+  html += '<div class="calc-box"><div class="calc-title">🎯 Position Sizer (1% Rule)</div>';
+  html += '<div class="calc-row"><span class="lbl">1% Risk Amount</span><span class="val" id="r-risk">₹1,000</span></div>';
+  html += '<div class="calc-row"><span class="lbl">Recommended Qty</span><span class="val up" id="r-recqty">20 shares</span></div>';
+  html += '<div class="calc-row"><span class="lbl">Capital Required</span><span class="val" id="r-reqcap">₹20,000</span></div>';
+  html += '</div></div>';
+
+  html += '</div>'; // close calc-grid
+
+  // Brokerage guide
+  html += '<div class="calc-box"><div class="calc-title">📊 Brokerage Guide</div>';
+  html += '<table style="margin-top:0"><thead><tr><th>Charge</th><th>Intraday (MIS)</th><th>Delivery (CNC)</th></tr></thead>';
+  html += '<tbody>';
+  html += '<tr><td>Brokerage</td><td>₹20 or 0.03% (whichever lower)</td><td>₹0 (Zerodha)</td></tr>';
+  html += '<tr><td>STT</td><td>0.025% on sell side</td><td>0.1% on both buy and sell</td></tr>';
+  html += '<tr><td>GST</td><td>18% on brokerage + transaction</td><td>18% on brokerage + transaction</td></tr>';
+  html += '<tr><td>Exchange Txn</td><td>~0.00345% NSE</td><td>~0.00345% NSE</td></tr>';
+  html += '<tr><td>SEBI Charges</td><td>₹10 per crore</td><td>₹10 per crore</td></tr>';
+  html += '<tr><td>Stamp Duty</td><td>0.003% on buy side</td><td>0.015% on buy side</td></tr>';
+  html += '<tr><td>Crypto Tax</td><td colspan="2">30% flat on profits + 1% TDS on transactions (no loss offset)</td></tr>';
+  html += '</tbody></table></div>';
+
+  document.getElementById('calc-content').innerHTML = html;
+  
+  // Wire up live recalculation
+  var ids = ['c-market', 'c-entry', 'c-tgt', 'c-sl', 'c-qty', 'c-cap'];
+  for (var i = 0; i < ids.length; i++) {
+    var el = document.getElementById(ids[i]);
+    if (el) {
+      el.oninput = recalcCalc;
+      el.onchange = recalcCalc;
+    }
+  }
+  recalcCalc();
+}
+
+function recalcCalc() {
+  var market = document.getElementById('c-market').value;
+  var entry = parseFloat(document.getElementById('c-entry').value) || 0;
+  var tgt = parseFloat(document.getElementById('c-tgt').value) || 0;
+  var sl = parseFloat(document.getElementById('c-sl').value) || 0;
+  var qty = parseInt(document.getElementById('c-qty').value, 10) || 0;
+  var cap = parseFloat(document.getElementById('c-cap').value) || 0;
+
+  // Hint percentages
+  var tgtPct = entry > 0 ? ((tgt - entry) / entry * 100) : 0;
+  var slPct = entry > 0 ? ((sl - entry) / entry * 100) : 0;
+  document.getElementById('c-tgt-pct').textContent = (tgtPct >= 0 ? '+' : '') + tgtPct.toFixed(2) + '%';
+  document.getElementById('c-sl-pct').textContent = (slPct >= 0 ? '+' : '') + slPct.toFixed(2) + '%';
+
+  var investment = entry * qty;
+  document.getElementById('c-cap-used').textContent = '₹' + fmtINR(investment) + ' used';
+
+  var grossProfit = (tgt - entry) * qty;
+  var maxLoss = (entry - sl) * qty;
+  var riskPerShare = Math.abs(entry - sl);
+  var rewardPerShare = Math.abs(tgt - entry);
+  var rr = riskPerShare > 0 ? rewardPerShare / riskPerShare : 0;
+  var roi = investment > 0 ? (grossProfit / investment * 100) : 0;
+
+  // Charges by market
+  var charges = 0;
+  if (market === 'equity_delivery') {
+    // Zerodha: 0 brokerage delivery + STT 0.1% both sides + others
+    var sttBuy = investment * 0.001;
+    var sttSell = (tgt * qty) * 0.001;
+    var exch = (investment + tgt * qty) * 0.0000345;
+    var sebi = (investment + tgt * qty) * 0.000001;
+    var stamp = investment * 0.00015;
+    var gst = (exch) * 0.18;
+    charges = sttBuy + sttSell + exch + sebi + stamp + gst;
+  } else if (market === 'equity_intraday') {
+    var brokBuy = Math.min(20, investment * 0.0003);
+    var brokSell = Math.min(20, (tgt * qty) * 0.0003);
+    var sttI = (tgt * qty) * 0.00025;
+    var exchI = (investment + tgt * qty) * 0.0000345;
+    var stampI = investment * 0.00003;
+    var gstI = (brokBuy + brokSell + exchI) * 0.18;
+    charges = brokBuy + brokSell + sttI + exchI + stampI + gstI;
+  } else if (market === 'crypto') {
+    // 0.1% fee both sides + 1% TDS on sell side + 30% on profit (estimated)
+    var fee = (investment + tgt * qty) * 0.001;
+    var tds = (tgt * qty) * 0.01;
+    var taxOnGain = Math.max(0, grossProfit) * 0.30;
+    charges = fee + tds + taxOnGain;
+  } else if (market === 'forex') {
+    // ~0.03% brokerage + GST
+    var fxBrok = Math.min(20, investment * 0.0003) + Math.min(20, (tgt * qty) * 0.0003);
+    var fxGst = fxBrok * 0.18;
+    charges = fxBrok + fxGst;
+  }
+  var netProfit = grossProfit - charges;
+
+  // Update results
+  document.getElementById('r-invest').textContent = '₹' + fmtINR(investment);
+  var gpEl = document.getElementById('r-gp');
+  gpEl.textContent = (grossProfit >= 0 ? '+' : '') + '₹' + fmtINR(grossProfit);
+  gpEl.className = 'val ' + (grossProfit >= 0 ? 'up' : 'dn');
+  document.getElementById('r-loss').textContent = '-₹' + fmtINR(Math.abs(maxLoss));
+  document.getElementById('r-charges').textContent = '-₹' + fmtINR(charges);
+  document.getElementById('r-rr').textContent = '1 : ' + rr.toFixed(2);
+  var roiEl = document.getElementById('r-roi');
+  roiEl.textContent = (roi >= 0 ? '+' : '') + roi.toFixed(2) + '%';
+  roiEl.className = 'val ' + (roi >= 0 ? 'up' : 'dn');
+  var netEl = document.getElementById('r-net');
+  netEl.textContent = (netProfit >= 0 ? '+' : '') + '₹' + fmtINR(netProfit);
+  netEl.className = 'val ' + (netProfit >= 0 ? 'up' : 'dn');
+
+  // Position sizer
+  var risk1pc = cap * 0.01;
+  var recQty = riskPerShare > 0 ? Math.floor(risk1pc / riskPerShare) : 0;
+  var reqCap = recQty * entry;
+  document.getElementById('r-risk').textContent = '₹' + fmtINR(risk1pc);
+  document.getElementById('r-recqty').textContent = recQty + ' shares';
+  document.getElementById('r-reqcap').textContent = '₹' + fmtINR(reqCap);
+}
+
+/* ===================================
+   GLOSSARY / TEMPLATES / LANDING HELPERS
+=================================== */
+function buildGlossary() {
+  var html = '<input class="gsearch" id="gsearch" type="text" placeholder="Search ' + GLOSSARY.length + ' terms..." oninput="filterGlossary()"><div id="glos-list"></div>';
+  document.getElementById('glos-content').innerHTML = html;
+  renderGlossary('');
+}
+function renderGlossary(filter) {
+  var html = '', f = (filter || '').toLowerCase();
+  for (var i = 0; i < GLOSSARY.length; i++) {
+    var term = GLOSSARY[i][0], def = GLOSSARY[i][1];
+    if (!f || term.toLowerCase().indexOf(f) >= 0 || def.toLowerCase().indexOf(f) >= 0) {
+      html += '<div class="gitem"><b>' + esc(term) + '</b><p>' + esc(def) + '</p></div>';
+    }
+  }
+  if (!html) html = '<div class="error">No matches found</div>';
+  document.getElementById('glos-list').innerHTML = html;
+}
+function filterGlossary() { renderGlossary(document.getElementById('gsearch').value); }
+
+function buildTemplates() {
+  var t1 = 'TRADE JOURNAL ENTRY - [DATE]\n\n=======================================\nSETUP\n=======================================\nInstrument:     _______________\nDirection:      LONG / SHORT\nSetup Type:     _______________\nTimeframe:      _______________\n\nTRADE LEVELS\n---------------------------------------\nEntry Price:    ₹ _____________\nStop-Loss:      ₹ _____________\nTarget 1:       ₹ _____________\nTarget 2:       ₹ _____________\nQuantity:       _______________\nRisk:Reward:    1 : ___________\nRisk Amount:    ₹ _____________\n\nEXECUTION\n---------------------------------------\nEntry Time:     _______________\nExit Time:      _______________\nExit Price:     ₹ _____________\nP&L (₹):        _______________\nResult:         WIN / LOSS / BE\n\nPROCESS REVIEW\n---------------------------------------\nFollowed plan?           Y / N\nSL respected?            Y / N\nPosition size correct?   Y / N\nEmotional decisions?     Y / N\n\nNOTES & LESSON LEARNED\n---------------------------------------\n_____________________________\n_____________________________';
+  var t2 = 'WEEKLY TRADING REVIEW - Week ___\n\n=======================================\nSTATISTICS\n=======================================\nTotal Trades:          ___\nWinners:               ___\nLosers:                ___\nWin Rate:              ___%\nTotal P&L:             ₹ ___\nAvg Risk:Reward:       1 : ___\nProfit Factor:         ___\nExpectancy:            ₹ ___\n\nRULES COMPLIANCE\n---------------------------------------\nTimes SL moved emotionally:  ___\nTimes oversized position:    ___\nTrades during news:          ___\nRevenge trades:              ___\n\nTOP 3 INSIGHTS\n---------------------------------------\n1. _____________________________\n2. _____________________________\n3. _____________________________\n\nNEXT WEEK FOCUS\n---------------------------------------\nOne thing to improve: _________';
+  var t3 = 'EXCEL/SHEETS TRADE LOG\n\nColumn headers (row 1):\nA: Date\nB: Symbol\nC: Direction\nD: Setup\nE: Entry\nF: SL\nG: Target\nH: Qty\nI: Risk ₹\nJ: Exit\nK: Exit Reason\nL: P&L ₹\nM: P&L %\nN: W/L\nO: R-Multiple\nP: Followed Plan?\nQ: Notes\n\nKEY FORMULAS:\nP&L:           = (J-E)*H*IF(C="L",1,-1)\nP&L %:         = L/(E*H)*100\nR-Multiple:    = L/I\nWin Rate:      = COUNTIF(N:N,"Win")/COUNTA(N:N)*100\nTotal P&L:     = SUM(L:L)\nAvg Win:       = AVERAGEIF(N:N,"Win",L:L)\nAvg Loss:      = AVERAGEIF(N:N,"Loss",L:L)\nProfit Factor: = SUMIF(N:N,"Win",L:L)/ABS(SUMIF(N:N,"Loss",L:L))';
+  var html = '<div class="tmpl"><h3>1. Trade Journal Entry</h3><pre id="tmpl1">' + t1 + '</pre><button class="btn primary" onclick="copyText(\'tmpl1\',this)" style="margin-top:10px">📋 Copy to Clipboard</button></div>';
+  html += '<div class="tmpl"><h3>2. Weekly Review</h3><pre id="tmpl2">' + t2 + '</pre><button class="btn primary" onclick="copyText(\'tmpl2\',this)" style="margin-top:10px">📋 Copy to Clipboard</button></div>';
+  html += '<div class="tmpl"><h3>3. Excel/Sheets Trade Log</h3><pre id="tmpl3">' + t3 + '</pre><button class="btn primary" onclick="copyText(\'tmpl3\',this)" style="margin-top:10px">📋 Copy to Clipboard</button></div>';
+  document.getElementById('tmpl-content').innerHTML = html;
+}
+
+function copyText(elId, btn) {
+  var text = document.getElementById(elId).textContent;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function() { var o = btn.textContent; btn.textContent = '✓ Copied!'; setTimeout(function() { btn.textContent = o; }, 1500); });
+  } else {
+    var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    btn.textContent = '✓ Copied!'; setTimeout(function() { btn.textContent = '📋 Copy to Clipboard'; }, 1500);
+  }
+}
+
+function buildCurriculum() {
+  var phases = [ {weeks:[1,2,3,4]}, {weeks:[5,6]}, {weeks:[7]}, {weeks:[8]} ];
+  var html = '';
+  for (var p = 0; p < phases.length; p++) {
+    var onCls = (p === 0) ? ' on' : '';
+    html += '<div class="curr-week' + onCls + '" data-phase="' + p + '">';
+    for (var wi = 0; wi < phases[p].weeks.length; wi++) {
+      var wn = phases[p].weeks[wi];
+      html += '<h4>Week ' + wn + '</h4><div class="curr-lessons">';
+      for (var i = 0; i < LESSONS.length; i++) if (LESSONS[i].w === wn) {
+        html += '<div class="curr-lesson" data-idx="' + i + '"><span class="d">D' + LESSONS[i].d + '</span>' + esc(LESSONS[i].ti) + '</div>';
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+  var cc = document.getElementById('curr-content');
+  cc.innerHTML = html;
+  cc.onclick = function(ev) {
+    var t = ev.target;
+    while (t && t !== cc) {
+      if (t.classList && t.classList.contains('curr-lesson')) {
+        var idx = parseInt(t.getAttribute('data-idx'), 10);
+        if (!isNaN(idx)) enterApp(idx);
+        return;
+      }
+      t = t.parentNode;
+    }
+  };
+  var tabsRow = document.getElementById('curr-tabs');
+  tabsRow.onclick = function(ev) {
+    var t = ev.target;
+    if (t.tagName === 'BUTTON') {
+      var phase = t.getAttribute('data-phase');
+      var allTabs = tabsRow.querySelectorAll('button');
+      for (var i = 0; i < allTabs.length; i++) allTabs[i].classList.remove('on');
+      t.classList.add('on');
+      var weeks = cc.querySelectorAll('.curr-week');
+      for (var j = 0; j < weeks.length; j++) {
+        weeks[j].classList.toggle('on', weeks[j].getAttribute('data-phase') === phase);
+        weeks[j].style.display = (weeks[j].getAttribute('data-phase') === phase) ? 'block' : 'none';
+      }
+    }
+  };
+}
+
+function buildMarquee() {
+  var stocks = [['HDFCBANK','+0.3%','up'],['ICICIBANK','-0.2%','dn'],['WIPRO','+1.5%','up'],['SBIN','+0.6%','up'],['BHARTIARTL','+2.1%','up'],['LT','+0.9%','up'],['BAJFINANCE','-0.7%','dn'],['ASIANPAINT','+0.4%','up'],['HINDUNILVR','-0.1%','dn'],['SUNPHARMA','+1.3%','up'],['RELIANCE','+1.2%','up'],['TCS','-0.4%','dn'],['INFOSYS','+0.8%','up']];
+  var items = '';
+  for (var d = 0; d < 2; d++) for (var i = 0; i < stocks.length; i++)
+    items += '<div class="mq-item"><b>' + stocks[i][0] + '</b><span class="pct ' + stocks[i][2] + '">' + stocks[i][1] + '</span><span>·</span></div>';
+  document.getElementById('marquee-track').innerHTML = items;
+}
+
+(function() {
+  var mainnav = document.getElementById('mainnav');
+  if (mainnav) {
+    mainnav.onclick = function(ev) {
+      var t = ev.target;
+      if (t.tagName === 'BUTTON') { var tab = t.getAttribute('data-tab'); if (tab) switchTab(tab); }
+    };
+  }
+  if (LESSONS.length > 0) { buildCurriculum(); buildMarquee(); }
+  // Redraw chart on resize
+  window.addEventListener('resize', function() {
+    if (typeof drawSimChart === 'function' && document.getElementById('sim-canvas')) drawSimChart();
+  });
+})();
+</script>
+</body>
+</html>
