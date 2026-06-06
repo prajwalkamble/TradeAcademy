@@ -1523,6 +1523,30 @@ body.light #mobileTabBar{background:rgba(255,255,255,0.6);border:1px solid rgba(
 body.light #mobileTabBar .tab{color:#475569}
 body.light #mobileTabBar .tab.active{color:#fff}
 
+/* ===== SIGN-OUT / TRANSITION LOADER OVERLAY ===== */
+#transitionOverlay{
+  position:fixed;inset:0;z-index:99999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  background:rgba(8,12,24,0.72);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  backdrop-filter:blur(14px) saturate(140%);
+  opacity:0;visibility:hidden;transition:opacity 0.35s ease,visibility 0.35s ease;
+}
+#transitionOverlay.on{opacity:1;visibility:visible}
+#transitionOverlay .to-spinner{
+  width:46px;height:46px;border-radius:50%;
+  border:3px solid rgba(255,255,255,0.15);
+  border-top-color:#6366f1;border-right-color:#9333ea;
+  animation:toSpin 0.8s linear infinite;
+}
+#transitionOverlay .to-text{color:#cbd5e1;font-size:14px;font-weight:600;letter-spacing:0.3px}
+@keyframes toSpin{to{transform:rotate(360deg)}}
+body.light #transitionOverlay{background:rgba(248,250,252,0.78)}
+body.light #transitionOverlay .to-text{color:#475569}
+/* Smooth fade-in for the landing page when it (re)appears */
+.landing.fade-in{animation:landingFade 0.5s ease both}
+@keyframes landingFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
 /* ===== RESPONSIVE: 480px (small phone) ===== */
 @media (max-width:480px){
   .hero h1{font-size:30px}
@@ -2680,11 +2704,14 @@ function completeSignIn(user, msg, submitBtn, originalText, upgraded) {
 }
 
 function signOut() {
+  // Show a smooth loader overlay so the transition isn't abrupt
+  if (typeof showTransitionOverlay === 'function') showTransitionOverlay('Signing out…');
   // Always persist locally first
   if (AUTH.user) saveProgress();
   // Flush progress to the cloud and WAIT for it before ending the session,
   // otherwise the debounced save is dropped when the session is destroyed.
   var flush = (typeof sbFlushNowAsync === 'function') ? sbFlushNowAsync() : Promise.resolve();
+  var started = Date.now();
   flush.then(function() {
     if (sbReady()) { try { SB.auth.signOut(); } catch(e) {} }
     AUTH.user = null;
@@ -2702,8 +2729,20 @@ function signOut() {
     if (typeof buildSidebar === 'function') buildSidebar();
     updateProgress();
     if (typeof updateSimStats === 'function' && document.getElementById('sPort')) buildSimulator();
-    // Return the user to the landing/home page after signing out
-    if (typeof goHome === 'function') goHome();
+    // Keep the loader visible for a brief, smooth minimum (avoids a jarring flash)
+    var elapsed = Date.now() - started;
+    var wait = Math.max(0, 600 - elapsed);
+    setTimeout(function() {
+      if (typeof goHome === 'function') goHome();
+      // Fade the landing page in
+      var landing = document.getElementById('landing');
+      if (landing) {
+        landing.classList.remove('fade-in');
+        void landing.offsetWidth;   // reflow to restart animation
+        landing.classList.add('fade-in');
+      }
+      if (typeof hideTransitionOverlay === 'function') hideTransitionOverlay();
+    }, wait);
   });
 }
 
@@ -10484,11 +10523,26 @@ function startLiveBar() {
       if (bd) bd.classList.remove('on');
     }
   });
-  // ESC closes modal
+  // ESC closes modal; Enter submits the open auth form
   document.addEventListener('keydown', function(ev) {
+    var m = document.getElementById('authModal');
+    var open = m && m.classList.contains('on');
     if (ev.key === 'Escape') {
-      var m = document.getElementById('authModal');
-      if (m && m.classList.contains('on')) closeAuth();
+      if (open) closeAuth();
+      return;
+    }
+    if (ev.key === 'Enter' && open) {
+      // Don't hijack Enter elsewhere; only when focus is within the auth modal
+      var ae = document.activeElement;
+      if (ae && m.contains(ae) && ae.tagName === 'TEXTAREA') return;
+      var forgot = document.getElementById('authForgotView');
+      var forgotOpen = forgot && forgot.style.display !== 'none' && forgot.style.display !== '';
+      ev.preventDefault();
+      if (forgotOpen) {
+        if (typeof submitForgotPassword === 'function') submitForgotPassword();
+      } else {
+        if (typeof submitAuth === 'function') submitAuth();
+      }
     }
   });
 })();
@@ -10542,6 +10596,24 @@ function updateMobileTabBar(){
   var app = document.getElementById('app');
   var onLanding = !app || app.style.display === 'none' || app.style.display === '';
   bar.style.display = onLanding ? '' : 'none';
+}
+</script>
+<!-- Transition / loader overlay (used during sign-out) -->
+<div id="transitionOverlay" aria-hidden="true">
+  <div class="to-spinner"></div>
+  <div class="to-text">Signing out…</div>
+</div>
+<script>
+function showTransitionOverlay(text){
+  var ov = document.getElementById('transitionOverlay');
+  if (!ov) return;
+  var t = ov.querySelector('.to-text');
+  if (t && text) t.textContent = text;
+  ov.classList.add('on');
+}
+function hideTransitionOverlay(){
+  var ov = document.getElementById('transitionOverlay');
+  if (ov) ov.classList.remove('on');
 }
 </script>
 </body>
