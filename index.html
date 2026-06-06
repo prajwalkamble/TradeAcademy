@@ -1406,7 +1406,7 @@ body.light .mtf-tf-label .tf-badge{background:rgba(99,102,241,0.1);color:#4f46e5
 .tk-cat-btn.on{background:rgba(99,102,241,0.1);color:#6366f1;border-color:rgba(99,102,241,0.4)}
 
 /* ===== USER BADGE ===== */
-.user-badge{background:rgba(99,102,241,0.1);color:#6366f1;padding:5px 10px;border-radius:14px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(99,102,241,0.3)}
+.user-badge{background:rgba(255,255,255,0.18);color:#ffffff;padding:5px 10px;border-radius:14px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,0.35)}
 .user-badge .dot{width:6px;height:6px;background:#10b981;border-radius:50%}
 
 /* ===== RESPONSIVE: 1024px ===== */
@@ -2008,8 +2008,8 @@ function saveUsers(users) {
 
 function openAuth() {
   if (AUTH.user) {
-    // Signed in - offer sign out
-    if (confirm('Signed in as ' + AUTH.user + '. Sign out?')) signOut();
+    // Signed in — clicking the profile name opens the settings/profile dropdown
+    toggleSettingsMenu();
     return;
   }
   var modal = document.getElementById('authModal');
@@ -2914,9 +2914,11 @@ function signOutFromMenu() {
 // Close settings menu when clicking outside
 document.addEventListener('click', function(e) {
   var menu = document.getElementById('settingsMenu');
+  if (!menu) return;
   var btn = document.getElementById('settingsBtn');
-  if (!menu || !btn) return;
-  if (!menu.contains(e.target) && !btn.contains(e.target)) menu.classList.remove('on');
+  var profileBtn = document.getElementById('authBtn');
+  var insideTrigger = (btn && btn.contains(e.target)) || (profileBtn && profileBtn.contains(e.target));
+  if (!menu.contains(e.target) && !insideTrigger) menu.classList.remove('on');
 });
 
 // ===== THEME (DARK / LIGHT) =====
@@ -3229,13 +3231,16 @@ function refreshAuthBadge() {
     if (!btn) continue;
     if (AUTH.user) {
       btn.innerHTML = '<span class="user-badge"><span class="dot"></span>' + AUTH.user + '</span>';
-      btn.title = 'Click to sign out';
+      btn.title = 'Profile & settings';
     } else {
       // Both Sign In buttons now show "Sign In" without the avatar
       btn.innerHTML = 'Sign In';
       btn.title = 'Sign in to save your progress';
     }
   }
+  // The gear is only shown when signed OUT; once signed in, settings live in the profile dropdown
+  var gear = document.getElementById('settingsBtn');
+  if (gear) gear.style.display = AUTH.user ? 'none' : '';
   if (typeof updateSyncIndicator === 'function') updateSyncIndicator();
 }
 
