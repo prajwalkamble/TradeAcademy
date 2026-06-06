@@ -1486,32 +1486,42 @@ body.light .mtf-tf-label .tf-badge{background:rgba(99,102,241,0.1);color:#4f46e5
 @media (max-width:768px){
   #mobileTabBar{
     display:flex;
-    position:fixed;left:0;right:0;bottom:0;
+    position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));
     z-index:9500;
-    justify-content:space-around;align-items:stretch;
-    padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));
-    /* Glassmorphism: frosted translucent glass with blur + hairline top border */
-    background:rgba(15,23,42,0.62);
-    -webkit-backdrop-filter:blur(22px) saturate(160%);
-    backdrop-filter:blur(22px) saturate(160%);
-    border-top:1px solid rgba(255,255,255,0.12);
-    box-shadow:0 -8px 30px rgba(0,0,0,0.35);
+    justify-content:space-between;align-items:center;gap:4px;
+    padding:8px 10px;
+    border-radius:22px;
+    /* Glassmorphism: pronounced frosted glass so it reads even on dark backgrounds */
+    background:rgba(30,41,59,0.55);
+    -webkit-backdrop-filter:blur(26px) saturate(180%);
+    backdrop-filter:blur(26px) saturate(180%);
+    border:1px solid rgba(255,255,255,0.16);
+    box-shadow:0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.18);
   }
   #mobileTabBar .tab{
-    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-    background:none;border:none;cursor:pointer;padding:4px 2px;
-    color:#94a3b8;font-size:10px;font-weight:600;letter-spacing:0.2px;
-    transition:color 0.2s,transform 0.12s;
+    flex:1;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:7px;
+    background:none;border:none;cursor:pointer;padding:9px 6px;border-radius:16px;
+    color:#cbd5e1;font-size:0;font-weight:600;letter-spacing:0.2px;white-space:nowrap;
+    transition:all 0.22s ease;overflow:hidden;
   }
-  #mobileTabBar .tab svg{width:22px;height:22px;display:block}
-  #mobileTabBar .tab:active{transform:scale(0.92)}
-  #mobileTabBar .tab.active{color:#a78bfa}
-  /* push page content above the fixed bar so nothing hides behind it */
-  body{padding-bottom:72px}
+  #mobileTabBar .tab svg{width:22px;height:22px;display:block;flex:none}
+  #mobileTabBar .tab .lbl{font-size:13px;max-width:0;opacity:0;transition:all 0.22s ease}
+  #mobileTabBar .tab:active{transform:scale(0.94)}
+  /* Active tab = highlighted rounded pill with icon + revealed label (like the reference) */
+  #mobileTabBar .tab.active{
+    flex:0 0 auto;
+    color:#fff;
+    background:linear-gradient(135deg,rgba(59,130,246,0.9),rgba(147,51,234,0.9));
+    box-shadow:0 4px 14px rgba(99,102,241,0.45);
+    padding:9px 16px;
+  }
+  #mobileTabBar .tab.active .lbl{font-size:13px;max-width:120px;opacity:1;margin-left:2px}
+  /* push page content above the floating bar */
+  body{padding-bottom:84px}
 }
-body.light #mobileTabBar{background:rgba(255,255,255,0.7);border-top:1px solid rgba(0,0,0,0.08);box-shadow:0 -8px 30px rgba(0,0,0,0.10)}
-body.light #mobileTabBar .tab{color:#64748b}
-body.light #mobileTabBar .tab.active{color:#7c3aed}
+body.light #mobileTabBar{background:rgba(255,255,255,0.6);border:1px solid rgba(0,0,0,0.08);box-shadow:0 8px 32px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6)}
+body.light #mobileTabBar .tab{color:#475569}
+body.light #mobileTabBar .tab.active{color:#fff}
 
 /* ===== RESPONSIVE: 480px (small phone) ===== */
 @media (max-width:480px){
@@ -10494,21 +10504,21 @@ function startLiveBar() {
 </div>
 <!-- Mobile bottom tab bar (glassmorphism on iOS, adapts on Android) -->
 <nav id="mobileTabBar" aria-label="Quick navigation">
-  <button class="tab" data-sec="features" onclick="mobileTab('features')" aria-label="Features">
+  <button class="tab active" data-sec="features" onclick="mobileTab('features')" aria-label="Features">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-    <span>Features</span>
+    <span class="lbl">Features</span>
   </button>
   <button class="tab" data-sec="curriculum" onclick="mobileTab('curriculum')" aria-label="Curriculum">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-    <span>Curriculum</span>
+    <span class="lbl">Curriculum</span>
   </button>
   <button class="tab" data-sec="markets" onclick="mobileTab('markets')" aria-label="Markets">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-    <span>Markets</span>
+    <span class="lbl">Markets</span>
   </button>
   <button class="tab" data-sec="journey" onclick="mobileTab('journey')" aria-label="Journey">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 8 12 8 12s8-6.6 8-12a8 8 0 0 0-8-8z"/></svg>
-    <span>Journey</span>
+    <span class="lbl">Journey</span>
   </button>
 </nav>
 <script>
