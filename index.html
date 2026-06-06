@@ -1416,7 +1416,9 @@ body.light .mtf-tf-label .tf-badge{background:rgba(99,102,241,0.1);color:#4f46e5
   .hero{padding:60px 16px 40px}
   .hero h1{font-size:36px;letter-spacing:-1px}
   .hero p.sub{font-size:14px}
-  .topnav{padding:12px 16px}
+  .topnav{padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 0}
+  .topnav .logo{justify-self:start;order:1}
+  .nav-right{order:2;margin-left:auto}
   .ticker-marquee{top:58px;padding:6px 0}
   .nav-links{display:none}
   .logo{font-size:15px}
@@ -1478,6 +1480,38 @@ body.light .mtf-tf-label .tf-badge{background:rgba(99,102,241,0.1);color:#4f46e5
   .bg-table{font-size:11px}
   .bg-table th,.bg-table td{padding:6px 8px}
 }
+
+/* ===== MOBILE BOTTOM TAB BAR (glassmorphism) ===== */
+#mobileTabBar{display:none}
+@media (max-width:768px){
+  #mobileTabBar{
+    display:flex;
+    position:fixed;left:0;right:0;bottom:0;
+    z-index:9500;
+    justify-content:space-around;align-items:stretch;
+    padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));
+    /* Glassmorphism: frosted translucent glass with blur + hairline top border */
+    background:rgba(15,23,42,0.62);
+    -webkit-backdrop-filter:blur(22px) saturate(160%);
+    backdrop-filter:blur(22px) saturate(160%);
+    border-top:1px solid rgba(255,255,255,0.12);
+    box-shadow:0 -8px 30px rgba(0,0,0,0.35);
+  }
+  #mobileTabBar .tab{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+    background:none;border:none;cursor:pointer;padding:4px 2px;
+    color:#94a3b8;font-size:10px;font-weight:600;letter-spacing:0.2px;
+    transition:color 0.2s,transform 0.12s;
+  }
+  #mobileTabBar .tab svg{width:22px;height:22px;display:block}
+  #mobileTabBar .tab:active{transform:scale(0.92)}
+  #mobileTabBar .tab.active{color:#a78bfa}
+  /* push page content above the fixed bar so nothing hides behind it */
+  body{padding-bottom:72px}
+}
+body.light #mobileTabBar{background:rgba(255,255,255,0.7);border-top:1px solid rgba(0,0,0,0.08);box-shadow:0 -8px 30px rgba(0,0,0,0.10)}
+body.light #mobileTabBar .tab{color:#64748b}
+body.light #mobileTabBar .tab.active{color:#7c3aed}
 
 /* ===== RESPONSIVE: 480px (small phone) ===== */
 @media (max-width:480px){
@@ -3306,6 +3340,7 @@ function enterApp(idx) {
   document.getElementById('landing').style.display = 'none';
   var app = document.getElementById('app');
   app.style.display = 'flex';
+  if (typeof updateMobileTabBar === 'function') updateMobileTabBar();
   if (!window._appInitDone) {
     buildSidebar();
     buildRoadmap();
@@ -3349,6 +3384,7 @@ function goHome() {
   var rb = document.getElementById('riskBar');
   if (rb) rb.classList.remove('on');
   window.scrollTo(0, 0);
+  if (typeof updateMobileTabBar === 'function') updateMobileTabBar();
 }
 
 // After a successful sign-in/up via the auth gate, enter the course where the user intended.
@@ -10456,5 +10492,47 @@ function startLiveBar() {
   <div class="divider" id="signOutDivider" style="display:none"></div>
   <div class="item" id="signOutItem" onclick="signOutFromMenu()" style="display:none"><span class="ico">🚪</span><span>Sign Out</span></div>
 </div>
+<!-- Mobile bottom tab bar (glassmorphism on iOS, adapts on Android) -->
+<nav id="mobileTabBar" aria-label="Quick navigation">
+  <button class="tab" data-sec="features" onclick="mobileTab('features')" aria-label="Features">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <span>Features</span>
+  </button>
+  <button class="tab" data-sec="curriculum" onclick="mobileTab('curriculum')" aria-label="Curriculum">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    <span>Curriculum</span>
+  </button>
+  <button class="tab" data-sec="markets" onclick="mobileTab('markets')" aria-label="Markets">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+    <span>Markets</span>
+  </button>
+  <button class="tab" data-sec="journey" onclick="mobileTab('journey')" aria-label="Journey">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 8 12 8 12s8-6.6 8-12a8 8 0 0 0-8-8z"/></svg>
+    <span>Journey</span>
+  </button>
+</nav>
+<script>
+// Mobile bottom-bar tap -> scroll to the section (sections live on the landing page)
+function mobileTab(sec){
+  var app = document.getElementById('app');
+  var onLanding = !app || app.style.display === 'none' || app.style.display === '';
+  if (!onLanding && typeof goHome === 'function') {
+    goHome();
+    setTimeout(function(){ if (typeof scrollToSec === 'function') scrollToSec(sec); }, 60);
+  } else if (typeof scrollToSec === 'function') {
+    scrollToSec(sec);
+  }
+  var tabs = document.querySelectorAll('#mobileTabBar .tab');
+  for (var i=0;i<tabs.length;i++){ tabs[i].classList.toggle('active', tabs[i].getAttribute('data-sec')===sec); }
+}
+// Hide the bar inside the course (those sections only exist on the landing page)
+function updateMobileTabBar(){
+  var bar = document.getElementById('mobileTabBar');
+  if (!bar) return;
+  var app = document.getElementById('app');
+  var onLanding = !app || app.style.display === 'none' || app.style.display === '';
+  bar.style.display = onLanding ? '' : 'none';
+}
+</script>
 </body>
 </html>
