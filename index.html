@@ -17,12 +17,13 @@ a{color:inherit;text-decoration:none}
 .landing::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,0.08) 0%,transparent 70%);pointer-events:none;z-index:0}
 
 /* Sticky Top Nav */
-.topnav{position:sticky;top:0;background:rgba(2,6,23,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);padding:14px 32px;display:flex;align-items:center;z-index:100}
+.topnav{position:sticky;top:0;background:rgba(2,6,23,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);padding:14px 32px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;z-index:100}
 .logo{font-size:18px;font-weight:700;color:#6366f1;cursor:pointer;display:flex;align-items:center;gap:8px}
 .logo:hover{opacity:0.85}
 .logo .ldot{width:10px;height:10px;background:#6366f1;border-radius:2px;display:inline-block}
-.nav-links{display:flex;gap:28px;margin:0 auto;align-items:center;list-style:none}
+.nav-links{display:flex;gap:28px;align-items:center;list-style:none}
 .nav-right{display:flex;gap:10px;align-items:center;margin-left:auto}
+.topnav .logo{justify-self:start}
 .nav-links a{color:#94a3b8;font-size:14px;transition:color 0.2s;cursor:pointer}
 .nav-links a:hover{color:#6366f1}
 .open-course-btn{background:linear-gradient(90deg,#6366f1,#7c3aed);color:#020617;padding:8px 18px;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;margin-left:24px}
@@ -915,8 +916,8 @@ body.light .settings-menu .item:hover{background:rgba(79,70,229,0.06)}
 .air-textarea:focus{outline:none;border-color:#6366f1}
 .air-examples{font-size:11px;color:#64748b;margin-top:6px;line-height:1.6}
 .air-examples b{color:#94a3b8}
-.air-go{width:100%;background:linear-gradient(135deg,#3b82f6 0%,#9333ea 100%);color:#ffffff;padding:12px;border-radius:8px;font-size:14px;font-weight:700;border:none;cursor:pointer;margin-top:12px}
-.air-go:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(99,102,241,0.35)}
+.air-go{width:100%;background:linear-gradient(90deg,#6366f1,#7c3aed);color:#020617;padding:12px;border-radius:8px;font-size:14px;font-weight:700;border:none;cursor:pointer;margin-top:12px}
+.air-go:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(99,102,241,0.3)}
 .air-go:disabled{opacity:0.6;cursor:not-allowed;transform:none}
 .air-result{margin-top:16px;display:none}
 .air-result.on{display:block}
@@ -1405,7 +1406,7 @@ body.light .mtf-tf-label .tf-badge{background:rgba(99,102,241,0.1);color:#4f46e5
 .tk-cat-btn.on{background:rgba(99,102,241,0.1);color:#6366f1;border-color:rgba(99,102,241,0.4)}
 
 /* ===== USER BADGE ===== */
-.user-badge{background:rgba(99,102,241,0.18);color:#ffffff;padding:5px 10px;border-radius:14px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(99,102,241,0.4)}
+.user-badge{background:rgba(99,102,241,0.1);color:#6366f1;padding:5px 10px;border-radius:14px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(99,102,241,0.3)}
 .user-badge .dot{width:6px;height:6px;background:#10b981;border-radius:50%}
 
 /* ===== RESPONSIVE: 1024px ===== */
@@ -1663,6 +1664,8 @@ body.light .mtf-tf-label .tf-badge{background:rgba(99,102,241,0.1);color:#4f46e5
         <div class="divider"></div>
         <div class="item" onclick="exportProgressCSV()"><span class="ico">📊</span><span>Export Journal as CSV</span></div>
         <div class="item" onclick="exportProgressPDF()"><span class="ico">📄</span><span>Export Progress Report (PDF)</span></div>
+        <div class="divider" id="signOutDivider" style="display:none"></div>
+        <div class="item" id="signOutItem" onclick="signOutFromMenu()" style="display:none"><span class="ico">🚪</span><span>Sign Out</span></div>
       </div>
       <button class="btn" id="authBtn" onclick="openAuth()" style="background:linear-gradient(135deg,#3b82f6 0%,#9333ea 100%);color:#ffffff;border:none;padding:8px 18px;border-radius:24px;font-weight:600;font-size:13px;box-shadow:0 4px 14px rgba(99,102,241,0.35);transition:all 0.2s">Sign In</button>
     </div>
@@ -2640,6 +2643,8 @@ function signOut() {
   if (typeof buildSidebar === 'function') buildSidebar();
   updateProgress();
   if (typeof updateSimStats === 'function' && document.getElementById('sPort')) buildSimulator();
+  // Return the user to the landing/home page after signing out
+  if (typeof goHome === 'function') goHome();
 }
 
 function saveCurrentUser() {
@@ -2891,6 +2896,19 @@ function loadProgress() {
 function toggleSettingsMenu() {
   var m = document.getElementById('settingsMenu');
   if (m) m.classList.toggle('on');
+  // Sign Out is only relevant when signed in
+  var so = document.getElementById('signOutItem');
+  var sod = document.getElementById('signOutDivider');
+  var signedIn = (typeof AUTH !== 'undefined' && AUTH.user);
+  if (so) so.style.display = signedIn ? 'flex' : 'none';
+  if (sod) sod.style.display = signedIn ? 'block' : 'none';
+}
+
+// Sign out from inside the settings dropdown
+function signOutFromMenu() {
+  var m = document.getElementById('settingsMenu');
+  if (m) m.classList.remove('on');
+  signOut();
 }
 
 // Close settings menu when clicking outside
