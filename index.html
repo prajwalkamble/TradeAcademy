@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0idGEtbWFyayIgdmlld0JveD0iMCAwIDY0IDY0IiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgYXJpYS1sYWJlbD0iVHJhZGVBY2FkZW15IGxvZ28iPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZ1RfZmF2IiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzYwYTVmYSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNiODJmNiIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnQV9mYXYiIHgxPSIwIiB5MT0iMSIgeDI9IjEiIHkyPSIwIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNjM2NmYxIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjYTg1NWY3Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHBhdGggZD0iTTExIDE0IEgzNSBWMjEgSDI3LjUgVjUwIEgxOS41IFYyMSBIMTEgWiIgZmlsbD0idXJsKCNnVF9mYXYpIi8+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2dBX2ZhdikiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBkPSJNMzQgNTAgTDQ1IDE0IEw1NiA1MCIvPjwvZz48ZyBmaWxsPSJub25lIiBzdHJva2U9InVybCgjZ0FfZmF2KSIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0zOC41IDE4IEw0NSAxMyBMNTEuNSAxOCIvPjwvZz48L3N2Zz4=">
 <title>TradeAcademy - Learn to Trade Like a Professional</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -20,7 +21,8 @@ a{color:inherit;text-decoration:none}
 .topnav{position:sticky;top:0;background:rgba(2,6,23,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);padding:14px 32px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;z-index:100}
 .logo{font-size:18px;font-weight:700;color:#6366f1;cursor:pointer;display:flex;align-items:center;gap:8px}
 .logo:hover{opacity:0.85}
-.logo .ldot{width:10px;height:10px;background:#6366f1;border-radius:2px;display:inline-block}
+.logo .ta-logo{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center}
+.logo .ta-logo svg{width:100%;height:100%;display:block}
 .nav-links{display:flex;gap:28px;align-items:center;list-style:none}
 .nav-right{display:flex;gap:10px;align-items:center;margin-left:auto}
 .topnav .logo{justify-self:start}
@@ -120,7 +122,8 @@ a{color:inherit;text-decoration:none}
 .app-topbar{background:#0f172a;border-bottom:1px solid rgba(255,255,255,0.08);padding:10px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0;flex-wrap:wrap}
 .app-topbar .applogo{cursor:pointer;font-size:15px;font-weight:700;color:#6366f1;display:flex;align-items:center;gap:8px}
 .app-topbar .applogo:hover{opacity:0.85}
-.app-topbar .applogo .ldot{width:8px;height:8px;background:#6366f1;border-radius:2px}
+.app-topbar .applogo .ta-logo{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center}
+.app-topbar .applogo .ta-logo svg{width:100%;height:100%;display:block}
 .app-topbar .sub{color:#64748b;font-size:12px}
 .app-topbar .right{margin-left:auto;display:flex;gap:8px;align-items:center}
 .prog{background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:5px 14px;font-size:12px;color:#94a3b8}
@@ -1397,7 +1400,7 @@ body.light .mtf-tf-label .tf-badge{background:rgba(99,102,241,0.1);color:#4f46e5
 .tk-cat-btn.on{background:rgba(99,102,241,0.1);color:#6366f1;border-color:rgba(99,102,241,0.4)}
 
 /* ===== USER BADGE ===== */
-.user-badge{background:transparent;color:#ffffff;padding:0;border:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.user-badge{background:transparent;color:#ffffff;padding:0;border:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:6px;line-height:1}
 .user-badge .dot{width:6px;height:6px;background:#10b981;border-radius:50%}
 
 /* ===== RESPONSIVE: 1024px ===== */
@@ -1494,7 +1497,7 @@ body.light .mtf-tf-label .tf-badge{background:rgba(99,102,241,0.1);color:#4f46e5
 <!-- ============== LANDING PAGE ============== -->
 <div class="landing" id="landing">
   <nav class="topnav">
-    <div class="logo" onclick="goHome()"><span class="ldot"></span>TradeAcademy</div>
+    <div class="logo" onclick="goHome()">TradeAcademy</div>
     <ul class="nav-links">
       <li><a onclick="scrollToSec('features')">Features</a></li>
       <li><a onclick="scrollToSec('curriculum')">Curriculum</a></li>
@@ -1502,7 +1505,7 @@ body.light .mtf-tf-label .tf-badge{background:rgba(99,102,241,0.1);color:#4f46e5
       <li><a onclick="scrollToSec('journey')">Journey</a></li>
     </ul>
     <div class="nav-right">
-      <button class="btn" id="authBtnL" onclick="openAuth()" style="background:linear-gradient(90deg,#3b82f6,#9333ea);color:#ffffff;border:none;padding:9px 22px;border-radius:24px;font-size:13px;font-weight:600;box-shadow:0 4px 14px rgba(99,102,241,0.35);transition:all 0.2s">Sign In</button>
+      <button class="btn" id="authBtnL" onclick="openAuth()" style="background:linear-gradient(135deg,#3b82f6,#9333ea);color:#ffffff;border:none;padding:10px 24px;border-radius:24px;font-size:13px;font-weight:600;line-height:1;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(99,102,241,0.35);transition:all 0.2s">Sign In</button>
     </div>
   </nav>
 
@@ -1642,13 +1645,13 @@ body.light .mtf-tf-label .tf-badge{background:rgba(99,102,241,0.1);color:#4f46e5
 <div id="app">
   <div class="app-topbar">
     <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle sidebar">☰</button>
-    <div class="applogo" onclick="goHome()"><span class="ldot"></span>TradeAcademy</div>
+    <div class="applogo" onclick="goHome()">TradeAcademy</div>
     <span class="sub" style="display:none">Personal Course</span>
     <div class="right" style="position:relative">
       <span class="sync-badge" id="syncBadge" style="display:none"></span>
       <span class="prog" id="prog">0 / 56 complete</span>
       <button class="settings-btn" id="settingsBtn" onclick="toggleSettingsMenu()" aria-label="Settings">⚙️</button>
-      <button class="btn" id="authBtn" onclick="openAuth()" style="background:linear-gradient(135deg,#3b82f6 0%,#9333ea 100%);color:#ffffff;border:none;padding:8px 18px;border-radius:24px;font-weight:600;font-size:13px;box-shadow:0 4px 14px rgba(99,102,241,0.35);transition:all 0.2s">Sign In</button>
+      <button class="btn" id="authBtn" onclick="openAuth()" style="background:linear-gradient(135deg,#3b82f6 0%,#9333ea 100%);color:#ffffff;border:none;padding:9px 20px;border-radius:24px;font-weight:600;font-size:13px;line-height:1;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(99,102,241,0.35);transition:all 0.2s">Sign In</button>
     </div>
   </div>
   <div class="mainnav" id="mainnav">
@@ -2373,6 +2376,7 @@ function submitAuthSupabase(user, pass, msg, submitBtn, originalText, signupEmai
         showLesson(CUR || 0);
         buildSimulator();
       }
+      if (typeof updateProgress === 'function') updateProgress();
       done('Welcome back, ' + AUTH.user + '!');
     });
   }).catch(function() { fail('Could not reach the server. Check your connection.'); });
@@ -2501,6 +2505,28 @@ function sbFlushIfPending() {
   updateSyncIndicator();
 }
 
+// Immediate flush that RETURNS A PROMISE and bypasses the debounce.
+// Used on sign-out so progress reaches the cloud BEFORE the session ends.
+function sbFlushNowAsync() {
+  if (!sbReady() || !AUTH.user || !isOnline()) return Promise.resolve();
+  clearTimeout(_sbSaveTimer);
+  return SB.auth.getUser().then(function(res) {
+    var u = res.data ? res.data.user : null;
+    if (!u) return;
+    var state = buildStateObject();
+    return SB.from('progress').upsert({ user_id: u.id, state: state }).then(function(r) {
+      if (typeof LEVEL !== 'undefined') {
+        return SB.from('profiles').update({
+          skill_level: LEVEL.current,
+          assessment_score: LEVEL.assessmentScore,
+          current_lesson: CUR,
+          strategy: state.strategy || {}
+        }).eq('id', u.id);
+      }
+    }).then(function(){ markSyncPending(false); });
+  }).catch(function(){});
+}
+
 function sbLoadProgress() {
   if (!sbReady() || !AUTH.user) return Promise.resolve();
   return SB.auth.getUser().then(function(res) {
@@ -2610,25 +2636,31 @@ function completeSignIn(user, msg, submitBtn, originalText, upgraded) {
 }
 
 function signOut() {
+  // Always persist locally first
   if (AUTH.user) saveProgress();
-  if (sbReady()) { try { SB.auth.signOut(); } catch(e) {} }
-  AUTH.user = null;
-  try { localStorage.removeItem('tradeacademy_current'); } catch(e) {}
-  // Reset to fresh state
-  DONE = {};
-  CUR = 0;
-  if (typeof SIM !== 'undefined') {
-    SIM.cash = SIM.startCap;
-    SIM.positions = [];
-    SIM.trades = [];
-    SIM.bars = {};
-  }
-  refreshAuthBadge();
-  if (typeof buildSidebar === 'function') buildSidebar();
-  updateProgress();
-  if (typeof updateSimStats === 'function' && document.getElementById('sPort')) buildSimulator();
-  // Return the user to the landing/home page after signing out
-  if (typeof goHome === 'function') goHome();
+  // Flush progress to the cloud and WAIT for it before ending the session,
+  // otherwise the debounced save is dropped when the session is destroyed.
+  var flush = (typeof sbFlushNowAsync === 'function') ? sbFlushNowAsync() : Promise.resolve();
+  flush.then(function() {
+    if (sbReady()) { try { SB.auth.signOut(); } catch(e) {} }
+    AUTH.user = null;
+    try { localStorage.removeItem('tradeacademy_current'); } catch(e) {}
+    // Reset to fresh state for the signed-out view
+    DONE = {};
+    CUR = 0;
+    if (typeof SIM !== 'undefined') {
+      SIM.cash = SIM.startCap;
+      SIM.positions = [];
+      SIM.trades = [];
+      SIM.bars = {};
+    }
+    refreshAuthBadge();
+    if (typeof buildSidebar === 'function') buildSidebar();
+    updateProgress();
+    if (typeof updateSimStats === 'function' && document.getElementById('sPort')) buildSimulator();
+    // Return the user to the landing/home page after signing out
+    if (typeof goHome === 'function') goHome();
+  });
 }
 
 function saveCurrentUser() {
