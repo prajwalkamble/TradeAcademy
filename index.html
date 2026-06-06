@@ -1406,7 +1406,7 @@ body.light .mtf-tf-label .tf-badge{background:rgba(99,102,241,0.1);color:#4f46e5
 .tk-cat-btn.on{background:rgba(99,102,241,0.1);color:#6366f1;border-color:rgba(99,102,241,0.4)}
 
 /* ===== USER BADGE ===== */
-.user-badge{background:rgba(255,255,255,0.18);color:#ffffff;padding:5px 10px;border-radius:14px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,0.35)}
+.user-badge{background:transparent;color:#ffffff;padding:0;border:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
 .user-badge .dot{width:6px;height:6px;background:#10b981;border-radius:50%}
 
 /* ===== RESPONSIVE: 1024px ===== */
@@ -2008,8 +2008,16 @@ function saveUsers(users) {
 
 function openAuth() {
   if (AUTH.user) {
-    // Signed in — clicking the profile name opens the settings/profile dropdown
-    toggleSettingsMenu();
+    // Already signed in. On the landing page the settings dropdown doesn't exist,
+    // so clicking the profile name takes the user into the course. In-app it opens
+    // the settings/profile dropdown.
+    var app = document.getElementById('app');
+    var onLanding = !app || app.style.display === 'none' || app.style.display === '';
+    if (onLanding) {
+      enterApp(CUR || 0);
+    } else {
+      toggleSettingsMenu();
+    }
     return;
   }
   var modal = document.getElementById('authModal');
