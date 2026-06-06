@@ -1533,14 +1533,9 @@ body.light #mobileTabBar .tab.active{color:#fff}
   opacity:0;visibility:hidden;transition:opacity 0.35s ease,visibility 0.35s ease;
 }
 #transitionOverlay.on{opacity:1;visibility:visible}
-#transitionOverlay .to-spinner{
-  width:46px;height:46px;border-radius:50%;
-  border:3px solid rgba(255,255,255,0.15);
-  border-top-color:#6366f1;border-right-color:#9333ea;
-  animation:toSpin 0.8s linear infinite;
-}
+#transitionOverlay .to-chartwrap{width:340px;max-width:80vw;height:120px;overflow:hidden}
+#transitionOverlay .to-chartwrap svg{display:block;width:100%;height:120px}
 #transitionOverlay .to-text{color:#cbd5e1;font-size:14px;font-weight:600;letter-spacing:0.3px}
-@keyframes toSpin{to{transform:rotate(360deg)}}
 body.light #transitionOverlay{background:rgba(248,250,252,0.78)}
 body.light #transitionOverlay .to-text{color:#475569}
 /* Smooth fade-in for the landing page when it (re)appears */
@@ -2402,7 +2397,15 @@ function submitAuthSupabase(user, pass, msg, submitBtn, originalText, signupEmai
   function done(text) {
     msg.className = 'auth-msg ok'; msg.textContent = text;
     submitBtn.disabled = false; submitBtn.textContent = originalText;
-    setTimeout(function(){ closeAuth(); refreshAuthBadge(); enterPendingCourse(); }, 600);
+    // Smooth chart loader while we enter the course
+    var entering = (PENDING_ENTRY !== null);
+    if (entering && typeof showTransitionOverlay === 'function') showTransitionOverlay('Signing in…');
+    setTimeout(function(){
+      closeAuth(); refreshAuthBadge(); enterPendingCourse();
+      if (entering && typeof hideTransitionOverlay === 'function') {
+        setTimeout(hideTransitionOverlay, 450);
+      }
+    }, 600);
   }
   
   if (AUTH.mode === 'signup') {
@@ -2700,7 +2703,12 @@ function completeSignIn(user, msg, submitBtn, originalText, upgraded) {
   msg.className = 'auth-msg ok';
   msg.textContent = upgraded ? 'Welcome back, ' + user + '! Security upgraded.' : 'Welcome back, ' + user + '!';
   submitBtn.disabled = false; submitBtn.textContent = originalText;
-  setTimeout(function(){ closeAuth(); refreshAuthBadge(); enterPendingCourse(); }, 600);
+  var entering = (PENDING_ENTRY !== null);
+  if (entering && typeof showTransitionOverlay === 'function') showTransitionOverlay('Signing in…');
+  setTimeout(function(){
+    closeAuth(); refreshAuthBadge(); enterPendingCourse();
+    if (entering && typeof hideTransitionOverlay === 'function') { setTimeout(hideTransitionOverlay, 450); }
+  }, 600);
 }
 
 function signOut() {
@@ -10598,22 +10606,71 @@ function updateMobileTabBar(){
   bar.style.display = onLanding ? '' : 'none';
 }
 </script>
-<!-- Transition / loader overlay (used during sign-out) -->
+<!-- Transition / loader overlay (candlestick chart, used for sign-in and sign-out) -->
 <div id="transitionOverlay" aria-hidden="true">
-  <div class="to-spinner"></div>
+  <div class="to-chartwrap"><svg id="toChart" viewBox="0 0 320 120" width="100%" height="120" preserveAspectRatio="none" aria-hidden="true"></svg></div>
   <div class="to-text">Signing out…</div>
 </div>
 <script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var step=16, bodyW=9, n=24;
+  var GREEN='#22c55e', RED='#ef4444';
+  var price=60, candles=[], off=0, raf=null;
+  function genCandle(){
+    var open=price;
+    var volatile=Math.random()<0.22;
+    var drift=(Math.random()-0.5)*(volatile?44:24);
+    var close=Math.max(14,Math.min(106, open+drift));
+    var wickExtra=volatile?Math.random()*22:Math.random()*12;
+    var hi=Math.min(114, Math.max(open,close)+wickExtra*0.7+3);
+    var lo=Math.max(6, Math.min(open,close)-wickExtra*0.7-3);
+    price=close;
+    return {open:open,close:close,hi:hi,lo:lo,up:close<=open};
+  }
+  function seed(){ price=60; candles=[]; for(var i=0;i<n+2;i++) candles.push(genCandle()); off=0; }
+  function render(svg, offset){
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    for(var i=0;i<candles.length;i++){
+      var c=candles[i], x=i*step-offset;
+      if(x< -step || x>340) continue;
+      var col=c.up?GREEN:RED;
+      var w=document.createElementNS(NS,'line');
+      w.setAttribute('x1',x+bodyW/2); w.setAttribute('x2',x+bodyW/2);
+      w.setAttribute('y1',120-c.hi); w.setAttribute('y2',120-c.lo);
+      w.setAttribute('stroke',col); w.setAttribute('stroke-width','1.5'); w.setAttribute('opacity','0.5');
+      svg.appendChild(w);
+      var top=120-Math.max(c.open,c.close), h=Math.max(3,Math.abs(c.close-c.open));
+      var b=document.createElementNS(NS,'rect');
+      b.setAttribute('x',x); b.setAttribute('y',top);
+      b.setAttribute('width',bodyW); b.setAttribute('height',h);
+      b.setAttribute('rx','1.5'); b.setAttribute('fill',col);
+      svg.appendChild(b);
+    }
+  }
+  function loop(){
+    var svg=document.getElementById('toChart');
+    if(!svg){ raf=null; return; }
+    off+=0.45;
+    if(off>=step){ off-=step; candles.shift(); candles.push(genCandle()); }
+    render(svg, off);
+    raf=requestAnimationFrame(loop);
+  }
+  window._toStartChart=function(){ seed(); if(!raf) raf=requestAnimationFrame(loop); };
+  window._toStopChart=function(){ if(raf){ cancelAnimationFrame(raf); raf=null; } };
+})();
 function showTransitionOverlay(text){
   var ov = document.getElementById('transitionOverlay');
   if (!ov) return;
   var t = ov.querySelector('.to-text');
   if (t && text) t.textContent = text;
   ov.classList.add('on');
+  if (typeof window._toStartChart === 'function') window._toStartChart();
 }
 function hideTransitionOverlay(){
   var ov = document.getElementById('transitionOverlay');
   if (ov) ov.classList.remove('on');
+  if (typeof window._toStopChart === 'function') window._toStopChart();
 }
 </script>
 </body>
