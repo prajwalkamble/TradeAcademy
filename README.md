@@ -165,4 +165,3 @@ TradeAcademy is an **educational tool only** and does not constitute financial, 
 ---
 
 *Built as a personal, offline-capable trading-education platform.*
->>>>>>> 0bc7999b2d3cd0280a41d081877daa2534ac07b7
