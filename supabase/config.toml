@@ -1,0 +1,5 @@
+project_id = "cxhbdeajbngfcqisyuds"
+
+[functions.ask-tutor]
+# JWT-gated by default: only signed-in users can call it (protects your API credits).
+verify_jwt = true
