@@ -166,7 +166,6 @@ Rotate the key anytime with `supabase secrets set` — no site redeploy needed. 
 
 ---
 
-<<<<<<< HEAD
 ## Disclaimer
 
 TradeAcademy is an **educational tool only** and is not financial, investment, or tax advice. All trading carries risk. The simulator uses synthetic and/or delayed data and places no real orders.
@@ -176,4 +175,3 @@ TradeAcademy is an **educational tool only** and is not financial, investment, o
 <div align="center"><sub>Designed and built end-to-end — frontend, data model, serverless backend, and AI integration.</sub></div>
 =======
 *Built as a personal, offline-capable trading-education platform.*
->>>>>>> eb3fe287ad1765cf2483a01b889cc3e28d0bde06
