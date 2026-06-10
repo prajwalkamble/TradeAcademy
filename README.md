@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📈 TradeAcademy
+<h1 align="center">📈 <span style="font-size:2.5em">TradeAcademy</span></h1>
 
 **Offline-first trading-education platform — Indian equities, crypto & forex — shipped as a single static file with a serverless backend.**
 
