@@ -23,7 +23,7 @@ TradeAcademy takes a complete beginner from *"what is a stock?"* to executing ri
 
 The whole client is a **single `index.html`** (no framework, no build step) that runs **fully offline after first sign-in** and syncs progress to Postgres when online. Premium features degrade gracefully rather than break: the live feed falls back to synthetic data, and the online AI tutor falls back to an offline rule-based engine.
 
-> **Live:** <span target="_blank">https://prajwalkamble.github.io/TradeAcademy/</span>
+> **Live:** [prajwalkamble.github.io/TradeAcademy](https://prajwalkamble.github.io/TradeAcademy/)
 
 ---
 
