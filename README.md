@@ -1,168 +1,175 @@
+<div align="center">
+
 # 📈 TradeAcademy
 
-> Your personal 8-week trading course — NSE equity, cryptocurrency, and forex. **Works offline with secure cloud sync.**
+**Offline-first trading-education platform — Indian equities, crypto & forex — shipped as a single static file with a serverless backend.**
 
-TradeAcademy is a complete, self-contained trading-education platform delivered as a **single HTML file**. It teaches a complete beginner how to trade — and then lets them *practice* with professional-grade tools — all in one place, with no installation, no subscription, and no dependency on a server to keep learning.
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://prajwalkamble.github.io/TradeAcademy/)
+![Build](https://img.shields.io/badge/build-none%20(zero%20dependencies)-blue)
+![Frontend](https://img.shields.io/badge/frontend-HTML%20%7C%20CSS%20%7C%20JS-orange)
+![Backend](https://img.shields.io/badge/backend-Supabase%20%2B%20Edge%20Functions-3ecf8e)
+![AI](https://img.shields.io/badge/AI-Claude%20%2B%20offline%20fallback-8a2be2)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
----
+[Live demo](https://prajwalkamble.github.io/TradeAcademy/) · [Architecture](#architecture) · [Engineering decisions](#engineering-decisions) · [Deployment](#deployment)
 
-## 📑 Table of Contents
-
-- [📈 TradeAcademy](#-tradeacademy)
-  - [📑 Table of Contents](#-table-of-contents)
-  - [💡 Why This Project Exists](#-why-this-project-exists)
-  - [📦 What It Is](#-what-it-is)
-  - [🧩 Which Features It Includes](#-which-features-it-includes)
-    - [📚 Learning](#-learning)
-    - [🛠️ Practice Tools](#️-practice-tools)
-    - [🔐 Platform](#-platform)
-  - [🏗️ Architecture](#️-architecture)
-  - [🧱 Tech Stack](#-tech-stack)
-  - [🚀 Getting Started](#-getting-started)
-  - [🔌 Backend Setup (Supabase)](#-backend-setup-supabase)
-  - [🔒 Security \& Privacy](#-security--privacy)
-  - [⚠️ Known Limitations](#️-known-limitations)
-  - [🗺️ Roadmap](#️-roadmap)
-  - [⚖️ Disclaimer](#️-disclaimer)
+</div>
 
 ---
 
-## 💡 Why This Project Exists
+## What it is
 
-Most retail traders lose money in their first year — not from lack of information, but from lack of **structured practice and discipline**. Free content is scattered across YouTube and blogs; professional tools (simulators, options analyzers, risk engines) are locked behind expensive broker platforms or paid SaaS.
+TradeAcademy takes a complete beginner from *"what is a stock?"* to executing risk-managed paper trades with a written plan — combining a 56-lesson curriculum, six practice tools, a live crypto data feed, and an AI tutor in one place.
 
-**TradeAcademy was built to close that gap:**
+The whole client is a **single `index.html`** (no framework, no build step) that runs **fully offline after first sign-in** and syncs progress to Postgres when online. Premium features degrade gracefully rather than break: the live feed falls back to synthetic data, and the online AI tutor falls back to an offline rule-based engine.
 
-1. **Motivation** — to give a self-directed learner one structured path from "what is a stock?" to placing risk-managed trades with a written strategy.
-2. **The problem it solves** — fragmented learning, no safe place to practice, and no feedback loop. It combines a curriculum, a realistic paper-trading simulator, and analytics into a single coherent journey.
-3. **Why single-file & offline-first** — so it works anywhere (a laptop with poor connectivity, a phone, a shared computer) without installs, while still syncing progress to the cloud when a connection is available.
+> **Live:** https://prajwalkamble.github.io/TradeAcademy/
 
 ---
 
-## 📦 What It Is
+## Highlights
 
-TradeAcademy is a **single-page web application** (one `.html` file, ~628 KB) that runs entirely in the browser. It pairs an **8-week, 56-lesson curriculum** covering Indian equities, crypto, and forex with a suite of **built-in interactive tools** that let learners apply each concept immediately.
-
-It is *not* a live brokerage and places no real orders — it is a risk-free educational environment. Accounts and progress are backed by a cloud database (Supabase) with a full **offline fallback**, so a learner is never locked out by a dropped connection.
-
----
-
-## 🧩 Which Features It Includes
-
-### 📚 Learning
-| Feature | Description |
-|---|---|
-| **56-Lesson Curriculum** | 8 structured weeks covering foundations, technical analysis, patterns, risk, psychology, and the three markets (NSE equity, crypto, forex). |
-| **Skill Levels & Entry Assessment** | A placement quiz sets a starting level (Beginner / Intermediate / Advanced) with automatic promotion as lessons complete. |
-| **Roadmap & Dashboard** | Visual progress tracking with scores, streaks, and daily missions. |
-| **Psychology Academy** | Dedicated modules on the mental game — fear, greed, FOMO, and discipline. |
-| **Searchable Glossary** | 140+ trading terms with inline links from within lessons. |
-
-### 🛠️ Practice Tools
-| Tool | Description |
-|---|---|
-| **Trading Simulator** | Real order types (Market, Limit, Stop-Loss, Bracket), 36 instruments, 4 chart types, swipe-to-confirm orders, and **multi-timeframe analysis** (1m + 15m + 1h with confluence verdicts). |
-| **Options Greeks Visualizer** | A Black-Scholes engine showing Delta, Gamma, Theta, Vega & Rho, an interactive payoff diagram, and Greek-vs-spot sensitivity curves. |
-| **Monte Carlo Projection** | Runs your edge statistics through thousands of simulated equity paths to reveal probability of profit, drawdowns, and **risk of ruin**. |
-| **Backtester, Replay & Scanner** | Test strategies on historical bars, replay markets candle-by-candle, and scan for setups. |
-| **Trade Coach & Journal** | Score proposed trades out of 10; log trades with an AI rule-based reviewer that computes win rate, expectancy, and R-multiples. |
-| **Risk View & Calculator** | Portfolio risk, sector heat, correlation alerts, and a position-size calculator. |
-| **Multi-Jurisdiction Tax Hub** | Tax & compliance guidance across India, USA, UK, and a general profile, with a built-in tax calculator. |
-
-### 🔐 Platform
-| Feature | Description |
-|---|---|
-| **Cloud Accounts** | Sign up with username + email; sign in with **either** username or email. Credentials are bcrypt-hashed by Supabase Auth. |
-| **Offline-First Sync** | Full course access with no network; progress is saved locally and **auto-syncs on reconnect**, with a live sync-status badge. |
-| **Password Reset** | A secure reset-link email flow (passwords are never emailed — they're hashed). |
-| **Auth Gate** | The course is sign-in protected; entry points route through a single gate that remembers the user's intended destination. |
+- 🧩 **Single-file SPA** — HTML + CSS + vanilla JS, zero dependencies, instant cache, no bundler.
+- 📡 **Offline-first sync** — `localStorage` is the source of truth; Postgres is an idempotent sync target with dirty-flag reconciliation on reconnect.
+- 📈 **Live crypto feed** — real INR prices (CoinGecko, keyless/CORS) anchor the simulator; `● LIVE`/`● SIM` status badge; automatic synthetic fallback.
+- 🤖 **Hybrid AI tutor** — Claude via a Supabase Edge Function (server-side key) with token-by-token streaming; offline rule-based answers over the course content.
+- 🔐 **Secret-free client** — only the RLS-scoped anon key ships; the Anthropic key lives server-side; per-user hourly rate limiting caps API spend.
+- 🛠️ **Six practice tools** — simulator, options Greeks, Monte Carlo, backtester/replay/scanner, trade journal, multi-jurisdiction tax hub.
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
-┌─────────────────────────────────────────────┐
-│            TradeAcademy.html                 │
-│  (single file: HTML + CSS + JS, ~628 KB)     │
-│                                              │
-│   Landing → Auth Gate → Course App           │
-│                                              │
-│   ┌──────────────┐   ┌────────────────────┐  │
-│   │ localStorage  │  │  Supabase (cloud)   │  │
-│   │ (offline-first)│◄─►│  Auth + Postgres   │  │
-│   └──────────────┘   │  + Row-Level Security│  │
-│                       └────────────────────┘  │
-└─────────────────────────────────────────────┘
+        Browser (GitHub Pages)                 Managed backend (Supabase)
+  ┌──────────────────────────────┐        ┌────────────────────────────────────┐
+  │          index.html           │        │  Auth (bcrypt) · Postgres · RLS     │
+  │  Landing → Auth Gate → Course │        │                                     │
+  │                               │        │  Edge Function: ask-tutor           │
+  │  localStorage (source of      │ async  │   ├─ rate limit (bump_ai_usage RPC) │
+  │  truth) ──── idempotent upsert ───────► │   └─ server-side key → Claude API   │
+  └───────────────┬──────────────┘        └────────────────────────────────────┘
+                  │ keyless, CORS
+                  ▼
+        CoinGecko public API (live INR crypto quotes → SIM.prices)
 ```
 
-- **Offline-first sync**: every change writes to `localStorage` immediately; when signed in and online, it also upserts to Supabase. Offline changes are flagged "dirty" and flushed automatically when connectivity returns.
-- **Build-time generation**: the HTML is produced by a Python build script that assembles templates, injects lesson data, and applies a color-rebrand transformation pass.
+**Invariants:** every mutation writes to `localStorage` first; cloud sync is best-effort and idempotent (keyed by user + record id); offline mutations are flagged *dirty* and flushed on reconnect; no client path reaches Claude directly — all AI traffic is proxied through `ask-tutor`, which alone holds the key.
 
 ---
 
-## 🧱 Tech Stack
+## Engineering decisions
 
-- **Frontend**: Vanilla HTML, CSS, and JavaScript (no framework) — keeps it dependency-free and single-file.
-- **Charts/Graphics**: Hand-rolled SVG rendering for candlesticks, payoff diagrams, and Monte Carlo curves.
-- **Backend**: [Supabase](https://supabase.com) — Postgres database, Auth (bcrypt), and Row-Level Security.
-- **Build**: Python build script (`build_pro.py`) generating the final `.html`.
-- **Persistence**: `localStorage` (offline) mirrored to Supabase tables (`profiles`, `progress`, `trades`, `lesson_completions`).
-
----
-
-## 🚀 Getting Started
-
-1. **Download** `TradeAcademy.html`.
-2. **Open** it in any modern browser (Chrome, Edge, Firefox, Safari) — desktop or mobile. No server or install required.
-3. **Sign up** with a username, email, and password (requires internet the first time).
-4. **Start learning** — complete lessons, practice in the simulator, and your progress syncs automatically.
-
-> After the first online sign-in on a device, the full course works offline; progress syncs the next time you reconnect.
+| Decision | Why | Trade-off accepted |
+|----------|-----|--------------------|
+| Single static file, no build | Max reach (shared PCs, low-end phones); instant load; trivial hosting. | Larger single payload; manual code organisation over module tooling. |
+| Local-first state, async sync | Learning must never block on the network. | Eventual consistency; conflict policy is last-write-wins per record. |
+| Secrets server-side only | A public static site cannot safely hold an API key. | Online AI requires an Edge Function deploy; degrades to offline otherwise. |
+| Progressive enhancement | Premium features should degrade, not fail. | Two code paths (live/synthetic, online/offline) to maintain. |
+| Per-user rate limit, fail-open | Bound API cost without hard-breaking UX. | A backend outage means the cap isn't enforced during that window. |
 
 ---
 
-## 🔌 Backend Setup (Supabase)
+## Tech stack
 
-1. Create a project at [supabase.com](https://supabase.com) and copy your **Project URL** and **anon/public key**.
-2. In the **SQL Editor**, run the provided `supabase_schema.sql` to create the four RLS-protected tables and the auto-provisioning trigger.
-3. In **Authentication → Email**, disable "Confirm email" so course users can sign in immediately (optional).
-4. (Recommended for production) Connect a custom **SMTP** provider so password-reset emails deliver reliably.
+**Frontend:** HTML5 · CSS3 (glassmorphism, responsive) · vanilla JS (single file, no build)
+**Charts:** hand-rolled SVG/Canvas (candles, payoff diagrams, Monte Carlo curves)
+**Backend:** Supabase — Postgres, Auth (bcrypt), Row-Level Security
+**Serverless:** Supabase Edge Functions (Deno/TypeScript) — `ask-tutor`
+**AI:** Anthropic Claude API (server-side) + offline rule-based fallback
+**Market data:** CoinGecko public REST (keyless, CORS, INR)
+**Hosting:** GitHub Pages (static) · Supabase (managed backend)
 
----
-
-## 🔒 Security & Privacy
-
-- Passwords are **never stored in plaintext** — Supabase Auth hashes them with bcrypt; the local fallback uses PBKDF2-SHA-256.
-- **Row-Level Security** ensures each user can only read or write their own data.
-- The anon key shipped in the client is safe to expose by design — RLS enforces access at the database layer.
-- No real money, no real brokerage connection — it is a purely educational simulator.
+**Data model** (all tables RLS-scoped to `auth.uid() = user_id`): `profiles`, `progress`, `lesson_completions`, `trades` (normalised journal), `ai_tutor_usage` (rate-limit store).
 
 ---
 
-## ⚠️ Known Limitations
+## Feature reference
 
-- A **brand-new account must be created while online** once (Supabase needs to register and hash the credential); afterward the device works offline.
-- **Sign-in by username on a new device** requires the local username↔email map; on a fresh device, use your email.
-- Supabase's built-in email sender is rate-limited and may land in spam — custom SMTP is recommended for production.
-- The simulator uses **synthetic price data** for education; it is not live market data.
+<details>
+<summary><strong>Curriculum & learning</strong></summary>
+
+- 56 lessons across 8 weeks (foundations, TA, patterns, risk, psychology; NSE equity, crypto, forex)
+- Entry assessment with Beginner/Intermediate/Advanced levels and auto-promotion
+- Dashboard, streaks, daily missions; psychology academy; 60+ term searchable glossary
+</details>
+
+<details>
+<summary><strong>Practice tools</strong></summary>
+
+- **Simulator** — Market/Limit/SL/Bracket orders, 36 instruments, 4 chart types, multi-timeframe (1m+15m+1h) confluence
+- **Options Greeks** — Black-Scholes Δ/Γ/Θ/V/ρ, payoff diagram, sensitivity curves
+- **Monte Carlo** — equity-path simulation → probability of profit, drawdown, risk of ruin
+- **Backtester · Replay · Scanner**, **Trade Coach & Journal** (expectancy, R-multiples), **Risk View & Calculator**, **Multi-jurisdiction Tax Hub** (IN/US/UK)
+</details>
+
+<details>
+<summary><strong>Platform</strong></summary>
+
+- Cloud accounts (username or email sign-in; bcrypt-hashed)
+- Offline-first sync with live status badge
+- Live crypto feed; hybrid AI tutor with streaming + rate limiting
+- Secure password-reset flow; auth-gated course with destination memory
+</details>
 
 ---
 
-## 🗺️ Roadmap
+## Getting started
 
-- Custom SMTP for reliable transactional email
-- Optional trader-certification badge on curriculum completion
-- Server-side edge analytics from the normalized `trades` table
-- Live (read-only) market data feed for the simulator
+No install — it's a hosted web app.
 
----
-
-## ⚖️ Disclaimer
-
-TradeAcademy is an **educational tool only** and does not constitute financial, investment, or tax advice. All trading involves risk. The simulator uses synthetic data and places no real orders. Always consult a qualified professional before making financial decisions.
+1. Open [`prajwalkamble.github.io/TradeAcademy`](https://prajwalkamble.github.io/TradeAcademy/) in any modern browser (desktop or mobile).
+2. Create an account (username + email + password) — one online sign-in provisions your cloud profile.
+3. Learn, practise in the simulator, and ask the AI tutor; progress saves automatically.
+4. After first sign-in on a device, the full course works **offline** and re-syncs on reconnect.
 
 ---
 
-*Built as a personal, offline-capable trading-education platform.*
->>>>>>> 0bc7999b2d3cd0280a41d081877daa2534ac07b7
+## Deployment
+
+**1 — Static site (GitHub Pages)**
+```bash
+git add . && git commit -m "Deploy TradeAcademy" && git push origin main
+# GitHub → Settings → Pages → Source: "Deploy from a branch" → main / root
+```
+Serves `index.html`. Auth, sync, all tools, the live crypto feed, and the offline AI bot work immediately. The embedded Supabase **anon** key is public by design (RLS-enforced) and safe to commit.
+
+**2 — AI backend (Supabase Edge Function)**
+```bash
+npm i -g supabase
+supabase login
+supabase link --project-ref <your-project-ref>
+supabase secrets set ANTHROPIC_API_KEY=sk-ant-********   # server-side only
+supabase functions deploy ask-tutor
+# then run supabase/functions/ask-tutor/ai_tutor_usage.sql in the SQL Editor
+```
+Rotate the key anytime with `supabase secrets set` — no site redeploy needed. Until deployed, the tutor answers offline.
+
+---
+
+## Security model
+
+- Passwords bcrypt-hashed (Supabase Auth); PBKDF2-SHA-256 for the local fallback — never stored in plaintext.
+- Row-Level Security enforces `auth.uid() = user_id` on every table.
+- Anon key is safe to ship (grants nothing beyond RLS); the Anthropic key is reachable only by the `ask-tutor` Edge Function.
+- Per-user hourly rate limiting + origin-locked CORS protect API spend.
+- No brokerage connection and no real orders — a purely educational simulator.
+
+---
+
+## Known limitations
+
+- Account creation needs **one** online sign-in (credential hashing); offline thereafter.
+- Username sign-in on a fresh device needs the local username↔email map — use **email** on a new device.
+- Supabase's default mailer is rate-limited; custom SMTP recommended for production.
+- Live data covers **crypto only**; equity and forex use synthetic data (no free, browser-safe real-time source).
+
+---
+
+## Disclaimer
+
+TradeAcademy is an **educational tool only** and is not financial, investment, or tax advice. All trading carries risk. The simulator uses synthetic and/or delayed data and places no real orders.
+
+---
+
+<div align="center"><sub>Designed and built end-to-end — frontend, data model, serverless backend, and AI integration.</sub></div>
