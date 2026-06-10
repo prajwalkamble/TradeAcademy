@@ -173,5 +173,5 @@ TradeAcademy is an **educational tool only** and is not financial, investment, o
 ---
 
 <div align="center"><sub>Designed and built end-to-end — frontend, data model, serverless backend, and AI integration.</sub></div>
-=======
+
 *Built as a personal, offline-capable trading-education platform.*
